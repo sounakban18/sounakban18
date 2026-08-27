@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
 const layers = [
-  { key: 'brand', label: 'Brand', rows: ['ÒMG · thank-you studio', 'SGF · trade identity'], depth: 18 },
-  { key: 'product', label: 'Product', rows: ['3D catalogue', 'Invoice generator'], depth: 34 },
-  { key: 'systems', label: 'Systems', rows: ['Pricing engine', 'P&L · 5yr model'], depth: 52 },
+  { key: 'brand', label: 'Brand', rows: ['ÒMG · packaging & content', 'SGF · trade identity'], depth: 18 },
+  { key: 'product', label: 'Frontend', rows: ['3D catalogue', 'Shopify storefront'], depth: 34 },
+  { key: 'context', label: 'Business context', rows: ['Market research', 'Cross-functional coordination'], depth: 52 },
 ];
 
 export default function SystemsStack() {

@@ -869,6 +869,29 @@ img, svg {
   background: var(--surface-1);
 }
 
+/* Skill groups (About > Skills) */
+.skill-groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-xl);
+}
+.skill-group-title {
+  margin-bottom: var(--sp-sm);
+  color: var(--ink-subtle);
+}
+.tools-row {
+  margin-top: var(--sp-xl);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (min-width: 720px) {
+  .skill-groups { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Real photo frame (headshot) */
 .photo-frame {
   width: 100%;

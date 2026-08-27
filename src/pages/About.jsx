@@ -4,26 +4,43 @@ import StatCounter from '../components/StatCounter';
 
 const focus = [
   {
-    title: 'Product & interface design',
-    body: 'Interaction design and UI for internal tools and customer-facing surfaces — catalogues, dashboards, document generators.',
+    title: 'Frontend & UI/UX',
+    body: 'From wireframes to shipped interfaces — Figma through to working frontend, not just static mockups.',
   },
   {
-    title: 'Frontend build',
-    body: 'I ship what I design. HTML/CSS/JS, React where the complexity earns it, dependency-free where portability matters more.',
+    title: 'Brand & creative',
+    body: 'Packaging, product photography, and content design for a premium D2C food brand.',
   },
   {
-    title: 'Financial systems',
-    body: 'Pricing engines, working capital models, and multi-year projection workbooks anchored to real bank data.',
+    title: 'Business context',
+    body: 'Market research, B2B communication, and cross-functional coordination across brand, product, and operations.',
   },
   {
-    title: 'Brand & marketing',
-    body: 'Brand governance across two FMCG lines — consistency, claims, and positioning across D2C and trade channels.',
-  },
-  {
-    title: 'Operations',
-    body: 'Distribution frameworks, QC parameters, and the day-to-day process work that keeps two brands running.',
+    title: 'Execution',
+    body: 'Turning a concept into something real — coordinating with agencies, creators, and platforms like Shopify to get it shipped.',
   },
 ];
+
+const skillGroups = [
+  {
+    title: 'Design',
+    items: ['UI/UX', 'Interaction Design', 'Visual Design', 'Design Systems', 'Wireframing', 'Prototyping'],
+  },
+  {
+    title: 'Frontend',
+    items: ['Frontend Development', 'Responsive Design', 'Web Interfaces', 'Shopify'],
+  },
+  {
+    title: 'Brand & Creative',
+    items: ['Brand Identity', 'Packaging', 'Product Photography', 'Content Design'],
+  },
+  {
+    title: 'Business',
+    items: ['Brand Building', 'Business Understanding', 'Market Research', 'Cross-functional Coordination', 'B2B Communication'],
+  },
+];
+
+const tools = ['Figma', 'Canva', 'Adobe Photoshop', 'Shopify', 'Generative AI Tools'];
 
 const credentials = [
   { label: 'Advanced Diploma, Software & Web Application Development', detail: 'IISDT · Nov 2025 – Apr 2026' },
@@ -53,12 +70,6 @@ const experience = [
   },
 ];
 
-const skills = [
-  'UI/UX Design', 'Figma', 'Canva', 'Adobe Photoshop', 'Generative AI Tools',
-  'Wireframing', 'Shopify Architecture', 'Responsive QA Testing', 'URL Redirects',
-  'On-site SEO', 'Conversion Rate Optimization', 'Funnel Analysis', 'Metadata Optimization',
-];
-
 export default function About() {
   return (
     <>
@@ -71,17 +82,23 @@ export default function About() {
             <span className="eyebrow">About</span>
             <h1 className="display-lg">Sounak Banerjee</h1>
             <p className="subhead">
-              Co-founder, Morfiizo Enterprise — a partnership firm in West Bengal
-              running two FMCG food brands.
+              Frontend designer working across UI/UX and digital experiences —
+              shaped by two years inside Morfiizo Enterprise, a growing FMCG business.
             </p>
             <p className="body-lg">
-              Morfiizo operates <strong>Simple Good Foods (SGF)</strong>, a
-              B2B/distributor-focused volume brand, and{' '}
-              <strong>ÒMG (Ò Morsel Goûter)</strong>, a premium D2C and
-              marketplace brand. I work hands-on across operations, finance,
-              marketing, product, and systems — and build the internal tools,
-              financial models, and digital assets myself rather than
-              outsourcing the parts I can move fastest on.
+              I joined as an intern and grew into a Brand Growth &amp; Operations
+              role. Along the way I worked across two food brands —{' '}
+              <strong>Simple Good Foods (SGF)</strong>, sold through
+              distributors, and <strong>ÒMG (Ò Morsel Goûter)</strong>, a
+              premium D2C brand — covering frontend and UI/UX, brand and
+              packaging, content, and the operational work needed to keep
+              both moving.
+            </p>
+            <p className="body-lg">
+              That range is where the business instinct comes from. I&rsquo;ve
+              sat close enough to brand, product, and operations to know a
+              design decision doesn&rsquo;t stop at the screen — it lands
+              somewhere in the business too.
             </p>
             <p className="body-lg">Based in Kolkata.</p>
           </Reveal>
@@ -92,7 +109,7 @@ export default function About() {
         <div className="container">
           <Reveal className="section-head">
             <span className="eyebrow">Experience</span>
-            <h2 className="display-md">From intern to running the growth function.</h2>
+            <h2 className="display-md">From intern to owning growth and operations.</h2>
           </Reveal>
           <div className="timeline">
             {experience.map((job, i) => (
@@ -119,7 +136,7 @@ export default function About() {
         <div className="container">
           <Reveal className="section-head">
             <span className="eyebrow">What I do</span>
-            <h2 className="display-md">Five disciplines, one small team.</h2>
+            <h2 className="display-md">Design work that accounts for what surrounds it.</h2>
           </Reveal>
           <div className="focus-grid">
             {focus.map((f, i) => (
@@ -136,16 +153,27 @@ export default function About() {
       <section className="section">
         <div className="container">
           <Reveal className="section-head">
-            <span className="eyebrow">Toolkit</span>
-            <h2 className="display-md">Skills &amp; tools.</h2>
+            <span className="eyebrow">Skills</span>
+            <h2 className="display-md">Organised by capability, not a software list.</h2>
           </Reveal>
-          <div className="skill-cloud">
-            {skills.map((s, i) => (
-              <Reveal as="span" key={s} delay={i * 30} className="skill-pill mono">
-                {s}
+          <div className="skill-groups">
+            {skillGroups.map((group, gi) => (
+              <Reveal as="div" key={group.title} delay={gi * 60} className="skill-group">
+                <p className="caption skill-group-title">{group.title}</p>
+                <div className="skill-cloud">
+                  {group.items.map((s) => (
+                    <span key={s} className="skill-pill mono">
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </Reveal>
             ))}
           </div>
+          <Reveal delay={240} className="tools-row">
+            <p className="caption">Tools</p>
+            <p className="body-sm">{tools.join(' · ')}</p>
+          </Reveal>
         </div>
       </section>
 
@@ -168,7 +196,6 @@ export default function About() {
               <StatCounter value={2} label="FMCG brands" />
               <StatCounter value={5} label="Projects shipped" />
               <StatCounter value={3} label="Person team" />
-              <StatCounter value={5} suffix="yr" label="Financial model horizon" />
             </div>
           </Reveal>
         </div>

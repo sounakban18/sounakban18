@@ -3,7 +3,7 @@ import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import Reveal from '../components/Reveal';
 
-const categories = ['All', 'Product', 'Systems', 'Brand', 'Internal Tools'];
+const categories = ['All', 'Frontend', 'Systems', 'Brand', 'Internal Tools'];
 
 function matchesCategory(project, category) {
   if (category === 'All') return true;
@@ -22,10 +22,10 @@ export default function Projects() {
       <div className="container">
         <Reveal className="section-head">
           <span className="eyebrow">Projects</span>
-          <h1 className="display-lg">Work built for a two-brand, three-person operation.</h1>
+          <h1 className="display-lg">Work built inside a real business, not an agency brief.</h1>
           <p className="body-lg page-head-copy">
-            Everything here shipped inside Morfiizo Enterprise — no agency brief,
-            no hand-off. I owned the problem, the design, and the code.
+            Everything here shipped inside Morfiizo Enterprise — no client
+            hand-off. I owned the problem, the design, and the build.
           </p>
         </Reveal>
 

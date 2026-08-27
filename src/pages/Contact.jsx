@@ -23,10 +23,10 @@ export default function Contact() {
       <div className="container contact-grid">
         <Reveal className="contact-copy">
           <span className="eyebrow">Contact</span>
-          <h1 className="display-lg">Let&rsquo;s build something.</h1>
+          <h1 className="display-lg">Let&rsquo;s build something useful.</h1>
           <p className="body-lg">
-            Open to design and frontend work, systems/tooling projects, or a
-            conversation about how Morfiizo runs its two brands.
+            Open to frontend design and UI/UX work — especially where the
+            brief goes beyond the screen into brand, product, or business context.
           </p>
           <div className="contact-channels">
             <a href="mailto:itssounakbanerjee@gmail.com" className="contact-channel" data-cursor="view">

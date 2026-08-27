@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="footer-brand">
           <span className="nav-logo-mark">SB</span>
           <p className="body-sm">
-            Sounak Banerjee — UI/UX design &amp; frontend build, Kolkata.
+            Sounak Banerjee — Frontend design &amp; UI/UX, Kolkata.
           </p>
         </div>
 

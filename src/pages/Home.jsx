@@ -19,10 +19,10 @@ const marqueeItems = [
   'Simple Good Foods',
   'ÒMG',
   'Morfiizo Enterprise',
-  'React',
   'Figma',
-  'Google Apps Script',
-  'Systems Design',
+  'Shopify',
+  'React',
+  'UI/UX',
 ];
 
 export default function Home() {
@@ -35,18 +35,17 @@ export default function Home() {
         <div className="container hero-grid">
           <div className="hero-copy glass-panel">
             <Reveal>
-              <span className="eyebrow">UI/UX Designer · Frontend · Operator</span>
+              <span className="eyebrow">Sounak Banerjee — Frontend Designer</span>
             </Reveal>
             <Reveal delay={80}>
               <h1 className="display-xl">
-                Design systems for businesses<br />that actually ship.
+                UI/UX and frontend work,<br />built with business context.
               </h1>
             </Reveal>
             <Reveal delay={160}>
               <p className="subhead hero-subhead">
-                I co-run Morfiizo Enterprise — two FMCG food brands, SGF and ÒMG —
-                and build the design and software that runs underneath them:
-                interfaces, pricing engines, and the tools our own team uses every day.
+                Two years inside a growing FMCG operation taught me that design
+                decisions ripple into brand, users, and operations — not just the screen.
               </p>
             </Reveal>
             <Reveal delay={240}>
@@ -73,7 +72,7 @@ export default function Home() {
         <div className="container">
           <Reveal className="section-head">
             <span className="eyebrow">Selected work</span>
-            <h2 className="display-md">Five problems, five shipped tools.</h2>
+            <h2 className="display-md">Five real problems, five shipped builds.</h2>
           </Reveal>
 
           <div className="project-grid">
@@ -91,16 +90,16 @@ export default function Home() {
           </Reveal>
           <Reveal delay={100} className="about-teaser-copy">
             <span className="eyebrow">About</span>
-            <h2 className="display-md">Hands-on across the whole stack of a small business.</h2>
+            <h2 className="display-md">Design work grounded in real business context.</h2>
             <p className="body-lg">
-              Operations, finance, marketing, product, and the systems in between —
-              I build the internal tools myself rather than hand off the parts I can
-              reason about fastest.
+              Two years inside Morfiizo Enterprise — across UI/UX, frontend, brand,
+              and operations — is where that instinct comes from. Not theory: brand
+              meetings, distributor calls, and the occasional broken storefront.
             </p>
             <div className="stat-row">
-              <StatCounter value={2} label="FMCG brands run" />
-              <StatCounter value={5} label="Products shipped here" />
-              <StatCounter value={3} label="Person core team" />
+              <StatCounter value={2} label="FMCG brands" />
+              <StatCounter value={5} label="Projects shipped" />
+              <StatCounter value={3} label="Person team" />
             </div>
             <Link to="/about" className="btn btn-secondary">
               More about me
@@ -112,7 +111,7 @@ export default function Home() {
       <section className="section cta-band">
         <div className="container cta-band-inner">
           <Reveal>
-            <h2 className="display-lg">Have something to build?</h2>
+            <h2 className="display-lg">Let&rsquo;s build something useful.</h2>
           </Reveal>
           <Reveal delay={100}>
             <Link to="/contact" className="btn btn-primary" data-cursor="view">

@@ -7,7 +7,13 @@ import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 import PlaceholderArt from '../components/PlaceholderArt';
 import Photo from '../components/Photo';
+import HeroVideo from '../components/HeroVideo';
 import { useMagnetic } from '../hooks';
+
+// Once you have a real clip: drop it in src/assets/hero-loop.mp4 (+ .webm
+// optionally), uncomment the import below, and pass mp4={heroMp4} to
+// <HeroVideo /> further down.
+// import heroMp4 from '../assets/hero-loop.mp4';
 
 const marqueeItems = [
   'Simple Good Foods',
@@ -25,8 +31,9 @@ export default function Home() {
   return (
     <>
       <section className="hero section">
+        <HeroVideo />
         <div className="container hero-grid">
-          <div className="hero-copy">
+          <div className="hero-copy glass-panel">
             <Reveal>
               <span className="eyebrow">UI/UX Designer · Frontend · Operator</span>
             </Reveal>

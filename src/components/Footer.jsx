@@ -20,9 +20,8 @@ export default function Footer() {
           </div>
           <div>
             <p className="caption">Elsewhere</p>
-            <a className="footer-link" href="mailto:hello@example.com">Email</a>
-            <a className="footer-link" href="#" data-cursor="view">LinkedIn</a>
-            <a className="footer-link" href="#" data-cursor="view">Dribbble</a>
+            <a className="footer-link" href="mailto:itssounakbanerjee@gmail.com">Email</a>
+            <a className="footer-link" href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noreferrer" data-cursor="view">LinkedIn</a>
           </div>
         </div>
       </div>

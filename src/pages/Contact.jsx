@@ -14,7 +14,7 @@ export default function Contact() {
     const message = form.message.value;
     const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:itssounakbanerjee@gmail.com?subject=${subject}&body=${body}`;
     setStatus('sent');
   };
 
@@ -29,15 +29,25 @@ export default function Contact() {
             conversation about how Morfiizo runs its two brands.
           </p>
           <div className="contact-channels">
-            <a href="mailto:hello@example.com" className="contact-channel" data-cursor="view">
+            <a href="mailto:itssounakbanerjee@gmail.com" className="contact-channel" data-cursor="view">
               <span className="caption">Email</span>
-              <span className="body-sm">hello@example.com <em>— replace with your address</em></span>
+              <span className="body-sm">itssounakbanerjee@gmail.com</span>
             </a>
-            <a href="#" className="contact-channel" data-cursor="view">
+            <a href="tel:+919007114605" className="contact-channel" data-cursor="view">
+              <span className="caption">Phone</span>
+              <span className="body-sm">+91 90071 14605</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/sounak-banerjee-a5292b183/"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-channel"
+              data-cursor="view"
+            >
               <span className="caption">LinkedIn</span>
-              <span className="body-sm">/in/your-handle <em>— add your link</em></span>
+              <span className="body-sm">/in/sounak-banerjee-a5292b183</span>
             </a>
-            <a href="#" className="contact-channel" data-cursor="view">
+            <a href="#" className="contact-channel">
               <span className="caption">Location</span>
               <span className="body-sm">Kolkata, West Bengal, IN</span>
             </a>
@@ -62,7 +72,7 @@ export default function Contact() {
               {status === 'sent' ? 'Opening your mail client…' : 'Send message'}
             </button>
             <p className="caption form-note">
-              This opens your email client — swap in a form backend (e.g. Formspree) later if you want it handled in-page.
+              This opens your email client at itssounakbanerjee@gmail.com.
             </p>
           </form>
         </Reveal>

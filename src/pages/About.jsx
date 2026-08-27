@@ -1,4 +1,4 @@
-import PlaceholderArt from '../components/PlaceholderArt';
+import Photo from '../components/Photo';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 
@@ -26,10 +26,37 @@ const focus = [
 ];
 
 const credentials = [
-  { label: 'B.Com', detail: 'Calcutta University' },
-  { label: 'Adv. Diploma, Software & Web Application Development' },
-  { label: 'Digital Marketing Certification', detail: 'IIDE' },
-  { label: 'Generative AI Certification', detail: 'Outskill' },
+  { label: 'Advanced Diploma, Software & Web Application Development', detail: 'IISDT · Nov 2025 – Apr 2026' },
+  { label: 'Bachelor of Commerce (B.Com)', detail: 'City College of Commerce & Business Administration, Kolkata · 2022 – 2025' },
+  { label: 'Generative AI Mastermind', detail: 'Outskill' },
+  { label: 'Digital Marketing Fundamentals', detail: 'IIDE' },
+];
+
+const experience = [
+  {
+    role: 'Brand Growth & Operations Executive',
+    org: 'Morfiizo Enterprise',
+    period: 'Aug 2024 – Present',
+    points: [
+      'Led the end-to-end Shopify platform migration — wireframes, landing pages, responsive QA, and URL redirect mapping.',
+      'Implemented on-site SEO and product metadata structure to improve organic discoverability.',
+      'Ran funnel analysis and user research to prioritise conversion-rate changes, and built automated customer messaging and opt-in nurture sequences.',
+    ],
+  },
+  {
+    role: 'UI/UX & Operations Intern',
+    org: 'Morfiizo Enterprise',
+    period: 'Jan 2023 – Aug 2024',
+    points: [
+      'Early groundwork across UI/UX and day-to-day operations, before moving into the Growth & Operations role.',
+    ],
+  },
+];
+
+const skills = [
+  'UI/UX Design', 'Figma', 'Canva', 'Adobe Photoshop', 'Generative AI Tools',
+  'Wireframing', 'Shopify Architecture', 'Responsive QA Testing', 'URL Redirects',
+  'On-site SEO', 'Conversion Rate Optimization', 'Funnel Analysis', 'Metadata Optimization',
 ];
 
 export default function About() {
@@ -38,7 +65,7 @@ export default function About() {
       <section className="section page-head-section">
         <div className="container about-hero-grid">
           <Reveal className="about-hero-art">
-            <PlaceholderArt label="Sounak Banerjee" ratio="3 / 4" dense />
+            <Photo ratio="3 / 4" />
           </Reveal>
           <Reveal delay={100} className="about-hero-copy">
             <span className="eyebrow">About</span>
@@ -64,6 +91,33 @@ export default function About() {
       <section className="section">
         <div className="container">
           <Reveal className="section-head">
+            <span className="eyebrow">Experience</span>
+            <h2 className="display-md">From intern to running the growth function.</h2>
+          </Reveal>
+          <div className="timeline">
+            {experience.map((job, i) => (
+              <Reveal as="div" key={job.role} delay={i * 80} className="timeline-item hairline-top">
+                <div className="timeline-meta">
+                  <p className="caption">{job.period}</p>
+                  <p className="body-sm">{job.org}</p>
+                </div>
+                <div className="timeline-body">
+                  <h3 className="card-title">{job.role}</h3>
+                  <ul className="timeline-points">
+                    {job.points.map((pt) => (
+                      <li key={pt} className="body-sm">{pt}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal className="section-head">
             <span className="eyebrow">What I do</span>
             <h2 className="display-md">Five disciplines, one small team.</h2>
           </Reveal>
@@ -73,6 +127,22 @@ export default function About() {
                 <p className="mono focus-index">0{i + 1}</p>
                 <h3 className="card-title">{f.title}</h3>
                 <p className="body-sm">{f.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal className="section-head">
+            <span className="eyebrow">Toolkit</span>
+            <h2 className="display-md">Skills &amp; tools.</h2>
+          </Reveal>
+          <div className="skill-cloud">
+            {skills.map((s, i) => (
+              <Reveal as="span" key={s} delay={i * 30} className="skill-pill mono">
+                {s}
               </Reveal>
             ))}
           </div>
@@ -96,7 +166,7 @@ export default function About() {
             <span className="eyebrow">By the numbers</span>
             <div className="stat-row stat-row-wrap">
               <StatCounter value={2} label="FMCG brands" />
-              <StatCounter value={4} label="Tools shipped" />
+              <StatCounter value={5} label="Projects shipped" />
               <StatCounter value={3} label="Person team" />
               <StatCounter value={5} suffix="yr" label="Financial model horizon" />
             </div>

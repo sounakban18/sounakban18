@@ -6,6 +6,7 @@ import Marquee from '../components/Marquee';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 import PlaceholderArt from '../components/PlaceholderArt';
+import Photo from '../components/Photo';
 import { useMagnetic } from '../hooks';
 
 const marqueeItems = [
@@ -65,7 +66,7 @@ export default function Home() {
         <div className="container">
           <Reveal className="section-head">
             <span className="eyebrow">Selected work</span>
-            <h2 className="display-md">Four problems, four shipped tools.</h2>
+            <h2 className="display-md">Five problems, five shipped tools.</h2>
           </Reveal>
 
           <div className="project-grid">
@@ -79,7 +80,7 @@ export default function Home() {
       <section className="section about-teaser">
         <div className="container about-teaser-grid">
           <Reveal className="about-teaser-art">
-            <PlaceholderArt label="Sounak Banerjee — headshot" ratio="3 / 4" dense />
+            <Photo ratio="3 / 4" />
           </Reveal>
           <Reveal delay={100} className="about-teaser-copy">
             <span className="eyebrow">About</span>
@@ -91,7 +92,7 @@ export default function Home() {
             </p>
             <div className="stat-row">
               <StatCounter value={2} label="FMCG brands run" />
-              <StatCounter value={4} label="Products shipped here" />
+              <StatCounter value={5} label="Products shipped here" />
               <StatCounter value={3} label="Person core team" />
             </div>
             <Link to="/about" className="btn btn-secondary">

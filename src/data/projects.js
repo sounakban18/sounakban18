@@ -1,5 +1,22 @@
 export const projects = [
   {
+    slug: 'omg-shopify-migration',
+    tag: 'PRODUCT · UX · GROWTH',
+    title: '\u00d2MG Shopify Platform Migration',
+    summary:
+      'End-to-end migration of \u00d2MG\u2019s D2C storefront to Shopify \u2014 wireframes, QA, SEO, and the funnel work that followed it.',
+    brand: '\u00d2 Morsel Go\u00fbter (\u00d2MG)',
+    role: 'Led migration, solo',
+    year: '2024\u2013present',
+    description: [
+      'ÒMG\u2019s direct-to-consumer storefront needed to move onto Shopify \u2014 not a lift-and-shift, but a chance to fix the information architecture and conversion path along the way.',
+      'I owned it end to end: wireframed the new site, designed the landing pages, and ran responsive QA across breakpoints before launch, then mapped every old URL to its Shopify equivalent so existing search rankings and inbound links survived the switch.',
+      'Post-launch, I implemented on-site SEO and product metadata structure to improve organic discoverability, ran funnel analysis to find where shoppers dropped off, and used those findings to prioritise conversion-rate changes \u2014 then built automated customer messaging and opt-in nurture sequences to bring shoppers back into the funnel.',
+    ],
+    stack: ['Shopify', 'Figma', 'On-site SEO', 'CRO / funnel analysis'],
+    accent: '#5e6ad2',
+  },
+  {
     slug: 'sgf-catalogue',
     tag: 'PRODUCT · FRONTEND',
     title: 'SGF Digital Product Catalogue',

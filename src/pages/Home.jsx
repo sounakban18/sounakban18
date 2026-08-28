@@ -26,10 +26,16 @@ const marqueeItems = [
 ];
 
 const capabilities = [
-  ['01', 'Interface design', 'Wireframes, responsive systems, interaction patterns, and interfaces that make the next action clear.'],
-  ['02', 'Frontend execution', 'Working frontend, not just a handoff. I build the details that make a digital experience feel considered.'],
-  ['03', 'Brand in motion', 'Packaging, content, photography, and digital touchpoints that help a brand stay recognisable.'],
-  ['04', 'Business context', 'Research, coordination, and operational awareness to make creative decisions useful beyond the screen.'],
+  ['01', 'Figma → UI/UX', 'Wireframes, hierarchy, responsive systems, and interaction patterns that make the next decision clear.'],
+  ['02', 'HTML → CSS', 'Turning a frame into structure, rhythm, and responsive detail that holds up in a real browser.'],
+  ['03', 'JavaScript → React', 'Building reusable components and interfaces while learning how design decisions behave in code.'],
+  ['04', 'Problem solving', 'Looking past the screen for the workflow, coordination, or business question that needs a practical answer.'],
+];
+
+const problems = [
+  ['01', 'A static catalogue', 'Distributors were working from a PDF that was slow to browse in sales conversations.', 'Built an interactive 3D catalogue that runs as a self-contained web app.'],
+  ['02', 'Manual dispatch documents', 'A repeated invoice and challan task depended on hand-filled documents and consistent formatting.', 'Designed a live-preview workflow with one-click PDF export for the operations team.'],
+  ['03', 'A storefront in transition', 'ÒMG needed to move its D2C storefront to Shopify without losing the structure around it.', 'Worked across wireframes, landing pages, responsive QA, redirects, SEO, and funnel follow-up.'],
 ];
 
 const chapters = [
@@ -47,26 +53,26 @@ export default function Home() {
         <div className="container hero-grid">
           <div className="hero-copy">
             <Reveal>
-              <span className="eyebrow">Sounak Banerjee / Frontend Designer</span>
+              <span className="eyebrow">Frontend · UI/UX · Building</span>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="display-xl">
-                Interfaces with<br /><em>somewhere to go.</em>
-              </h1>
+              <h1 className="hero-name">Sounak<br />Banerjee</h1>
+              <p className="hero-role">Frontend Designer / Developer</p>
             </Reveal>
             <Reveal delay={160}>
               <p className="subhead hero-subhead">
-                UI/UX, frontend, and digital experiences shaped by the brand,
-                the people using them, and the business behind them.
+                I design and build digital experiences while growing from
+                thoughtful interfaces into working frontend systems.
               </p>
+              <p className="hero-capabilities mono">Figma <span>→</span> UI/UX <span>→</span> HTML <span>→</span> CSS <span>→</span> JavaScript <span>→</span> React</p>
             </Reveal>
             <Reveal delay={240}>
               <div className="hero-actions">
                 <Link ref={ctaRef} to="/projects" className="btn btn-primary" data-cursor="view">
-                  View selected work <span aria-hidden="true">↗</span>
+                  View my work <span aria-hidden="true">↗</span>
                 </Link>
-                <Link to="/contact" className="btn btn-secondary">
-                  Start a conversation
+                <Link to="/about" className="btn btn-secondary">
+                  Explore my journey
                 </Link>
               </div>
             </Reveal>
@@ -84,7 +90,7 @@ export default function Home() {
         <div className="container">
           <Reveal className="section-head">
             <span className="eyebrow">Selected work</span>
-            <h2 className="display-md">A few things I have taken from brief to build.</h2>
+            <h2 className="display-md">A selection of things I&rsquo;ve designed, built, improved, and explored.</h2>
             <p className="body-lg">Digital products, internal tools, and brand moments built inside a real operating business.</p>
           </Reveal>
 
@@ -116,17 +122,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section problems-section">
+        <div className="container">
+          <Reveal className="section-head">
+            <span className="eyebrow">Problems I&rsquo;ve solved</span>
+            <h2 className="display-md">Not every problem starts with a screen.</h2>
+            <p className="body-lg">Working inside growing businesses taught me to look for the system behind the problem, then find a practical way to improve it.</p>
+          </Reveal>
+          <div className="problem-list">
+            {problems.map(([index, title, problem, solution], i) => (
+              <Reveal as="article" key={title} delay={i * 70} className="problem-item hairline-top">
+                <span className="caption problem-index">{index}</span>
+                <div className="problem-copy"><h3 className="card-title">{title}</h3><p className="body-sm"><strong>Problem:</strong> {problem}</p></div>
+                <p className="body-sm"><strong>What I built:</strong> {solution}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <InterfaceLab />
 
       <section className="section approach-section">
         <div className="container approach-grid">
           <Reveal>
-            <span className="eyebrow">My approach</span>
-            <h2 className="display-md">Start with the system around the screen.</h2>
+            <span className="eyebrow">How I work</span>
+            <h2 className="display-md">Understand the problem. Build the next useful version.</h2>
           </Reveal>
           <Reveal delay={100}>
-            <p className="body-lg">A good interface has a job to do. I look at the context first: what a person needs, what a brand promises, and what the team can actually maintain. Then I design and build the clearest version of that connection.</p>
+            <p className="body-lg">Understand the problem. Structure the experience. Design the interface. Build the solution. Refine what doesn&rsquo;t work. Keep learning.</p>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section learning-section">
+        <div className="container learning-grid">
+          <Reveal><span className="eyebrow">What I&rsquo;m learning</span><h2 className="display-md">From a frame in Figma to something that works in a browser.</h2></Reveal>
+          <Reveal delay={100}><p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p><div className="learning-list">{['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'].map((item) => <span className="skill-pill mono" key={item}>{item}</span>)}</div></Reveal>
         </div>
       </section>
 

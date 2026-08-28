@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Cursor from './components/Cursor';
+import ScrollProgress from './components/ScrollProgress';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
@@ -22,6 +23,7 @@ export default function App() {
     <>
       <Cursor />
       <ScrollToTop />
+      <ScrollProgress />
       <Nav />
       <main className="page">
         <Routes>

@@ -8,6 +8,7 @@ import StatCounter from '../components/StatCounter';
 import PlaceholderArt from '../components/PlaceholderArt';
 import Photo from '../components/Photo';
 import HeroVideo from '../components/HeroVideo';
+import DesignBusiness from '../components/DesignBusiness';
 import { useMagnetic } from '../hooks';
 
 // Once you have a real clip: drop it in src/assets/hero-loop.mp4 (+ .webm
@@ -82,6 +83,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <DesignBusiness />
 
       <section className="section about-teaser">
         <div className="container about-teaser-grid">

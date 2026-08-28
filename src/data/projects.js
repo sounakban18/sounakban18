@@ -1,3 +1,6 @@
+import omgSiteImg from '../assets/omg-site.jpg';
+import invoiceToolImg from '../assets/invoice-tool.jpg';
+
 export const projects = [
   {
     slug: 'omg-shopify-migration',
@@ -15,6 +18,7 @@ export const projects = [
     ],
     stack: ['Shopify', 'Figma', 'On-site SEO', 'CRO / funnel analysis'],
     accent: '#5e6ad2',
+    image: omgSiteImg,
   },
   {
     slug: 'sgf-catalogue',
@@ -83,5 +87,7 @@ export const projects = [
     ],
     stack: ['HTML/CSS/JS', 'Live preview', 'PDF export'],
     accent: '#5e6ad2',
+    image: invoiceToolImg,
+    imageFit: 'contain',
   },
 ];

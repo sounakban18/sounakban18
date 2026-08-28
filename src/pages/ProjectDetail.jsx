@@ -46,7 +46,15 @@ export default function ProjectDetail() {
         </Reveal>
 
         <Reveal delay={160}>
-          <PlaceholderArt label={`${project.title} — cover`} accent={project.accent} ratio="16 / 9" dense />
+          <PlaceholderArt
+            label={`${project.title} — cover`}
+            accent={project.accent}
+            ratio="16 / 9"
+            dense
+            photo={project.image}
+            alt={project.title}
+            fit={project.imageFit}
+          />
         </Reveal>
 
         <div className="project-detail-body">

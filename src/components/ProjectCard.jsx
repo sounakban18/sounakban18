@@ -9,7 +9,15 @@ export default function ProjectCard({ project, delay = 0 }) {
   return (
     <Reveal className="project-card" delay={delay}>
       <Link to={`/projects/${project.slug}`} className="project-card-link" data-cursor="view">
-        <PlaceholderArt label={project.brand} accent={project.accent} ratio="16 / 11" />
+        <PlaceholderArt
+          label={project.brand}
+          accent={project.accent}
+          ratio="16 / 11"
+          photo={project.image}
+          alt={project.title}
+          photoPosition={project.image ? 'top' : undefined}
+          fit={project.imageFit}
+        />
         <div className="project-card-body">
           <div className="project-card-tag mono">{project.tag}</div>
           <h3 className="card-title">{project.title}</h3>

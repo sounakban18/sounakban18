@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { projects } from '../data/projects';
 import PlaceholderArt from '../components/PlaceholderArt';
 import Reveal from '../components/Reveal';
+import SgfCaseStudy from './SgfCaseStudy';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -10,6 +11,8 @@ export default function ProjectDetail() {
 
   const project = projects[index];
   const next = projects[(index + 1) % projects.length];
+
+  if (project.slug === 'sgf-catalogue') return <SgfCaseStudy project={project} next={next} />;
 
   return (
     <article className="section page-head-section">

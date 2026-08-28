@@ -22,19 +22,19 @@ export const projects = [
   },
   {
     slug: 'sgf-catalogue',
-    tag: 'FRONTEND · PRODUCT',
-    title: 'SGF Digital Product Catalogue',
+    tag: 'BRAND · DIGITAL · UI/UX',
+    title: 'SGF Brand System & Digital Catalogue',
     summary:
-      'An interactive 3D flipbook web app that replaced a static PDF catalogue for trade partners and distributors.',
+      'A visual system spanning packaging, product presentation, corporate apparel and an interactive digital catalogue for a West Bengal food brand.',
     brand: 'Simple Good Foods',
-    role: 'Design & build',
-    year: '2026',
+    role: 'Brand Design · Packaging · UI/UX · Frontend',
+    year: '2024–Present',
     description: [
-      'SGF\u2019s distributor network was working off a static PDF catalogue \u2014 slow to browse, inconsistent in sales meetings.',
-      'I designed and built a self-contained 3D flipbook web app, styled with restrained, Apple-like minimalism, shipped as a single dependency-free HTML file so it runs on any distributor\u2019s laptop with no install step.',
-      'Distributors decide what to stock in the room, not after. A faster, better-looking catalogue changes that conversation.',
+      'Simple Good Foods (SGF) is an everyday-food brand serving products designed for the local household market in West Bengal — from soya chunks and pasta to distinctive 3D papad formats.',
+      'The challenge was not simply to make the products look attractive. The brand needed to feel familiar enough for a local consumer to immediately understand, while still communicating the quality and care behind the products.',
+      'I worked across packaging direction, product presentation, catalogue design and frontend implementation to extend the brand into a usable sales tool.',
     ],
-    stack: ['HTML/CSS/JS', 'CSS 3D transforms', 'No build step'],
+    stack: ['Photoshop', 'HTML/CSS/JS', 'Figma', 'AI-assisted exploration'],
     accent: '#5e6ad2',
   },
   {

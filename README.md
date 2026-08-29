@@ -39,30 +39,44 @@ Currently exploring:
 
 ## Selected Work
 
-### MOMI MASALA — Rate Card Editor
+### Learning — Frontend React Project
 
-A mobile-first rate card management application designed for real-world business use.
+A frontend-focused web application built with **React**, exploring modern component-based UI development and responsive interface design.
 
-**Built around:**
+**Built with:**
 
-- Offline-first functionality
-- IndexedDB local database
-- Product management
-- Image management
-- Editable pricing and weights
-- Local backup & restore
-- JPG / PNG / PDF export
-- Native mobile sharing
-- Responsive mobile UI
-- Android WebView compatibility
+- React
+- Vite
+- JavaScript
+- HTML & CSS
+- Component-based architecture
+- Responsive frontend design
 
-The project was designed around a simple principle:
+The project focuses primarily on the **frontend experience, UI structure, and React-based implementation**.
 
-> **Business tools should be simple enough to use, but robust enough to depend on.**
-
-[View Project →](https://github.com/sounakban18/Claude---MOMI-Masala-)
+[View Project →](https://github.com/sounakban18/Learning-)
 
 ---
+
+### Pummy Invoice — Business Invoice Management System
+
+A practical invoice management application designed to digitize and simplify the process of creating and managing business invoices.
+
+Unlike a purely frontend application, this project is connected to **Supabase for backend infrastructure**, including database management and authentication.
+
+**Built with:**
+
+- React
+- Vite
+- Supabase
+- Database integration
+- Authentication
+- Business data management
+- Responsive UI
+
+The project explores how a frontend application can be connected to a real backend system to handle **persistent business data, user authentication, and application workflows**.
+
+[View Project →](https://github.com/sounakban18/Claude---Pummy-Invoice-)
 
 ## What I'm Interested In
 

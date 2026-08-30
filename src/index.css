@@ -2964,7 +2964,24 @@ body {
 .dash-scheme-metric .caption { font-size: 10px; }
 .dash-scheme-metric strong { font-size: 12px; color: var(--primary); }
 
-/* Story Narrative */
+/* Story Narrative & Lead */
+.morfiizo-lead-narrative {
+  max-width: 1080px;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+.morfiizo-lead-narrative .body-lg {
+  max-width: 820px;
+}
+.morfiizo-lead-highlight {
+  padding-left: var(--sp-lg);
+  border-left: 3px solid var(--primary);
+  color: var(--ink);
+  font-weight: 500;
+}
+
 .morfiizo-story {
   display: grid;
   grid-template-columns: 1fr;
@@ -2978,7 +2995,7 @@ body {
 .morfiizo-story-section .display-md { margin-top: var(--sp-xs); }
 .morfiizo-story-section .body-lg { max-width: 680px; }
 
-/* Contributions Section (6 Cards) */
+/* Contributions Section (5 Cards) */
 .morfiizo-contribution-section {
   max-width: 1080px;
   margin: 7rem auto;
@@ -2988,6 +3005,9 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-md);
   margin-top: 3rem;
+}
+.morfiizo-contrib-grid.five-cards {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 .morfiizo-contrib-card {
   display: flex;
@@ -3116,18 +3136,19 @@ body {
 .morfiizo-module-card .card-title { font-size: 15px; margin-top: 2px; }
 .morfiizo-module-card .body-sm { font-size: 12px; line-height: 1.5; color: var(--ink-muted); }
 
-/* Design Thinking Section */
-.morfiizo-design-thinking {
+/* Thinking in Systems Section */
+.morfiizo-system-thinking-section {
   max-width: 1080px;
   margin: 7rem auto;
 }
-.morfiizo-principles-grid {
+.morfiizo-system-pillars {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
   gap: var(--sp-md);
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
-.morfiizo-principle-card {
+.morfiizo-system-pillar {
   padding: var(--sp-xl);
   border: 1px solid var(--hairline);
   border-radius: var(--r-lg);
@@ -3136,102 +3157,166 @@ body {
   flex-direction: column;
   gap: 6px;
   border-top: 3px solid var(--primary);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.morfiizo-principle-card .caption { color: var(--primary); }
-.morfiizo-principle-card .card-title { font-size: 17px; margin-top: 2px; }
-
-/* Learning & Development */
-.morfiizo-learning-section {
-  max-width: 1080px;
-  margin: 7rem auto;
+.morfiizo-system-pillar:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
-.morfiizo-learning-section > * + * { margin-top: var(--sp-md); }
-.morfiizo-learning-section .display-md { margin-top: var(--sp-xs); margin-bottom: var(--sp-md); }
-.morfiizo-learning-section .body-lg { max-width: 720px; }
-.morfiizo-learning-highlight {
-  padding-top: var(--sp-md);
-  border-top: 1px solid var(--hairline);
-  color: var(--ink);
-  font-weight: 500;
+.morfiizo-system-pillar .caption { color: var(--primary); }
+.morfiizo-system-pillar .card-title { font-size: 16px; margin-top: 2px; }
+.morfiizo-system-pillar .body-sm { font-size: 13px; color: var(--ink-muted); font-style: italic; }
+.morfiizo-pillar-arrow {
+  font-size: 20px;
+  color: var(--primary);
+  font-weight: 700;
+  text-align: center;
 }
-
-/* Tools & Workflow */
-.morfiizo-tools-section {
-  max-width: 1080px;
-  margin: 7rem auto;
-}
-.morfiizo-tools-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--sp-md);
+.morfiizo-system-conclusion {
   margin-top: 2.5rem;
+  padding: var(--sp-lg);
+  background: var(--surface-2);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
 }
-.morfiizo-tool-card {
+
+/* Vibe Coding & Workflow Stepper */
+.morfiizo-vibe-coding-section {
+  max-width: 1080px;
+  margin: 7rem auto;
+}
+.morfiizo-workflow-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-md);
+  margin-top: 3.5rem;
+}
+.workflow-step-node {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: var(--sp-md);
+  gap: 6px;
+  padding: var(--sp-lg);
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   background: var(--surface-1);
+  transition: all 0.2s ease;
 }
-.morfiizo-tool-card .caption { color: var(--primary); }
-.morfiizo-tool-card strong { font-size: 14px; color: var(--ink); margin-top: 2px; }
-.morfiizo-tool-card .body-sm { font-size: 11px; color: var(--ink-muted); line-height: 1.4; }
+.workflow-step-node:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.step-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface-1));
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  width: fit-content;
+}
+.step-title {
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.step-desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+.step-arrow {
+  display: none;
+}
 
-/* Before / After Comparison */
-.morfiizo-comparison-section {
-  max-width: 1080px;
-  margin: 7rem auto;
-}
-.morfiizo-before-after-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-xl);
-  margin-top: 3rem;
-}
-.morfiizo-comparison-card {
+.morfiizo-vibe-narrative {
+  margin-top: 4rem;
   padding: var(--sp-xl);
   border: 1px solid var(--hairline);
   border-radius: var(--r-xl);
   background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
 }
-.morfiizo-comparison-card.before-card {
-  border-top: 3px solid var(--hairline-strong);
+.morfiizo-vibe-narrative .display-sm {
+  margin-bottom: var(--sp-xs);
+  color: var(--ink);
 }
-.morfiizo-comparison-card.after-card {
-  border-top: 3px solid var(--primary);
-  background: color-mix(in srgb, var(--primary) 4%, var(--surface-1));
+
+/* Tools Categorized */
+.morfiizo-tools-section {
+  max-width: 1080px;
+  margin: 7rem auto;
 }
-.morfiizo-comparison-card .caption {
-  color: var(--primary);
-  display: block;
-  margin-bottom: var(--sp-md);
+.morfiizo-tools-categorized {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-lg);
+  margin-top: 3rem;
 }
-.morfiizo-comparison-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.tool-category-card {
+  padding: var(--sp-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background: var(--surface-1);
   display: flex;
   flex-direction: column;
   gap: var(--sp-sm);
 }
-.morfiizo-comparison-list li {
-  font-size: 15px;
-  color: var(--ink);
+.tool-category-card .caption { color: var(--primary); }
+.tool-tags {
   display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0;
 }
-.morfiizo-comparison-card.before-card .morfiizo-comparison-list li::before {
-  content: '—';
-  color: var(--ink-tertiary);
+.tool-tag {
+  font-size: 12px;
   font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
 }
-.morfiizo-comparison-card.after-card .morfiizo-comparison-list li::before {
-  content: '✓';
-  color: var(--primary);
-  font-weight: 700;
+
+/* Backend Integration Learning */
+.morfiizo-backend-learning-section {
+  max-width: 1080px;
+  margin: 7rem auto;
+}
+.morfiizo-backend-card {
+  padding: var(--sp-xl);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xl);
+  background: var(--surface-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  margin-top: 2.5rem;
+}
+.backend-points-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-md);
+  padding-top: var(--sp-md);
+  border-top: 1px solid var(--hairline);
+}
+.backend-point {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.backend-point strong {
+  font-size: 14px;
+  color: var(--ink);
+}
+.backend-point .body-sm {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.5;
 }
 
 /* Reflection & Summary Box */
@@ -3239,9 +3324,19 @@ body {
   max-width: 1080px;
   margin: 7rem auto;
 }
-.morfiizo-reflection-section > * + * { margin-top: var(--sp-md); }
-.morfiizo-reflection-section .display-md { margin-top: var(--sp-xs); margin-bottom: var(--sp-md); }
-.morfiizo-reflection-section .body-lg { max-width: 720px; }
+.morfiizo-reflection-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  margin-top: var(--sp-lg);
+  max-width: 820px;
+}
+.morfiizo-reflection-content .highlight-conclusion {
+  padding-left: var(--sp-lg);
+  border-left: 3px solid var(--primary);
+  color: var(--ink);
+  font-weight: 600;
+}
 
 .morfiizo-summary-box {
   max-width: var(--max-width);
@@ -3251,7 +3346,7 @@ body {
   color: var(--canvas);
   border-radius: var(--r-xl);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--sp-lg);
 }
 .summary-item {
@@ -3282,8 +3377,11 @@ body {
 :root[data-theme='dark'] .dash-scheme-card,
 :root[data-theme='dark'] .morfiizo-contrib-card,
 :root[data-theme='dark'] .morfiizo-module-card,
-:root[data-theme='dark'] .morfiizo-principle-card,
-:root[data-theme='dark'] .morfiizo-tool-card {
+:root[data-theme='dark'] .morfiizo-system-pillar,
+:root[data-theme='dark'] .workflow-step-node,
+:root[data-theme='dark'] .morfiizo-vibe-narrative,
+:root[data-theme='dark'] .tool-category-card,
+:root[data-theme='dark'] .morfiizo-backend-card {
   background: #161a17;
   border-color: var(--hairline);
 }
@@ -3309,17 +3407,20 @@ body {
   .morfiizo-module-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .morfiizo-principles-grid {
+  .morfiizo-system-pillars {
     grid-template-columns: 1fr;
   }
-  .morfiizo-tools-grid {
+  .morfiizo-pillar-arrow {
+    transform: rotate(90deg);
+  }
+  .morfiizo-workflow-stepper {
     grid-template-columns: repeat(2, 1fr);
   }
-  .morfiizo-before-after-grid {
+  .morfiizo-tools-categorized {
     grid-template-columns: 1fr;
   }
-  .morfiizo-summary-box {
-    grid-template-columns: repeat(2, 1fr);
+  .backend-points-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -3332,10 +3433,10 @@ body {
   .morfiizo-contribution-section,
   .morfiizo-system-views-section,
   .morfiizo-modules-section,
-  .morfiizo-design-thinking,
-  .morfiizo-learning-section,
+  .morfiizo-system-thinking-section,
+  .morfiizo-vibe-coding-section,
   .morfiizo-tools-section,
-  .morfiizo-comparison-section,
+  .morfiizo-backend-learning-section,
   .morfiizo-reflection-section {
     margin: 4.5rem auto;
   }
@@ -3353,7 +3454,7 @@ body {
   }
   .morfiizo-contrib-grid,
   .morfiizo-module-grid,
-  .morfiizo-tools-grid {
+  .morfiizo-workflow-stepper {
     grid-template-columns: 1fr;
   }
   .morfiizo-slide-controls {
@@ -3382,5 +3483,6 @@ body {
     border-radius: var(--r-xl);
   }
 }
+
 
 

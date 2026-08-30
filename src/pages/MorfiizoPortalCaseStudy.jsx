@@ -228,33 +228,71 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
   const contributions = [
     {
       num: '01',
-      title: 'Interface & UI Design',
-      desc: 'Contributed to the visual structure, layout decisions, component hierarchy, and overall frontend experience of the platform.',
+      title: 'UI & Visual Structuring',
+      desc: 'Contributed to the overall interface direction, visual hierarchy, layouts, and presentation of information across the system.',
     },
     {
       num: '02',
       title: 'Module Planning',
-      desc: 'Helped think through how different business functions could be organized into practical modules and how information should flow between them.',
+      desc: 'Participated in planning how different business functions could be organized into practical modules and connected within one platform.',
     },
     {
       num: '03',
-      title: 'Frontend Development',
-      desc: 'Assisted with implementing and refining frontend interfaces, layouts, responsive behavior, and smaller functional improvements.',
+      title: 'Frontend Contribution',
+      desc: 'Assisted with frontend implementation, refinements, responsive behavior, and iterative improvements across the interface.',
     },
     {
       num: '04',
-      title: 'AI-Assisted Development',
-      desc: 'Learned and applied prompt-driven coding workflows to build, test, refine, and troubleshoot interface components.',
+      title: 'AI Workflow',
+      desc: 'Wrote and refined prompts for building, modifying, testing, debugging, and improving parts of the application through a Vibe Coding workflow.',
     },
     {
       num: '05',
       title: 'Backend Integration Learning',
-      desc: 'Worked alongside the senior developer to understand how frontend systems connect with databases and services such as Supabase.',
+      desc: 'Worked alongside the primary developer to understand how frontend interfaces connect with Supabase databases, authentication, tables, APIs, and application data.',
+    },
+  ];
+
+  const workflowSteps = [
+    {
+      step: '01',
+      title: 'Understand',
+      desc: 'Identify the actual business requirement and operational context.',
     },
     {
-      num: '06',
-      title: 'Responsive Product Thinking',
-      desc: 'Contributed to making the system usable across desktop and mobile environments, with layouts and interactions adapted to different screen sizes.',
+      step: '02',
+      title: 'Break Down',
+      desc: 'Turn the requirement into smaller technical and interface problems.',
+    },
+    {
+      step: '03',
+      title: 'Prompt',
+      desc: 'Write a structured instruction for the AI coding workflow.',
+    },
+    {
+      step: '04',
+      title: 'Generate',
+      desc: 'Let the AI-assisted coding environment produce an implementation.',
+    },
+    {
+      step: '05',
+      title: 'Review',
+      desc: 'Inspect the generated interface, structure, and functionality.',
+    },
+    {
+      step: '06',
+      title: 'Test',
+      desc: 'Find visual, functional, responsive, or logical edge cases.',
+    },
+    {
+      step: '07',
+      title: 'Refine',
+      desc: 'Write a more precise follow-up prompt targeting discovered issues.',
+    },
+    {
+      step: '08',
+      title: 'Repeat',
+      desc: 'Continue iterating until the implementation behaves reliably.',
     },
   ];
 
@@ -311,16 +349,16 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           </Link>
         </Reveal>
 
-        {/* Hero Header */}
+        {/* 01. Hero / Project Introduction */}
         <Reveal delay={60} className="project-detail-head">
-          <span className="eyebrow">INTERNAL BUSINESS SYSTEM · PRODUCT DESIGN · AI-ASSISTED DEVELOPMENT</span>
+          <span className="eyebrow">INTERNAL BUSINESS SYSTEM · PRODUCT DESIGN · AI-ASSISTED DEVELOPMENT · VIBE CODING</span>
           <h1 className="display-lg">Morfiizo Enterprise Partner & Distributor Portal</h1>
           <p className="subhead">
             A complete internal business platform built around the operational needs of a growing enterprise — combining partner management, sales visibility, vendor operations, scheme management, authentication, and business intelligence into one responsive system.
           </p>
         </Reveal>
 
-        {/* Metadata Grid */}
+        {/* Project Metadata Grid */}
         <Reveal delay={120} className="project-detail-meta">
           <div>
             <p className="caption">Brand</p>
@@ -328,110 +366,48 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           </div>
           <div>
             <p className="caption">Role</p>
-            <p className="body-sm">{project?.role || 'Product & Frontend Contributor'}</p>
+            <p className="body-sm">Product & Frontend Contributor</p>
           </div>
           <div>
             <p className="caption">Collaboration</p>
-            <p className="body-sm">Senior Full-Stack Developer / CEO</p>
+            <p className="body-sm">Company CEO (15+ Years Full-Stack Experience)</p>
           </div>
           <div>
             <p className="caption">Year</p>
-            <p className="body-sm">{project?.year || '2024–Present'}</p>
+            <p className="body-sm">2024–Present</p>
           </div>
           <div>
-            <p className="caption">Stack / Environment</p>
-            <p className="body-sm">HTML · CSS · JavaScript · Supabase · AI-Assisted Coding</p>
+            <p className="caption">Tech & AI Environment</p>
+            <p className="body-sm">HTML · CSS · JS · ChatGPT · Codex · Supabase</p>
           </div>
         </Reveal>
 
-        {/* Hero Conceptual Dashboard Visual */}
+        {/* Primary Narrative Block */}
+        <Reveal delay={140} className="morfiizo-lead-narrative">
+          <p className="body-lg">
+            Morfiizo Enterprise’s internal business platform was created to bring multiple operational functions into one connected digital system — from sales visibility and partner management to vendors, schemes, business performance, authentication, and geographic coverage.
+          </p>
+          <p className="body-lg">
+            I worked alongside the company’s CEO, a full-stack software professional with 15+ years of industry experience across software and MNC environments, contributing to the UI direction, visual structuring, module planning, frontend refinement, and iterative development process.
+          </p>
+          <p className="body-lg">
+            The project was built through an AI-assisted, Vibe Coding workflow using HTML, CSS, JavaScript, ChatGPT, Codex, and Supabase.
+          </p>
+          <p className="body-lg morfiizo-lead-highlight">
+            For me, the project became an introduction to something much larger than frontend development: learning how to break down real business requirements, communicate them to AI coding tools, review generated implementations, debug problems, refine prompts, and understand how frontend systems connect with databases, authentication, APIs, and other backend services.
+          </p>
+          <p className="body-lg">
+            The most valuable outcome was not simply the finished software. It was learning how to think through the process of building one.
+          </p>
+        </Reveal>
+
+        {/* 04. Inside the System — Conceptual Dashboard */}
         <Reveal delay={160} className="morfiizo-hero-frame">
-          <div className="morfiizo-browser-shell">
-            <div className="morfiizo-app-bar">
-              <div className="morfiizo-app-brand">
-                <span className="morfiizo-app-logo">M</span>
-                <span className="morfiizo-app-name mono">MORFIIZO ENTERPRISE</span>
-                <span className="morfiizo-portal-badge mono">PORTAL v2.4</span>
-              </div>
-              <div className="morfiizo-app-nav">
-                <span className="app-nav-item active">Overview</span>
-                <span className="app-nav-item">Partners</span>
-                <span className="app-nav-item">Sales</span>
-                <span className="app-nav-item">Vendors</span>
-                <span className="app-nav-item">Schemes</span>
-              </div>
-              <div className="morfiizo-app-status">
-                <span className="status-live-dot" />
-                <span className="caption mono">Synced / Supabase</span>
-              </div>
-            </div>
-
-            <div className="morfiizo-dashboard-content">
-              {slides[0].render()}
-            </div>
-
-            <div className="morfiizo-preview-footer">
-              <span className="caption mono">● CONCEPTUAL INTERFACE REPRESENTATION · DESIGNED AROUND INTERNAL ENTERPRISE WORKFLOWS</span>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Main Narrative */}
-        <div className="morfiizo-story">
-          <section className="morfiizo-story-section">
-            <span className="eyebrow">The Context</span>
-            <h2 className="display-md">Bringing disparate operations into a single structured platform.</h2>
-            <p className="body-lg">
-              Morfiizo Enterprise needed more than a collection of disconnected operational tools. The goal was to create a single internal platform that could bring different parts of the business into one structured digital environment.
-            </p>
-            <p className="body-lg">
-              I worked closely with the senior full-stack developer and CEO throughout the process, contributing to the frontend design, interface planning, module structure, responsive behavior, and iterative refinements.
-            </p>
-            <p className="body-lg">
-              Rather than treating the project purely as a design exercise, the experience introduced me to the thinking required to turn real business requirements into usable software — deciding what information should surface first, how different modules should connect, and how a system can remain useful across different users and devices.
-            </p>
-          </section>
-
-          <section className="morfiizo-story-section">
-            <span className="eyebrow">Collaborative Execution</span>
-            <h2 className="display-md">Practical AI workflows and real backend integration.</h2>
-            <p className="body-lg">
-              I worked through AI-assisted development workflows, using prompting and iterative coding to understand how interfaces could be built, refined, debugged, and connected to real backend services such as Supabase.
-            </p>
-            <p className="body-lg">
-              The result was a complete internal business platform with authentication, operational dashboards, partner and distributor management, sales visibility, vendor information, scheme management, and business-level reporting.
-            </p>
-          </section>
-        </div>
-
-        {/* What I Contributed (6 Structured Cards) */}
-        <Reveal className="morfiizo-contribution-section">
-          <div className="section-head">
-            <span className="eyebrow">Role & Scope</span>
-            <h2 className="display-md">What I Contributed</h2>
-            <p className="body-lg">
-              Working alongside the senior full-stack developer, my role focused on frontend structuring, UI decisions, responsive optimization, and iterative problem solving.
-            </p>
-          </div>
-
-          <div className="morfiizo-contrib-grid">
-            {contributions.map((c) => (
-              <div className="morfiizo-contrib-card" key={c.num}>
-                <span className="caption mono">{c.num} / CONTRIBUTION</span>
-                <h3 className="card-title">{c.title}</h3>
-                <p className="body-sm">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Interactive Conceptual System Views (Slideshow) */}
-        <Reveal className="morfiizo-system-views-section">
-          <div className="section-head">
+          <div className="section-head-compact">
             <span className="eyebrow">Inside the System</span>
-            <h2 className="display-md">Interactive Conceptual System Views</h2>
-            <p className="body-lg">
-              Explore the key operational modules and interface compositions structured for the platform.
+            <h2 className="display-md">Conceptual System View</h2>
+            <p className="body-sm caption">
+              Conceptual representation — values shown for illustrative demonstration only. Actual production screenshots are omitted in compliance with internal company data confidentiality.
             </p>
           </div>
 
@@ -458,14 +434,27 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
                   <div className="morfiizo-app-brand">
                     <span className="morfiizo-app-logo">M</span>
                     <span className="morfiizo-app-name mono">MORFIIZO ENTERPRISE</span>
+                    <span className="morfiizo-portal-badge mono">PORTAL v2.4</span>
                   </div>
-                  <div className="morfiizo-slide-indicator mono">
-                    VIEW {slides[activeSlide].id} / 03
+                  <div className="morfiizo-app-nav">
+                    <span className="app-nav-item active">Overview</span>
+                    <span className="app-nav-item">Partners</span>
+                    <span className="app-nav-item">Sales</span>
+                    <span className="app-nav-item">Vendors</span>
+                    <span className="app-nav-item">Schemes</span>
+                  </div>
+                  <div className="morfiizo-app-status">
+                    <span className="status-live-dot" />
+                    <span className="caption mono">Synced / Supabase</span>
                   </div>
                 </div>
 
                 <div className="morfiizo-dashboard-content">
                   {slides[activeSlide].render()}
+                </div>
+
+                <div className="morfiizo-preview-footer">
+                  <span className="caption mono">● CONCEPTUAL INTERFACE REPRESENTATION · DESIGNED AROUND INTERNAL ENTERPRISE WORKFLOWS</span>
                 </div>
               </div>
             </div>
@@ -517,13 +506,34 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           </div>
         </Reveal>
 
-        {/* Modules Section */}
+        {/* 03. My Contribution (5 Cards) */}
+        <Reveal className="morfiizo-contribution-section">
+          <div className="section-head">
+            <span className="eyebrow">Role & Scope</span>
+            <h2 className="display-md">My Contribution</h2>
+            <p className="body-lg">
+              Working alongside the CEO, my contributions centered on interface structuring, module breakdown, prompt crafting, iterative frontend refinements, and responsive verification.
+            </p>
+          </div>
+
+          <div className="morfiizo-contrib-grid five-cards">
+            {contributions.map((c) => (
+              <div className="morfiizo-contrib-card" key={c.num}>
+                <span className="caption mono">{c.num} / CONTRIBUTION</span>
+                <h3 className="card-title">{c.title}</h3>
+                <p className="body-sm">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* 05. Modules & Business Functions (8 Modules) */}
         <Reveal className="morfiizo-modules-section">
           <div className="section-head">
             <span className="eyebrow">Product Architecture</span>
             <h2 className="display-md">Designed Around Real Business Operations</h2>
             <p className="body-lg">
-              A breakdown of the core modules planned, designed, and structured across the platform.
+              A breakdown of the core operational modules planned and structured across the platform.
             </p>
           </div>
 
@@ -538,145 +548,192 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           </div>
         </Reveal>
 
-        {/* Design Thinking Section */}
-        <Reveal className="morfiizo-design-thinking">
+        {/* 06. Thinking in Systems */}
+        <Reveal className="morfiizo-system-thinking-section">
           <div className="section-head">
-            <span className="eyebrow">Design Philosophy</span>
-            <h2 className="display-md">Designing for an Operational System</h2>
+            <span className="eyebrow">System Thinking</span>
+            <h2 className="display-md">Thinking Beyond Individual Screens</h2>
             <p className="body-lg">
-              The challenge was not simply making the interface look modern. An internal business platform has to make large amounts of operational information understandable without overwhelming the people using it.
-            </p>
-            <p className="body-lg">
-              The interface therefore followed a simple principle: surface what matters first, keep modules predictable, and make deeper information available without creating unnecessary complexity.
-            </p>
-            <p className="body-lg">
-              The visual language stayed corporate and restrained, while introducing enough modern interaction and hierarchy to make the system feel like a contemporary product rather than a collection of traditional business screens.
+              The work also introduced me to thinking about software as a system rather than a collection of individual screens. I participated in discussions around module planning, information hierarchy, user flows, and how different business functions could be organized into one usable platform.
             </p>
           </div>
 
-          <div className="morfiizo-principles-grid">
-            <div className="morfiizo-principle-card">
-              <span className="caption mono">01 / PRINCIPLE</span>
-              <h3 className="card-title">CLARITY</h3>
-              <p className="body-sm">Important business information should be visible at a glance.</p>
+          <div className="morfiizo-system-pillars">
+            <div className="morfiizo-system-pillar">
+              <span className="caption mono">01 / REQUIREMENT</span>
+              <h3 className="card-title">BUSINESS REQUIREMENTS</h3>
+              <p className="body-sm">“What does the company actually need the software to solve?”</p>
             </div>
-            <div className="morfiizo-principle-card">
-              <span className="caption mono">02 / PRINCIPLE</span>
-              <h3 className="card-title">STRUCTURE</h3>
-              <p className="body-sm">Every module should have a predictable place within the larger system.</p>
+            <div className="morfiizo-pillar-arrow">↓</div>
+            <div className="morfiizo-system-pillar">
+              <span className="caption mono">02 / STRUCTURE</span>
+              <h3 className="card-title">INFORMATION ARCHITECTURE</h3>
+              <p className="body-sm">“How should that information be organized into modules and workflows?”</p>
             </div>
-            <div className="morfiizo-principle-card">
-              <span className="caption mono">03 / PRINCIPLE</span>
-              <h3 className="card-title">RESPONSIVENESS</h3>
-              <p className="body-sm">The experience should remain useful regardless of the device used to access it.</p>
+            <div className="morfiizo-pillar-arrow">↓</div>
+            <div className="morfiizo-system-pillar">
+              <span className="caption mono">03 / EXECUTION</span>
+              <h3 className="card-title">IMPLEMENTATION</h3>
+              <p className="body-sm">“How can the interface, data, authentication, and functionality work together?”</p>
             </div>
+          </div>
+
+          <div className="morfiizo-system-conclusion">
+            <p className="body-lg">
+              The project gave me exposure to the complete chain between a business problem and a working digital product.
+            </p>
           </div>
         </Reveal>
 
-        {/* Learning & Development Section */}
-        <Reveal className="morfiizo-learning-section">
-          <span className="eyebrow">Professional Progression</span>
-          <h2 className="display-md">More Than a Design Project</h2>
-          <p className="body-lg">
-            This project became an important introduction to product development beyond visual design.
-          </p>
-          <p className="body-lg">
-            Working closely with an experienced full-stack developer allowed me to see how a business requirement moves through different stages — from understanding the operational problem, to planning modules, designing interfaces, connecting data, testing workflows, and refining the experience.
-          </p>
-          <p className="body-lg">
-            It also gave me practical exposure to AI-assisted development. Instead of treating AI as a simple code generator, I learned how much of the outcome depends on breaking a problem down correctly, writing precise prompts, reviewing the generated implementation, identifying failures, and iterating until the system behaves as intended.
-          </p>
-          <p className="body-lg morfiizo-learning-highlight">
-            That process changed how I think about digital products: the interface is only one layer. The real work is understanding the system behind it.
-          </p>
+        {/* 07. The Vibe Coding Workflow & Prompt Engineering */}
+        <Reveal className="morfiizo-vibe-coding-section">
+          <div className="section-head">
+            <span className="eyebrow">AI-Assisted Development</span>
+            <h2 className="display-md">From Requirement to Working Feature</h2>
+            <p className="body-lg">
+              Effective AI development is an iterative discipline. Rather than expecting one-shot code generations, our workflow broke complex business needs into precise technical prompts, code review, and systematic refinement.
+            </p>
+          </div>
+
+          {/* 8-Step Interactive Visual Workflow */}
+          <div className="morfiizo-workflow-stepper">
+            {workflowSteps.map((ws, i) => (
+              <div className="workflow-step-node" key={ws.step}>
+                <div className="step-badge mono">{ws.step}</div>
+                <strong className="step-title">{ws.title}</strong>
+                <p className="step-desc body-sm">{ws.desc}</p>
+                {i < workflowSteps.length - 1 && <span className="step-arrow" aria-hidden="true">→</span>}
+              </div>
+            ))}
+          </div>
+
+          {/* Narrative: Learning the Workflow Behind Vibe Coding */}
+          <div className="morfiizo-vibe-narrative">
+            <h3 className="display-sm">Learning the Workflow Behind Vibe Coding</h3>
+            <p className="body-lg">
+              One of the most valuable parts of this project was learning how to work with AI as part of a development workflow.
+            </p>
+            <p className="body-lg">
+              I contributed prompts for building, modifying, testing, and refining different parts of the application. The process was highly iterative: describe the requirement, inspect the implementation, identify what was wrong or incomplete, write a more precise follow-up prompt, test again, and continue refining.
+            </p>
+            <p className="body-lg">
+              That experience taught me that effective AI-assisted development is less about generating code once and more about understanding the problem well enough to guide the system toward the right implementation.
+            </p>
+          </div>
         </Reveal>
 
-        {/* Tools & Workflow Section */}
+        {/* 08. Tools Behind the Workflow */}
         <Reveal className="morfiizo-tools-section">
           <div className="section-head">
-            <span className="eyebrow">Environment</span>
-            <h2 className="display-md">Tools & Workflow</h2>
+            <span className="eyebrow">Technology Stack</span>
+            <h2 className="display-md">Tools Behind the Workflow</h2>
+            <p className="body-lg">
+              A breakdown of the development stack, AI toolchain, and supporting visual utilities used throughout the project.
+            </p>
           </div>
 
-          <div className="morfiizo-tools-grid">
-            <div className="morfiizo-tool-card">
-              <span className="caption mono">UI / UX</span>
-              <strong>Figma</strong>
-              <span className="body-sm">Component layouts, design tokens & interface flows</span>
+          <div className="morfiizo-tools-categorized">
+            <div className="tool-category-card">
+              <span className="caption mono">AI & DEVELOPMENT</span>
+              <div className="tool-tags">
+                <span className="tool-tag">ChatGPT</span>
+                <span className="tool-tag">Codex</span>
+                <span className="tool-tag">Vibe Coding</span>
+              </div>
+              <p className="body-sm">Prompt-driven generation, component iteration, logic debugging and refactoring.</p>
             </div>
-            <div className="morfiizo-tool-card">
+
+            <div className="tool-category-card">
               <span className="caption mono">FRONTEND</span>
-              <strong>HTML · CSS · JavaScript</strong>
-              <span className="body-sm">Interactive components, layouts & responsive styling</span>
+              <div className="tool-tags">
+                <span className="tool-tag">HTML</span>
+                <span className="tool-tag">CSS</span>
+                <span className="tool-tag">JavaScript</span>
+              </div>
+              <p className="body-sm">Responsive layout structure, data presentation components, DOM interactions.</p>
             </div>
-            <div className="morfiizo-tool-card">
-              <span className="caption mono">BACKEND / DATA</span>
-              <strong>Supabase</strong>
-              <span className="body-sm">Database tables, user auth & API connectivity learning</span>
+
+            <div className="tool-category-card">
+              <span className="caption mono">BACKEND & DATA (SUPABASE)</span>
+              <div className="tool-tags">
+                <span className="tool-tag">Supabase</span>
+                <span className="tool-tag">Authentication</span>
+                <span className="tool-tag">Database & Tables</span>
+                <span className="tool-tag">APIs</span>
+              </div>
+              <p className="body-sm">Backend capabilities and data connectivity observed and integrated with frontend views.</p>
             </div>
-            <div className="morfiizo-tool-card">
-              <span className="caption mono">DEV APPROACH</span>
-              <strong>AI-Assisted Workflows</strong>
-              <span className="body-sm">Prompt-driven component iteration & debugging</span>
-            </div>
-            <div className="morfiizo-tool-card">
-              <span className="caption mono">VISUAL EXPLORATION</span>
-              <strong>Photoshop · Generative AI</strong>
-              <span className="body-sm">Asset generation & brand presentation materials</span>
+
+            <div className="tool-category-card">
+              <span className="caption mono">VISUAL ASSETS</span>
+              <div className="tool-tags">
+                <span className="tool-tag">Adobe Photoshop</span>
+                <span className="tool-tag">Canva</span>
+              </div>
+              <p className="body-sm">Used for visual assets, presentation materials, imagery, and demo support.</p>
             </div>
           </div>
         </Reveal>
 
-        {/* Business Problem Section (Before vs After) */}
-        <Reveal className="morfiizo-comparison-section">
+        {/* 09. Backend Integration Learning */}
+        <Reveal className="morfiizo-backend-learning-section">
           <div className="section-head">
-            <span className="eyebrow">Business Impact</span>
-            <h2 className="display-md">The Problem Behind the Platform</h2>
+            <span className="eyebrow">Data & Architecture</span>
+            <h2 className="display-md">Bridging Interface and Backend</h2>
           </div>
-
-          <div className="morfiizo-before-after-grid">
-            <div className="morfiizo-comparison-card before-card">
-              <span className="caption mono">BEFORE / FRAGMENTED OPERATIONS</span>
-              <ul className="morfiizo-comparison-list">
-                <li>Fragmented operational tools & spreadsheets</li>
-                <li>Manual, slow trade scheme calculations</li>
-                <li>Disconnected sales & payment tracking</li>
-                <li>Slower information retrieval across departments</li>
-              </ul>
-            </div>
-
-            <div className="morfiizo-comparison-card after-card">
-              <span className="caption mono">AFTER / UNIFIED PLATFORM</span>
-              <ul className="morfiizo-comparison-list">
-                <li>Centralized enterprise management portal</li>
-                <li>Automated scheme & partner incentive rules</li>
-                <li>Unified transaction, credit & vendor visibility</li>
-                <li>Responsive multi-device operational access</li>
-              </ul>
+          <div className="morfiizo-backend-card">
+            <p className="body-lg">
+              I gained practical exposure to backend integration while working alongside the primary developer, learning how authentication, databases, tables, APIs, and frontend interfaces connect within a real business application.
+            </p>
+            <div className="backend-points-grid">
+              <div className="backend-point">
+                <strong>Authentication & Roles</strong>
+                <p className="body-sm">Understanding how secure session tokens protect partner account data and govern tier access.</p>
+              </div>
+              <div className="backend-point">
+                <strong>Relational Tables & Schema</strong>
+                <p className="body-sm">Seeing how distributor orders link with vendor inventory ledgers and credit balance entries.</p>
+              </div>
+              <div className="backend-point">
+                <strong>API Data Flow</strong>
+                <p className="body-sm">Observing how frontend state queries backend endpoints and updates live status indicators.</p>
+              </div>
             </div>
           </div>
         </Reveal>
 
-        {/* Final Reflection */}
+        {/* 10. What This Project Taught Me */}
         <Reveal className="morfiizo-reflection-section">
           <span className="eyebrow">Reflection</span>
           <h2 className="display-md">What This Project Taught Me</h2>
-          <p className="body-lg">
-            Working on Morfiizo Enterprise’s internal platform gave me a much broader understanding of digital product development.
-          </p>
-          <p className="body-lg">
-            It taught me to look beyond individual screens and think in terms of systems — users, information, workflows, data, permissions, responsiveness, and business requirements.
-          </p>
-          <p className="body-lg">
-            More importantly, it gave me first-hand exposure to collaborative development and AI-assisted coding: how to communicate an idea clearly, break complex requirements into smaller problems, test implementations, and iterate with a developer until the product works as intended.
-          </p>
+          <div className="morfiizo-reflection-content">
+            <p className="body-lg">
+              This project changed the way I think about AI-assisted development.
+            </p>
+            <p className="body-lg">
+              Before working through the process, it was easy to think of AI coding tools simply as systems that generate code from instructions. Working on a real business application showed me that the quality of the result depends heavily on how the problem is understood, structured, communicated, tested, and refined.
+            </p>
+            <p className="body-lg">
+              I learned to think in iterations rather than one-shot generations.
+            </p>
+            <p className="body-lg">
+              I also gained practical exposure to the relationship between interface design and backend systems — how a dashboard depends on data, how authentication affects the user experience, how APIs connect different parts of an application, and how database structures influence what the frontend can actually do.
+            </p>
+            <p className="body-lg highlight-conclusion">
+              Most importantly, I learned that Vibe Coding is not a replacement for product thinking. It makes clear thinking even more important.
+            </p>
+          </div>
         </Reveal>
 
-        {/* Project Summary Box */}
+        {/* 11. Final Project Summary */}
         <Reveal className="morfiizo-summary-box">
           <div className="summary-item">
+            <span className="caption mono">BRAND</span>
+            <strong>Morfiizo Enterprise</strong>
+          </div>
+          <div className="summary-item">
             <span className="caption mono">PROJECT</span>
-            <strong>Morfiizo Enterprise Partner & Distributor Portal</strong>
+            <strong>Partner & Distributor Business Portal</strong>
           </div>
           <div className="summary-item">
             <span className="caption mono">ROLE</span>
@@ -684,15 +741,23 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           </div>
           <div className="summary-item">
             <span className="caption mono">COLLABORATION</span>
-            <strong>Senior Full-Stack Developer / CEO</strong>
+            <strong>CEO / Senior Full-Stack Developer (15+ Years Exp.)</strong>
           </div>
           <div className="summary-item">
             <span className="caption mono">FOCUS</span>
-            <strong>UI/UX · Frontend · Module Planning · AI-Assisted Development</strong>
+            <strong>UI Structuring · Module Planning · Frontend Contribution · AI Workflow · System Thinking</strong>
           </div>
           <div className="summary-item">
-            <span className="caption mono">PLATFORM</span>
-            <strong>Responsive Internal Business System</strong>
+            <span className="caption mono">TECHNOLOGY</span>
+            <strong>HTML · CSS · JavaScript · ChatGPT · Codex · Supabase</strong>
+          </div>
+          <div className="summary-item">
+            <span className="caption mono">VISUAL TOOLS</span>
+            <strong>Photoshop · Canva</strong>
+          </div>
+          <div className="summary-item">
+            <span className="caption mono">YEAR</span>
+            <strong>2024–Present</strong>
           </div>
         </Reveal>
 

@@ -1,24 +1,24 @@
-import omgSiteImg from '../assets/omg-site.jpg';
+import omgHeroImg from '../assets/omg-hero-cards.png';
 import invoiceToolImg from '../assets/invoice-tool.jpg';
 
 export const projects = [
   {
     slug: 'omg-shopify-migration',
-    tag: 'FRONTEND · UX · GROWTH',
-    title: '\u00d2MG Shopify Platform Migration',
+    tag: 'DIGITAL · MIGRATION · UI/UX',
+    title: 'ÒMG Shopify Platform Migration',
     summary:
-      'End-to-end migration of \u00d2MG\u2019s D2C storefront to Shopify \u2014 from wireframes through to the funnel work after launch.',
-    brand: '\u00d2 Morsel Go\u00fbter (\u00d2MG)',
-    role: 'Led migration',
-    year: '2024\u2013present',
+      'Helping move ÒMG from WordPress to Shopify while shaping a cleaner digital experience, supporting responsive QA, analytics, search visibility and technical cleanup.',
+    brand: 'Ò Morsel Goûter (ÒMG)',
+    role: 'Digital Design · UI/UX · Migration Support',
+    year: '2024–Present',
     description: [
-      '\u00d2MG\u2019s direct-to-consumer storefront needed to move onto Shopify without losing existing search rankings or inbound links.',
-      'I led it end to end \u2014 wireframes, landing pages, responsive QA, and URL redirect mapping \u2014 then followed up with on-site SEO, funnel analysis, and automated nurture sequences post-launch.',
-      'A migration like this either protects a brand\u2019s organic traffic or quietly kills it. Getting the redirects and SEO structure right mattered as much as the new design.',
+      'Ò Morsel Goûter was transitioning its direct-to-consumer storefront from WordPress to Shopify.',
+      'The move was more than a platform change. It was an opportunity to create a cleaner, more consistent digital experience around the brand’s growing wellness identity while making the storefront easier to manage and scale.',
+      'I was part of the wider migration process, contributing to the visual direction, website structure, digital assets and quality checks throughout the transition.',
     ],
-    stack: ['Shopify', 'Figma', 'On-site SEO', 'CRO / funnel analysis'],
-    accent: '#5e6ad2',
-    image: omgSiteImg,
+    stack: ['Shopify', 'Figma', 'HTML', 'SEO', 'Analytics'],
+    accent: '#4c805c',
+    image: omgHeroImg,
   },
   {
     slug: 'sgf-catalogue',

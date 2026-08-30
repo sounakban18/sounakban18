@@ -4,6 +4,7 @@ import PlaceholderArt from '../components/PlaceholderArt';
 import Reveal from '../components/Reveal';
 import SgfCaseStudy from './SgfCaseStudy';
 import OmgCaseStudy from './OmgCaseStudy';
+import MorfiizoPortalCaseStudy from './MorfiizoPortalCaseStudy';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -15,6 +16,9 @@ export default function ProjectDetail() {
 
   if (project.slug === 'omg-shopify-migration') return <OmgCaseStudy project={project} next={next} />;
   if (project.slug === 'sgf-catalogue') return <SgfCaseStudy project={project} next={next} />;
+  if (project.slug === 'morfiizo-partner-portal' || project.slug === 'sgf-partner-portal') {
+    return <MorfiizoPortalCaseStudy project={project} next={next} />;
+  }
 
   return (
     <article className="section page-head-section">

@@ -136,9 +136,9 @@ I care about **why something is being built, who will use it, and whether it act
 
 ## Connect
 
-[![GitHub](https://github.com/sounakban18)
+[GitHub](https://github.com/sounakban18)
 
-[![LinkedIn](https://www.linkedin.com/in/sounak-banerjee-a5292b183/)
+[LinkedIn](https://www.linkedin.com/in/sounak-banerjee-a5292b183/)
 
 ---
 

@@ -1,4 +1,5 @@
 import omgHeroImg from '../assets/omg-hero-cards.png';
+import sgfProductsImg from '../assets/sgf-products.jpg';
 import invoiceToolImg from '../assets/invoice-tool.jpg';
 
 export const projects = [
@@ -34,8 +35,9 @@ export const projects = [
       'The challenge was not simply to make the products look attractive. The brand needed to feel familiar enough for a local consumer to immediately understand, while still communicating the quality and care behind the products.',
       'I worked across packaging direction, product presentation, catalogue design and frontend implementation to extend the brand into a usable sales tool.',
     ],
-    stack: ['Photoshop', 'HTML/CSS/JS', 'Figma', 'AI-assisted exploration'],
-    accent: '#5e6ad2',
+    stack: ['Photoshop', 'HTML/CSS/JS', 'AI-assisted exploration'],
+    accent: '#8f2d38',
+    image: sgfProductsImg,
   },
   {
     slug: 'sgf-partner-portal',

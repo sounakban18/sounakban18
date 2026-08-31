@@ -16,11 +16,10 @@ import { useEffect, useRef, useState } from 'react';
  */
 export default function HeroVideo({ mp4, webm, poster }) {
   const videoRef = useRef(null);
-  const [reduced, setReduced] = useState(false);
+  const [reduced] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
 
-  useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
 
   useEffect(() => {
     if (!mp4 && !webm) return;

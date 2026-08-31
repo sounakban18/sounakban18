@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useMagnetic } from '../hooks';
-import { useTheme } from '../theme';
+import { useTheme } from '../theme-context';
 
 const links = [
   { to: '/', label: 'Work' },

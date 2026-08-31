@@ -3,13 +3,16 @@ import { useEffect, useRef, useState } from 'react';
 export default function Cursor() {
   const ringRef = useRef(null);
   const dotRef = useRef(null);
-  const [enabled, setEnabled] = useState(false);
+  const [enabled] = useState(() => {
+    const isFine = window.matchMedia('(pointer: fine)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return isFine && !reduced;
+  });
 
   useEffect(() => {
     const isFine = window.matchMedia('(pointer: fine)').matches;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!isFine || reduced) return;
-    setEnabled(true);
 
     let ringX = window.innerWidth / 2;
     let ringY = window.innerHeight / 2;

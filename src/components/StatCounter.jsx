@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function StatCounter({ value, suffix = '', label, duration = 1200 }) {
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? value : 0
+  );
   const ref = useRef(null);
   const started = useRef(false);
 
@@ -9,10 +11,7 @@ export default function StatCounter({ value, suffix = '', label, duration = 1200
     const el = ref.current;
     if (!el) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      setDisplay(value);
-      return;
-    }
+    if (reduced) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {

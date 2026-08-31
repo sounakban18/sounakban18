@@ -74,10 +74,12 @@ const experience = [
 export default function About() {
   return (
     <>
-      <section className="section page-head-section">
+      <section className="section page-head-section about-hero">
         <div className="container about-hero-grid">
           <Reveal className="about-hero-art">
-            <Photo ratio="3 / 4" />
+            <div className="about-hero-image-wrap">
+              <Photo ratio="3 / 4" />
+            </div>
           </Reveal>
           <Reveal delay={100} className="about-hero-copy">
             <span className="eyebrow">About</span>
@@ -101,7 +103,7 @@ export default function About() {
               design decision doesn&rsquo;t stop at the screen — it lands
               somewhere in the business too.
             </p>
-            <p className="body-lg">Based in Kolkata.</p>
+            <p className="body-lg mono location">Based in Kolkata.</p>
           </Reveal>
         </div>
       </section>

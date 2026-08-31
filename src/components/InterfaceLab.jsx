@@ -46,44 +46,46 @@ export default function InterfaceLab() {
         </div>
 
         <Reveal delay={140} className="lab-shell">
-          <div className="lab-controls" role="tablist" aria-label="Design process stages">
-            {Object.entries(states).map(([key, state]) => (
+          <div className="lab-nav" role="tablist" aria-label="Design process stages">
+            {Object.entries(states).map(([key, state], index) => (
               <button
                 type="button"
                 role="tab"
                 aria-selected={active === key}
-                className={`lab-tab${active === key ? ' active' : ''}`}
+                className={`lab-nav-item${active === key ? ' active' : ''}`}
                 key={key}
                 onClick={() => setActive(key)}
               >
-                <span className="lab-tab-index">0{Object.keys(states).indexOf(key) + 1}</span>
-                {state.label}
+                <span className="lab-nav-index">0{index + 1}</span>
+                <span className="lab-nav-label">{state.label}</span>
               </button>
             ))}
           </div>
 
-          <div className={`lab-preview lab-${current.accent}`}>
-            <div className="lab-preview-top">
-              <span className="status-badge"><span className="status-dot" /> Live state</span>
-              <span className="caption">{current.progress}% considered</span>
-            </div>
-            <div className="lab-preview-grid">
-              <div className="lab-copy">
-                <span className="caption">Stage / {current.label}</span>
-                <h3 className="headline">{current.title}</h3>
-                <p className="body-sm">{current.body}</p>
-                <div className="lab-chips">
-                  {current.chips.map((chip) => <span className="skill-pill mono" key={chip}>{chip}</span>)}
+          <div className={`lab-content lab-${current.accent}`}>
+            <div className="lab-content-inner">
+              <div className="lab-content-top">
+                <span className="status-badge"><span className="status-dot" /> Live state</span>
+                <span className="caption">{current.progress}% considered</span>
+              </div>
+              <div className="lab-content-grid">
+                <div className="lab-content-copy">
+                  <span className="caption">Stage / {current.label}</span>
+                  <h3 className="headline">{current.title}</h3>
+                  <p className="body-lg">{current.body}</p>
+                  <div className="lab-chips">
+                    {current.chips.map((chip) => <span className="skill-pill mono" key={chip}>{chip}</span>)}
+                  </div>
+                </div>
+                <div className="lab-content-signal" aria-hidden="true">
+                  <div className="lab-orbit orbit-one" />
+                  <div className="lab-orbit orbit-two" />
+                  <div className="lab-orbit orbit-three" />
+                  <span className="lab-signal-core">{String(current.progress).padStart(2, '0')}</span>
                 </div>
               </div>
-              <div className="lab-signal" aria-hidden="true">
-                <div className="lab-orbit orbit-one" />
-                <div className="lab-orbit orbit-two" />
-                <div className="lab-orbit orbit-three" />
-                <span className="lab-signal-core">{String(current.progress).padStart(2, '0')}</span>
-              </div>
+              <div className="lab-content-progress" aria-hidden="true"><span style={{ width: `${current.progress}%` }} /></div>
             </div>
-            <div className="lab-progress" aria-hidden="true"><span style={{ width: `${current.progress}%` }} /></div>
           </div>
         </Reveal>
       </div>

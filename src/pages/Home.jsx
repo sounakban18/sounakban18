@@ -171,8 +171,7 @@ export default function Home() {
             <span className="eyebrow">About</span>
             <h2 className="display-md">Design work grounded in real business context.</h2>
             <p className="body-lg">
-              Working at Morfiizo Enterprise from the beginning gave me a close view of
-              how design, brand, product, and operations affect one another.
+              I explore frontend design and implementation through a process of building, testing, and refining real-world systems. I&rsquo;m fascinated by how interfaces actually behave in the browser and leverage AI-assisted workflows to iterate quickly, bridging the gap between business context and a polished digital experience.
             </p>
             <Link to="/about" className="btn btn-secondary">
               More about me

@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import Photo from '../components/Photo';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
+import GitHubShowcase from '../components/GitHubShowcase';
 
 const focus = [
   {
@@ -220,6 +221,8 @@ export default function About() {
           </Reveal>
         </div>
       </section>
+
+      <GitHubShowcase />
 
       <section className="section">
         <div className="container about-split">

@@ -8,6 +8,7 @@ import Photo from '../components/Photo';
 import HeroVideo from '../components/HeroVideo';
 import DesignBusiness from '../components/DesignBusiness';
 import InterfaceLab from '../components/InterfaceLab';
+import GitHubPreview from '../components/GitHubPreview';
 import { useMagnetic } from '../hooks';
 
 // Once you have a real clip: drop it in src/assets/hero-loop.mp4 (+ .webm
@@ -161,6 +162,8 @@ export default function Home() {
           <Reveal delay={100}><p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p><div className="learning-list">{['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'].map((item) => <span className="skill-pill mono" key={item}>{item}</span>)}</div></Reveal>
         </div>
       </section>
+
+      <GitHubPreview />
 
       <section className="section about-teaser">
         <div className="container about-teaser-grid">

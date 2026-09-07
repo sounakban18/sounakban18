@@ -96,10 +96,17 @@ export default function Home() {
           </Reveal>
 
           <div className="project-grid">
-            {projects.map((p, i) => (
+            {projects.slice(0, 3).map((p, i) => (
               <ProjectCard project={p} key={p.slug} delay={i * 80} />
             ))}
           </div>
+
+          <Reveal delay={200} className="home-projects-cta-wrap">
+            <Link to="/projects" className="btn btn-secondary home-projects-cta" data-cursor="view">
+              <span>View all projects</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </Reveal>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import Photo from '../components/Photo';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 import GitHubShowcase from '../components/GitHubShowcase';
+import CertificationSection from '../components/CertificationSection';
 
 const focus = [
   {
@@ -223,6 +224,8 @@ export default function About() {
       </section>
 
       <GitHubShowcase />
+
+      <CertificationSection />
 
       <section className="section">
         <div className="container about-split">

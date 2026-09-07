@@ -21,11 +21,10 @@ export default function Projects() {
     <section className="section page-head-section">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">Projects</span>
-          <h1 className="display-lg">Work built inside a real business, not an agency brief.</h1>
+          <span className="eyebrow">PROJECTS</span>
+          <h1 className="display-lg">Selected work, experiments and business solutions.</h1>
           <p className="body-lg page-head-copy">
-            Everything here shipped inside Morfiizo Enterprise — no client
-            hand-off. I owned the problem, the design, and the build.
+            Real digital products, internal tools, and brand systems built and shipped inside an operating business.
           </p>
         </Reveal>
 

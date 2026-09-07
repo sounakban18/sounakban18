@@ -9,6 +9,7 @@ const galleryItems = [
     number: '01',
     title: 'Product Range & Packaging',
     tag: 'Packaging Design',
+    format: 'packaging',
     image: sgfProductsImg,
     caption: 'Everyday household food range spanning Soya Chunks, Spiral Pasta, Seviyan Vermicelli, Heart Papad and Badminton Papad.',
   },
@@ -16,6 +17,7 @@ const galleryItems = [
     number: '02',
     title: 'Corporate Apparel & Team Wear',
     tag: 'Brand Extension',
+    format: 'apparel',
     image: sgfTshirtImg,
     caption: 'Official corporate uniform T-shirt design sheet detailing front, back, side views, garment specs and brand Pantone references.',
   },
@@ -23,6 +25,7 @@ const galleryItems = [
     number: '03',
     title: 'Packaging Structure & SKU Detail',
     tag: 'Visual Hierarchy',
+    format: 'packaging',
     image: sgfProductsImg,
     caption: 'Distinctive packaging compositions balancing local Bengali flavor callouts with appetizing culinary staging and clear product hierarchy.',
   },
@@ -58,12 +61,12 @@ function SgfGallery({ label }) {
         }}
       >
         <div className="sgf-gallery-visual-wrap" aria-live="polite">
-          <div className="sgf-gallery-image-frame">
+          <div className={`sgf-gallery-image-frame frame-${currentItem.format}`}>
             <img
               src={currentItem.image}
               alt={currentItem.title}
               loading="lazy"
-              className="sgf-gallery-image"
+              className={`sgf-gallery-image img-${currentItem.format}`}
             />
           </div>
         </div>

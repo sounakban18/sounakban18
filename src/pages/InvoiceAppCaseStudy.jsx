@@ -123,7 +123,7 @@ function InvoiceGallery({ label }) {
   );
 }
 
-export default function InvoiceAppCaseStudy({ project, next }) {
+export default function InvoiceAppCaseStudy({ next }) {
   const learningPoints = [
     {
       num: '01',

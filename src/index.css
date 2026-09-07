@@ -346,6 +346,7 @@ img, svg {
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; transform: none; opacity: 1; }
+  .portrait-frame, .about-timeline-item, .about-focus-module, .about-skill-tag { transition: none !important; transform: none !important; }
 }
 
 /* =========================================================
@@ -3608,6 +3609,216 @@ body {
     border-radius: var(--r-xl);
   }
 }
+
+/* =========================================================
+   About Page Redesign (Polished)
+   ========================================================= */
+
+.about-hero-interactive {
+  position: relative;
+  perspective: 1000px;
+}
+
+.about-hero-interactive .portrait-frame {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.about-hero-interactive .portrait-frame::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 1px solid var(--primary);
+  border-radius: var(--r-lg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.about-hero-interactive .portrait-frame:hover::after {
+  opacity: 1;
+}
+
+/* Editorial Timeline */
+.about-timeline {
+  position: relative;
+  padding-left: 0;
+}
+
+.about-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.about-timeline-progress {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 1px;
+  background: var(--primary);
+  z-index: 1;
+  transition: height 0.1s linear;
+}
+
+.about-timeline-item {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: var(--sp-xxl);
+}
+
+.about-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--canvas);
+  border: 2px solid var(--hairline);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.about-timeline-item.is-visible::before {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* Capability Modules */
+.about-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.about-focus-module {
+  background: var(--canvas);
+  padding: var(--sp-xl);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  position: relative;
+}
+
+.about-focus-module:hover {
+  background: var(--surface-1);
+  z-index: 1;
+}
+
+.about-focus-module .module-index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-tertiary);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.about-focus-module:hover .module-index {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Skill Clusters */
+.about-skill-clusters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-xl);
+}
+
+.about-skill-cluster {
+  padding: var(--sp-md) 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-skill-cluster:hover {
+  opacity: 1;
+}
+
+.about-skill-cluster .cluster-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-bottom: var(--sp-md);
+  display: block;
+}
+
+.about-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-skill-tag {
+  padding: 4px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  color: var(--ink-muted);
+  background: var(--surface-1);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+
+.about-skill-cluster:hover .about-skill-tag {
+  opacity: 0.6;
+}
+
+.about-skill-cluster:hover .about-skill-tag:hover {
+  opacity: 1;
+  border-color: var(--primary);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+
+/* Metrics Section */
+.about-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-xl);
+  text-align: center;
+}
+
+.about-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-metric-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--ink);
+}
+
+.about-metric-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+@media (max-width: 768px) {
+  .about-timeline { padding-left: 0; }
+  .about-timeline::before { left: 15px; }
+  .about-timeline-progress { left: 15px; }
+  .about-timeline-item { padding-left: 40px; }
+  .about-timeline-item::before { left: 8px; }
+}
+
 
 
 

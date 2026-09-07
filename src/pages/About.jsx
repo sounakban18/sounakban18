@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import Photo from '../components/Photo';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
@@ -72,13 +73,47 @@ const experience = [
 ];
 
 export default function About() {
+  const frameRef = useRef(null);
+  const timelineRef = useRef(null);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!frameRef.current) return;
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = frameRef.current.getBoundingClientRect();
+      const x = (clientX - (left + width / 2)) / (width / 2);
+      const y = (clientY - (top + height / 2)) / (height / 2);
+      frameRef.current.style.transform = `rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+    };
+
+    const handleScroll = () => {
+      if (!timelineRef.current || !progressRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalHeight = rect.height;
+      const scrolled = windowHeight / 2 - rect.top;
+      const percentage = Math.min(Math.max((scrolled / totalHeight) * 100, 0), 100);
+      progressRef.current.style.height = `${percentage}%`;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <section className="section page-head-section about-hero">
         <div className="container about-hero-grid">
-          <Reveal className="about-hero-art">
-            <div className="about-hero-image-wrap">
-              <Photo ratio="3 / 4" />
+          <Reveal className="about-hero-interactive">
+            <div className="portrait-frame" ref={frameRef} data-cursor="view">
+              <div className="about-hero-image-wrap">
+                <Photo ratio="3 / 4" />
+              </div>
             </div>
           </Reveal>
           <Reveal delay={100} className="about-hero-copy">
@@ -114,9 +149,15 @@ export default function About() {
             <span className="eyebrow">Experience</span>
             <h2 className="display-md">From early responsibility to owning growth and operations.</h2>
           </Reveal>
-          <div className="timeline">
+          <div className="about-timeline" ref={timelineRef}>
+            <div className="about-timeline-progress" ref={progressRef} />
             {experience.map((job, i) => (
-              <Reveal as="div" key={job.role} delay={i * 80} className="timeline-item hairline-top">
+              <Reveal
+                as="div"
+                key={job.role}
+                delay={i * 80}
+                className="about-timeline-item"
+              >
                 <div className="timeline-meta">
                   <p className="caption">{job.period}</p>
                   <p className="body-sm">{job.org}</p>
@@ -141,10 +182,10 @@ export default function About() {
             <span className="eyebrow">What I do</span>
             <h2 className="display-md">Design work that accounts for what surrounds it.</h2>
           </Reveal>
-          <div className="focus-grid">
+          <div className="about-focus-grid">
             {focus.map((f, i) => (
-              <Reveal as="div" key={f.title} delay={i * 60} className="focus-card card">
-                <p className="mono focus-index">0{i + 1}</p>
+              <Reveal as="div" key={f.title} delay={i * 60} className="about-focus-module" data-cursor="view">
+                <p className="mono module-index">0{i + 1}</p>
                 <h3 className="card-title">{f.title}</h3>
                 <p className="body-sm">{f.body}</p>
               </Reveal>
@@ -159,13 +200,13 @@ export default function About() {
             <span className="eyebrow">Skills</span>
             <h2 className="display-md">Organised by capability, not a software list.</h2>
           </Reveal>
-          <div className="skill-groups">
+          <div className="about-skill-clusters">
             {skillGroups.map((group, gi) => (
-              <Reveal as="div" key={group.title} delay={gi * 60} className="skill-group">
-                <p className="caption skill-group-title">{group.title}</p>
-                <div className="skill-cloud">
+              <Reveal as="div" key={group.title} delay={gi * 60} className="about-skill-cluster" data-cursor="view">
+                <span className="cluster-title">{group.title}</span>
+                <div className="about-skill-tags">
                   {group.items.map((s) => (
-                    <span key={s} className="skill-pill mono">
+                    <span key={s} className="about-skill-tag mono">
                       {s}
                     </span>
                   ))}
@@ -195,10 +236,19 @@ export default function About() {
           </Reveal>
           <Reveal delay={100} className="about-split-col">
             <span className="eyebrow">By the numbers</span>
-            <div className="stat-row stat-row-wrap">
-              <StatCounter value={2} label="FMCG brands" />
-              <StatCounter value={5} label="Projects shipped" />
-              <StatCounter value={3} label="Person team" />
+            <div className="about-metrics-grid">
+              <div className="about-metric-item">
+                <StatCounter value={2} valueClassName="about-metric-value" />
+                <span className="about-metric-label">FMCG brands</span>
+              </div>
+              <div className="about-metric-item">
+                <StatCounter value={5} valueClassName="about-metric-value" />
+                <span className="about-metric-label">Projects shipped</span>
+              </div>
+              <div className="about-metric-item">
+                <StatCounter value={3} valueClassName="about-metric-value" />
+                <span className="about-metric-label">Person team</span>
+              </div>
             </div>
           </Reveal>
         </div>

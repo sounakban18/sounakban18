@@ -77,7 +77,7 @@ function InvoiceGallery({ label }) {
             />
           </div>
         </div>
-        </div>
+      </div>
       <div className="sgf-gallery-footer">
         <p className="caption gallery-caption">
           <span className="mono">{currentItem.number} · {currentItem.tag}</span> — {currentItem.caption}
@@ -123,7 +123,7 @@ function InvoiceGallery({ label }) {
   );
 }
 
-export default function InvoiceAppCaseStudy({ _project, next }) {
+export default function InvoiceAppCaseStudy({ project, next }) {
   const learningPoints = [
     {
       num: '01',

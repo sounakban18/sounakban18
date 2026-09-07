@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function StatCounter({ value, suffix = '', label, duration = 1200 }) {
+export default function StatCounter({ value, suffix = '', label, duration = 1200, className, valueClassName }) {
   const [display, setDisplay] = useState(() =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? value : 0
   );
@@ -34,12 +34,12 @@ export default function StatCounter({ value, suffix = '', label, duration = 1200
   }, [value, duration]);
 
   return (
-    <div className="stat" ref={ref}>
-      <div className="stat-value display-md">
+    <div className={`stat ${className || ''}`} ref={ref}>
+      <div className={`stat-value display-md ${valueClassName || ''}`}>
         {display}
         {suffix}
       </div>
-      <div className="caption">{label}</div>
+      {label && <div className="caption">{label}</div>}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import PlaceholderArt from './PlaceholderArt';
 import Reveal from './Reveal';
 import { useMagnetic } from '../hooks';
 
-export default function ProjectCard({ project, delay = 0 }) {
+export default function ProjectCard({ project, delay = 0, priority = false }) {
   const linkRef = useMagnetic(24);
 
   return (
@@ -98,6 +98,7 @@ export default function ProjectCard({ project, delay = 0 }) {
             alt={project.title}
             photoPosition={project.image ? 'top' : undefined}
             fit={project.imageFit}
+            loading={priority ? 'eager' : 'lazy'}
           />
         )}
         <div className="project-card-body">

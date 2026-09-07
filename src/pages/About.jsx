@@ -141,6 +141,10 @@ export default function About() {
               somewhere in the business too.
             </p>
             <p className="body-lg mono location">Based in Kolkata.</p>
+            <a className="about-linkedin" href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" data-cursor="open">
+              <span className="caption">Professional profile</span>
+              <span className="body-sm">Connect on LinkedIn <span aria-hidden="true">↗</span></span>
+            </a>
           </Reveal>
         </div>
       </section>

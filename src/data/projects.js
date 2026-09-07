@@ -38,6 +38,7 @@ export const projects = [
     stack: ['Photoshop', 'HTML/CSS/JS', 'AI-assisted exploration'],
     accent: '#8f2d38',
     image: sgfProductsImg,
+    imageFit: 'contain',
   },
   {
     slug: 'morfiizo-partner-portal',

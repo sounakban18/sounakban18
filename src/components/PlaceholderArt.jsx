@@ -1,15 +1,15 @@
-export default function PlaceholderArt({ label, accent = '#5e6ad2', ratio = '4 / 3', dense = false, photo = null, alt = '', photoPosition = 'center', fit = 'cover' }) {
+export default function PlaceholderArt({ label, accent = '#5e6ad2', ratio = '4 / 3', dense = false, photo = null, alt = '', photoPosition = 'center', fit = 'cover', loading = 'lazy' }) {
   if (photo) {
     if (fit === 'contain') {
       return (
         <div className="photo-frame photo-frame-contain" style={{ aspectRatio: ratio, '--accent': accent }}>
-          <img src={photo} alt={alt} loading="lazy" />
+          <img src={photo} alt={alt} loading={loading} />
         </div>
       );
     }
     return (
       <div className="photo-frame" style={{ aspectRatio: ratio }}>
-        <img src={photo} alt={alt} loading="lazy" style={{ objectPosition: photoPosition }} />
+          <img src={photo} alt={alt} loading={loading} style={{ objectPosition: photoPosition }} />
       </div>
     );
   }

@@ -97,7 +97,7 @@ export default function Home() {
 
           <div className="project-grid">
             {projects.slice(0, 3).map((p, i) => (
-              <ProjectCard project={p} key={p.slug} delay={i * 80} />
+                <ProjectCard project={p} key={p.slug} delay={i * 80} priority />
             ))}
           </div>
 
@@ -224,13 +224,16 @@ export default function Home() {
 
       <section className="section cta-band">
         <div className="container cta-band-inner">
-          <Reveal>
+          <div className="cta-band-orbit" aria-hidden="true"><span /><span /><span /></div>
+          <Reveal className="cta-band-content">
+            <span className="eyebrow">Next / open to build</span>
             <h2 className="display-lg">Let&rsquo;s build something useful.</h2>
-          </Reveal>
-          <Reveal delay={100}>
-            <Link to="/contact" className="btn btn-primary" data-cursor="view">
-              Start a conversation
-            </Link>
+            <p className="body-lg">Frontend development, design thinking and AI-assisted building for practical problems that deserve a clearer digital experience.</p>
+            <div className="cta-band-actions">
+              <Link to="/contact" className="btn btn-primary" data-cursor="view">Start a conversation <span aria-hidden="true">↗</span></Link>
+              <a href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" data-cursor="open">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+            </div>
+            <div className="cta-band-status mono"><span className="status-dot" /> available for thoughtful builds <span>/</span> Kolkata, IN</div>
           </Reveal>
         </div>
       </section>

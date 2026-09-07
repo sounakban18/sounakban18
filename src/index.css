@@ -722,15 +722,42 @@ img, svg {
 }
 
 /* =========================================================
-   CTA band
-   ========================================================= */
-.cta-band { text-align: center; }
+  Closing CTA
+  ========================================================= */
+.cta-band { position: relative; overflow: hidden; text-align: center; padding-top: clamp(6rem, 12vw, 11rem); padding-bottom: clamp(6rem, 12vw, 11rem); }
 .cta-band-inner {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 390px;
+  justify-content: center;
   gap: var(--sp-lg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xxl);
+  background: linear-gradient(135deg, rgba(255,255,255,.38), rgba(255,255,255,.08));
+  box-shadow: 0 30px 90px -45px rgba(68,61,49,.35);
 }
+.cta-band-inner::before, .cta-band-inner::after { content: ''; position: absolute; pointer-events: none; z-index: -1; }
+.cta-band-inner::before { inset: 0; opacity: .28; background-image: linear-gradient(var(--hairline) 1px, transparent 1px), linear-gradient(90deg, var(--hairline) 1px, transparent 1px); background-size: 42px 42px; mask-image: radial-gradient(circle at center, black, transparent 72%); }
+.cta-band-inner::after { width: 260px; height: 260px; border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 30px color-mix(in srgb, var(--primary) 8%, transparent), 0 0 0 70px color-mix(in srgb, var(--primary) 4%, transparent); }
+.cta-band-content { position: relative; z-index: 1; display: flex; align-items: center; flex-direction: column; max-width: 720px; padding: var(--sp-xl); }
+.cta-band-content .display-lg { margin-top: var(--sp-sm); }
+.cta-band-content .body-lg { max-width: 560px; }
+.cta-band-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-sm); margin-top: var(--sp-sm); }
+.cta-band-status { display: flex; align-items: center; gap: 8px; margin-top: var(--sp-md); color: var(--ink-tertiary); font-size: 11px; }
+.cta-band-status span:not(.status-dot) { color: var(--primary); }
+.cta-band-orbit { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.cta-band-orbit span { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 20px var(--primary); animation: ctaPulse 3.6s ease-in-out infinite; }
+.cta-band-orbit span:nth-child(1) { top: 25%; left: 17%; }.cta-band-orbit span:nth-child(2) { right: 14%; bottom: 25%; animation-delay: -1.2s; }.cta-band-orbit span:nth-child(3) { top: 18%; right: 28%; animation-delay: -2.4s; }
+@keyframes ctaPulse { 0%, 100% { opacity: .25; transform: scale(.8); } 50% { opacity: .9; transform: scale(1.4); } }
+.about-linkedin { display: flex; flex-direction: column; gap: 4px; width: fit-content; margin-top: var(--sp-sm); padding: 10px 14px; border: 1px solid var(--hairline); border-radius: var(--r-md); transition: border-color .2s ease, transform .2s ease, background-color .2s ease; }
+.about-linkedin:hover { border-color: var(--primary); background: var(--surface-1); transform: translateX(4px); }
+.about-linkedin .body-sm span { color: var(--primary); }
+:root[data-theme='dark'] .cta-band-inner { background: linear-gradient(135deg, rgba(31,35,31,.68), rgba(20,23,21,.48)); box-shadow: 0 30px 90px -45px rgba(0,0,0,.8); }
+@media (max-width: 640px) { .cta-band-inner { min-height: 470px; border-radius: var(--r-xl); } .cta-band-content { padding: var(--sp-lg); } .cta-band-actions { width: 100%; } .cta-band-actions .btn { width: 100%; } .cta-band-status { flex-wrap: wrap; justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .cta-band-orbit span { animation: none; } }
 
 /* =========================================================
    Footer
@@ -2116,7 +2143,7 @@ body {
 .sgf-gallery-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain !important;
   object-position: center;
   display: block;
 }

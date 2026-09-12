@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import Photo from '../components/Photo';
+import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 import GitHubShowcase from '../components/GitHubShowcase';

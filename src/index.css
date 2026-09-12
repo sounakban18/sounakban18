@@ -5062,18 +5062,6 @@ body {
   align-items: center;
   gap: var(--sp-md);
 }
-  display: block;
-}
-
-.cert-modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 18px;
-  background: #151a20;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  gap: 12px;
-}
 
 .cert-modal-footer .caption {
   color: var(--ink-muted);

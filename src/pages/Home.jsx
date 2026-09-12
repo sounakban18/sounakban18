@@ -179,9 +179,12 @@ export default function Home() {
           </Reveal>
           <Reveal delay={100} className="about-teaser-copy">
             <span className="eyebrow">About</span>
-            <h2 className="display-md">Design work grounded in real business context.</h2>
+            <h2 className="display-md">Designing, building, and learning at the intersection of frontend and AI.</h2>
             <p className="body-lg">
-              I explore frontend design and implementation through a process of building, testing, and refining real-world systems. I&rsquo;m fascinated by how interfaces actually behave in the browser and leverage AI-assisted workflows to iterate quickly, bridging the gap between business context and a polished digital experience.
+              I'm an early-career frontend developer and AI enthusiast who enjoys turning ideas into working digital experiences. My work spans UI/UX, frontend development, brand systems, and business operations — with hands-on contributions to SGF and O Morsel Goûter, alongside freelance AI-assisted web projects.
+            </p>
+            <p className="body-sm mono" style={{ marginBottom: 'var(--sp-lg)', opacity: 0.8 }}>
+              Currently exploring: AI-assisted development * Vibe Coding * React * UI/UX * Digital products
             </p>
             <Link to="/about" className="btn btn-secondary">
               More about me

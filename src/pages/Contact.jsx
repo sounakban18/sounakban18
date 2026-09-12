@@ -47,10 +47,10 @@ export default function Contact() {
               <span className="caption">LinkedIn</span>
               <span className="body-sm">/in/sounak-banerjee-a5292b183</span>
             </a>
-            <a href="#" className="contact-channel">
+            <div className="contact-channel">
               <span className="caption">Location</span>
               <span className="body-sm">Kolkata, West Bengal, IN</span>
-            </a>
+            </div>
           </div>
         </Reveal>
 

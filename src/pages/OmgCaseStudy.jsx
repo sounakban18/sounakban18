@@ -61,6 +61,7 @@ function OmgGallery({ label }) {
         <div className="omg-gallery-visual-wrap" aria-live="polite">
           <div className="omg-gallery-image-frame">
             <img
+              key={currentItem.image}
               src={currentItem.image}
               alt={currentItem.title}
               loading="lazy"

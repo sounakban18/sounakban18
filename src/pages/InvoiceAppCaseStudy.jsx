@@ -70,6 +70,7 @@ function InvoiceGallery({ label }) {
         <div className="sgf-gallery-visual-wrap" aria-live="polite">
           <div className="sgf-gallery-image-frame">
             <img
+              key={currentItem.image}
               src={currentItem.image}
               alt={currentItem.title}
               loading="lazy"

@@ -63,6 +63,7 @@ function SgfGallery({ label }) {
         <div className="sgf-gallery-visual-wrap" aria-live="polite">
           <div className={`sgf-gallery-image-frame frame-${currentItem.format}`}>
             <img
+              key={currentItem.image}
               src={currentItem.image}
               alt={currentItem.title}
               loading="lazy"

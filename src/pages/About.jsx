@@ -204,7 +204,7 @@ export default function About() {
             <p className="body-lg">
               I'm still early in my journey, but I'm comfortable learning fast, experimenting, breaking things, understanding why they break, and building them better.
             </p>
-            <p className="body-lg mono location">Based in Kolkata.</p>
+            <p className="body-lg mono location">Based in Kolkata</p>
             <a className="about-linkedin" href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" data-cursor="open">
               <span className="caption">Professional profile</span>
               <span className="body-sm">Connect on LinkedIn <span aria-hidden="true">↗</span></span>
@@ -366,6 +366,11 @@ export default function About() {
       </section>
 
       <section className="section">
+        <div className="container">
+          <Reveal className="section-head">
+            <span className="eyebrow">What I do</span>
+            <h2 className="display-md">Design work that accounts for what surrounds it.</h2>
+          </Reveal>
           <div className="about-focus-grid">
             {focus.map((f, i) => (
               <Reveal as="div" key={f.title} delay={i * 60} className="about-focus-module" data-cursor="view">

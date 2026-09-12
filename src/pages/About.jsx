@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Photo from '../components/Photo';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
@@ -131,7 +131,140 @@ const experience = [
   },
 ];
 
+const AIPrinciples = () => {
+  const [activeIdx, setActiveIdx] = useState(null);
+  const principles = [
+    {
+      title: 'SECURITY',
+      summary: 'AI output is not automatically trusted.',
+      concern: 'AI can generate insecure patterns or expose sensitive information when code is accepted blindly.',
+      approach: 'I treat generated code as untrusted until reviewed. I use structured prompts, explicit constraints, environment variables for secrets, basic security practices, and manual verification.',
+    },
+    {
+      title: 'UNDERSTANDING',
+      summary: 'Avoiding the "black box" of generated code.',
+      concern: 'AI can produce working code that the developer does not actually understand.',
+      approach: 'I use AI alongside my HTML, CSS, JavaScript, React, API, and browser fundamentals. If I cannot explain the generated solution, I break it down and learn the underlying logic before keeping it.',
+    },
+    {
+      title: 'VERIFICATION',
+      summary: 'Confidently validating technical decisions.',
+      concern: 'AI can confidently suggest incorrect APIs, architecture, dependencies, or technical decisions.',
+      approach: 'I provide context, constraints, expected behaviour, and project structure through structured prompting, then verify the output through builds, browser testing, documentation, and iteration.',
+    },
+    {
+      title: 'MAINTAINABILITY',
+      summary: 'Prioritising structure over speed.',
+      concern: 'Fast AI-generated implementations can become messy, duplicated, or difficult to maintain.',
+      approach: 'I review the structure, reuse components, remove unnecessary code, simplify where possible, and refactor generated output instead of accepting everything blindly.',
+    },
+    {
+      title: 'FUNDAMENTALS',
+      summary: 'Strengthening the core developer skill set.',
+      concern: 'Heavy AI usage can create dependency and weaken technical understanding.',
+      approach: 'I deliberately continue strengthening fundamentals while using AI as a development partner. The goal is to understand what I build, not simply generate it.',
+    },
+  ];
+
+  return (
+    <div className="ai-principles-grid">
+      {principles.map((p, i) => (
+        <div
+          key={p.title}
+          className={`ai-principle-card ${activeIdx === i ? 'active' : ''}`}
+          onMouseEnter={() => setActiveIdx(i)}
+          onClick={() => setActiveIdx(i)}
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setActiveIdx(i)}
+        >
+          <span className="ai-principle-num">0{i + 1}</span>
+          <h3 className="ai-principle-title">{p.title}</h3>
+          <p className="ai-principle-summary">{p.summary}</p>
+
+          <div className="ai-principle-detail">
+            <div>
+              <span className="ai-detail-label">Concern</span>
+              <p className="ai-detail-text">{p.concern}</p>
+            </div>
+            <div>
+              <span className="ai-detail-label">My Approach</span>
+              <p className="ai-detail-text">{p.approach}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const AIProcess = () => {
+  const [selectedStep, setSelectedStep] = useState(0);
+  const steps = [
+    { label: 'IDEA', desc: 'Define the problem and the core user need.' },
+    { label: 'PROMPT', desc: 'Provide the model with deep context, constraints, and expected behaviour.' },
+    { label: 'PROTOTYPE', desc: 'Quickly iterate on a working direction and visual layout.' },
+    { label: 'CODE', desc: 'Build the actual implementation, integrating with existing systems.' },
+    { label: 'TEST', desc: 'Verify behavior, responsiveness, and edge cases across browsers.' },
+    { label: 'REFINE', desc: 'Review the code, remove redundancy, and optimize for performance.' },
+    { label: 'SHIP', desc: 'Deploy only when the result is verified, stable, and polished.' },
+  ];
+
+  return (
+    <div className="ai-process-container">
+      <div className="pipeline-head">
+        <span className="eyebrow">The Process</span>
+        <h3 className="card-title">From Idea to Ship</h3>
+      </div>
+
+      <div className="ai-process-rail">
+        {steps.map((step, i) => (
+          <div key={step.label} style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              className={`ai-process-node ${selectedStep === i ? 'active' : ''}`}
+              onClick={() => setSelectedStep(i)}
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && setSelectedStep(i)}
+            >
+              <div className="ai-process-dot">{i + 1}</div>
+              <span className="ai-process-label">{step.label}</span>
+            </div>
+            {i < steps.length - 1 && (
+              <div className={`ai-process-connector ${selectedStep > i ? 'active' : ''}`} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <Reveal className="ai-process-detail">
+        <div className="ai-process-detail-title">{steps[selectedStep].label}</div>
+        <div className="ai-process-detail-text">{steps[selectedStep].desc}</div>
+      </Reveal>
+    </div>
+  );
+};
+
+const AIIntro = () => (
+  <div className="ai-workflow-hero">
+    <Reveal className="section-head">
+      <span className="eyebrow">AI Workflow</span>
+      <h2 className="display-md">AI is my accelerator, not my substitute.</h2>
+      <p className="body-lg">
+        I use AI to move faster, explore more possibilities, and reduce repetitive work — but I still rely on fundamentals, structured prompting, testing, and human judgement to decide what actually ships.
+      </p>
+    </Reveal>
+
+    <Reveal delay={200} className="ai-logic-formula">
+      <div className="ai-logic-pill">AI</div>
+      <span className="ai-logic-arrow">→</</span>
+      <div className="ai-logic-pill">Fundamentals</div>
+      <span className="ai-logic-arrow">→</</span>
+      <div className="ai-logic-pill">Judgement</div>
+    </Reveal>
+  </div>
+);
+
 export default function About() {
+
   const frameRef = useRef(null);
   const timelineRef = useRef(null);
   const progressRef = useRef(null);
@@ -301,19 +434,13 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section ai-accelerator">
+      <section className="section ai-workflow">
         <div className="container">
-          <Reveal className="section-head">
-            <span className="eyebrow">AI Workflow</span>
-            <h2 className="display-md">{aiAccelerator.heading}</h2>
-            <p className="body-lg">{aiAccelerator.copy}</p>
-          </Reveal>
-          <div className="ai-cards-grid">
-            {aiAccelerator.cards.map((card, i) => (
-              <Reveal as="article" key={card.title} delay={i * 60} className="ai-card">
-                <span className="caption mono">{card.title}</span>
-                <div className="ai-card-concern">
-                  <strong>Concern:</strong> {card.concern}
+          <AIIntro />
+          <AIPrinciples />
+          <AIProcess />
+        </div>
+      </section>
                 </div>
                 <div className="ai-card-approach">
                   <strong>Approach:</strong> {card.approach}

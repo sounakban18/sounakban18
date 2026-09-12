@@ -8,19 +8,19 @@ import CertificationSection from '../components/CertificationSection';
 const focus = [
   {
     title: 'Frontend & UI/UX',
-    body: 'From wireframes to shipped interfaces — Figma through to working frontend, not just static mockups.',
+    body: 'From wireframes to working interface — designing in context, then shipping the experience with intentional product thinking.',
   },
   {
-    title: 'Brand & creative',
-    body: 'Packaging, product photography, and content design for a premium D2C food brand.',
+    title: 'AI-assisted building',
+    body: 'Using AI tools as part of the workflow to prototype faster, test ideas earlier, and move from concept to usable frontend more quickly.',
   },
   {
-    title: 'Business context',
-    body: 'Market research, B2B communication, and cross-functional coordination across brand, product, and operations.',
+    title: 'Brand & business context',
+    body: 'Connecting design with market understanding, B2B communication, and the operational realities behind a growing business.',
   },
   {
     title: 'Execution',
-    body: 'Turning a concept into something real — coordinating with agencies, creators, and platforms like Shopify to get it shipped.',
+    body: 'Turning an idea into something real across packaging, storefronts, campaigns, and website touchpoints that need to hold up in practice.',
   },
 ];
 
@@ -58,18 +58,19 @@ const experience = [
     org: 'Morfiizo Enterprise',
     period: 'Aug 2024 – Present',
     points: [
-      'Employee from the beginning, taking on increasing responsibility across design, brand, digital experiences, and operations.',
-      'Led the end-to-end Shopify platform migration — wireframes, landing pages, responsive QA, and URL redirect mapping.',
-      'Implemented on-site SEO and product metadata structure to improve organic discoverability.',
-      'Ran funnel analysis and user research to prioritise conversion-rate changes, and built automated customer messaging and opt-in nurture sequences.',
+      'Took on growing responsibility across brand, design, digital experience, and operations in a business that was still shaping its systems and processes.',
+      'Led the end-to-end Shopify migration — landing pages, responsive QA, URL mapping, and product information structure for a cleaner customer journey.',
+      'Worked across conversion and product communication, improving SEO structure, storefront clarity, and the operational flow behind sales and fulfilment.',
+      'Used AI-assisted workflows to prototype faster, iterate on ideas quickly, and support product thinking without losing the practical realities of the business.',
     ],
   },
   {
-    role: 'Early cross-functional work',
+    role: 'Early cross-functional foundation',
     org: 'Morfiizo Enterprise',
     period: 'Jan 2023 – Aug 2024',
     points: [
-      'Started by working across UI/UX and day-to-day operations, building the context that led into broader Brand Growth & Operations responsibility.',
+      'Started by working across UI/UX and day-to-day operations, which gave me a grounded understanding of how brand, product, and business decisions actually connect in practice.',
+      'That work became the foundation for taking on more ownership in storefront, packaging, digital content, and process-driven execution.',
     ],
   },
 ];
@@ -80,15 +81,36 @@ export default function About() {
   const progressRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!frameRef.current) return;
-      const { clientX, clientY } = e;
-      const { left, top, width, height } = frameRef.current.getBoundingClientRect();
-      const x = (clientX - (left + width / 2)) / (width / 2);
-      const y = (clientY - (top + height / 2)) / (height / 2);
-      frameRef.current.style.transform = `rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+    const frame = frameRef.current;
+    if (!frame) return;
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return;
+
+    const handlePointerMove = (event) => {
+      const { left, top, width, height } = frame.getBoundingClientRect();
+      const x = (event.clientX - (left + width / 2)) / (width / 2);
+      const y = (event.clientY - (top + height / 2)) / (height / 2);
+      const rotateY = Math.max(-4, Math.min(4, x * 4));
+      const rotateX = Math.max(-4, Math.min(4, -y * 4));
+
+      frame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
     };
 
+    const handlePointerLeave = () => {
+      frame.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    };
+
+    frame.addEventListener('pointermove', handlePointerMove);
+    frame.addEventListener('pointerleave', handlePointerLeave);
+
+    return () => {
+      frame.removeEventListener('pointermove', handlePointerMove);
+      frame.removeEventListener('pointerleave', handlePointerLeave);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (!timelineRef.current || !progressRef.current) return;
       const rect = timelineRef.current.getBoundingClientRect();
@@ -99,12 +121,9 @@ export default function About() {
       progressRef.current.style.height = `${percentage}%`;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (

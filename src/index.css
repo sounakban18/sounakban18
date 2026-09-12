@@ -1344,22 +1344,51 @@ body {
   --accent-amber: #f59e0b;
   --accent-crimson: #ef4444;
 
-  --ink: #f2efe9;
-  --ink-muted: #9ba5b2;
-  --ink-subtle: #737e8c;
-  --ink-tertiary: #525c68;
+  --ink: #f5f1ea;
+  --ink-muted: #d7dde5;
+  --ink-subtle: #aeb8c3;
+  --ink-tertiary: #8190a1;
 
-  --canvas: #0a0c0f;
-  --surface-1: rgba(18, 23, 29, 0.76);
-  --surface-2: #13171d;
-  --surface-3: #192027;
-  --surface-4: #212a34;
+  --canvas: #0b0f14;
+  --surface-1: rgba(17, 22, 29, 0.8);
+  --surface-2: #151d27;
+  --surface-3: #1a2430;
+  --surface-4: #212d3b;
 
-  --hairline: #202732;
-  --hairline-strong: #323d4c;
-  --hairline-tertiary: #465466;
+  --hairline: #233243;
+  --hairline-strong: #2d3d50;
+  --hairline-tertiary: #415776;
   --hairline-cyan: rgba(0, 229, 255, 0.22);
   --success: #10b981;
+}
+:root[data-theme='dark'] .body-lg,
+:root[data-theme='dark'] .subhead,
+:root[data-theme='dark'] .body-sm,
+:root[data-theme='dark'] .project-detail-meta .body-sm,
+:root[data-theme='dark'] .timeline-points li,
+:root[data-theme='dark'] .about-focus-module .body-sm,
+:root[data-theme='dark'] .credential-item .body-sm,
+:root[data-theme='dark'] .project-detail-body .body-lg,
+:root[data-theme='dark'] .sgf-story-section .body-lg,
+:root[data-theme='dark'] .omg-story-section .body-lg,
+:root[data-theme='dark'] .morfiizo-story-section .body-lg,
+:root[data-theme='dark'] .gallery-caption,
+:root[data-theme='dark'] .dash-card .body-sm,
+:root[data-theme='dark'] .dash-scheme-card .body-sm,
+:root[data-theme='dark'] .morfiizo-contrib-card .body-sm,
+:root[data-theme='dark'] .morfiizo-module-card .body-sm,
+:root[data-theme='dark'] .morfiizo-system-pillar .body-sm,
+:root[data-theme='dark'] .workflow-step-node .step-desc,
+:root[data-theme='dark'] .backend-point .body-sm,
+:root[data-theme='dark'] .morfiizo-slide-meta .caption,
+:root[data-theme='dark'] .tool-category-card .caption,
+:root[data-theme='dark'] .tool-tag {
+  color: var(--ink-muted);
+}
+:root[data-theme='dark'] .eyebrow,
+:root[data-theme='dark'] .mono,
+:root[data-theme='dark'] .caption {
+  color: var(--ink-subtle);
 }
 :root[data-theme='dark'] body {
   background:
@@ -3590,8 +3619,27 @@ body {
 :root[data-theme='dark'] .workflow-step-node,
 :root[data-theme='dark'] .morfiizo-vibe-narrative,
 :root[data-theme='dark'] .tool-category-card,
-:root[data-theme='dark'] .morfiizo-backend-card {
-  background: #161a17;
+:root[data-theme='dark'] .morfiizo-backend-card,
+:root[data-theme='dark'] .morfiizo-case-study .project-detail-meta > div,
+:root[data-theme='dark'] .morfiizo-case-study .project-detail-meta {
+  background: rgba(18, 24, 31, 0.82);
+  border-color: var(--hairline);
+}
+:root[data-theme='dark'] .morfiizo-case-study .project-detail-meta .caption,
+:root[data-theme='dark'] .morfiizo-case-study .project-detail-meta .body-sm,
+:root[data-theme='dark'] .morfiizo-slide-tab,
+:root[data-theme='dark'] .dash-badge,
+:root[data-theme='dark'] .dash-pill,
+:root[data-theme='dark'] .tool-tag,
+:root[data-theme='dark'] .dash-action-btn {
+  color: var(--ink);
+}
+:root[data-theme='dark'] .morfiizo-slide-tab,
+:root[data-theme='dark'] .dash-badge,
+:root[data-theme='dark'] .dash-pill,
+:root[data-theme='dark'] .tool-tag,
+:root[data-theme='dark'] .dash-action-btn {
+  background: var(--surface-2);
   border-color: var(--hairline);
 }
 :root[data-theme='dark'] .morfiizo-summary-box {

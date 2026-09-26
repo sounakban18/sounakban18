@@ -5507,3 +5507,130 @@ body {
     animation: none !important;
   }
 }
+
+/* Mobile Optimisations for AI Workflow */
+
+@media (max-width: 768px) {
+  /* 1. Hero & Intro Area */
+  .ai-workflow-hero {
+    padding-top: var(--sp-md);
+    padding-bottom: var(--sp-md);
+  }
+  .ai-workflow-hero .display-md {
+    font-size: clamp(24px, 8vw, 32px);
+    line-height: 1.2;
+    margin-bottom: var(--sp-md);
+  }
+  .ai-workflow-hero .body-lg {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: var(--sp-lg);
+  }
+  .ai-logic-chain {
+    gap: var(--sp-xs);
+    padding: var(--sp-md);
+    justify-content: center;
+  }
+  .ai-logic-pill {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+  .ai-logic-arrow {
+    font-size: 14px;
+  }
+
+  /* 2. Concern Cards (Accordion Style) */
+  .ai-concerns-module {
+    gap: var(--sp-lg);
+    margin-top: var(--sp-lg);
+  }
+  .ai-focus-item {
+    padding: var(--sp-sm);
+    margin-bottom: 4px;
+  }
+  .ai-focus-item .ai-focus-title {
+    font-size: 15px;
+  }
+  .ai-focus-item .ai-focus-summary {
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ai-focus-item.active {
+    box-shadow: none;
+    background: var(--surface-2);
+    border-color: var(--primary);
+  }
+
+  .ai-detail-panel {
+    padding: var(--sp-md);
+    min-height: auto;
+    border-radius: var(--r-md);
+    margin-top: var(--sp-sm);
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    overflow: hidden;
+  }
+  .ai-detail-panel.collapsed {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    border: 1px solid transparent;
+  }
+  .ai-detail-panel.expanded {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  /* 3. Process Timeline (Compact) */
+  .ai-pipeline-container {
+    margin-top: var(--sp-xl);
+  }
+  .ai-pipeline-rail {
+    gap: 0;
+    padding-left: var(--sp-md);
+    padding-right: var(--sp-md);
+  }
+  .pipeline-segment {
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .ai-pipeline-node {
+    padding: var(--sp-xs) 0;
+  }
+  .ai-pipeline-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 11px;
+  }
+  .ai-pipeline-label {
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .ai-pipeline-connector {
+    width: 2px;
+    height: 20px !important;
+    margin: 0 auto;
+  }
+  .ai-pipeline-detail {
+    margin-top: var(--sp-md);
+    padding: var(--sp-md);
+    text-align: center;
+    min-height: auto;
+  }
+  .ai-pipeline-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ai-pipeline-detail-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .ai-pipeline-detail-text {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}

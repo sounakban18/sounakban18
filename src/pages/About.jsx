@@ -98,6 +98,7 @@ const experience = [
 
 const AIPrinciples = () => {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   const principles = [
     {
       title: 'SECURITY',
@@ -131,6 +132,15 @@ const AIPrinciples = () => {
     },
   ];
 
+  const handleItemClick = (i) => {
+    if (activeIdx === i) {
+      setIsExpanded(!isExpanded);
+    } else {
+      setActiveIdx(i);
+      setIsExpanded(true);
+    }
+  };
+
   return (
     <div className="ai-concerns-module">
       <div className="ai-focus-list">
@@ -138,20 +148,21 @@ const AIPrinciples = () => {
           <div
             key={p.title}
             className={`ai-focus-item ${activeIdx === i ? 'active' : ''}`}
-            onClick={() => setActiveIdx(i)}
+            onClick={() => handleItemClick(i)}
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && setActiveIdx(i)}
+            onKeyDown={(e) => e.key === 'Enter' && handleItemClick(i)}
           >
             <span className="ai-focus-num">0{i + 1}</span>
             <div className="ai-focus-content">
               <h3 className="ai-focus-title">{p.title}</h3>
               <p className="ai-focus-summary">{p.summary}</p>
             </div>
+            {/* Mobile expansion indicator can be added via CSS or here */}
           </div>
         ))}
       </div>
 
-      <div className="ai-detail-panel">
+      <div className={`ai-detail-panel ${isExpanded ? 'expanded' : 'collapsed'}`}>
         <div key={activeIdx} className="ai-detail-content">
           <div className="ai-detail-block">
             <span className="ai-detail-label">Concern</span>
@@ -206,8 +217,10 @@ const AIProcess = () => {
       </div>
 
       <Reveal className="ai-pipeline-detail">
-        <div className="ai-pipeline-detail-title">{steps[selectedStep].label}</div>
-        <div className="ai-pipeline-detail-text">{steps[selectedStep].desc}</div>
+        <div className="ai-pipeline-detail-content">
+          <div className="ai-pipeline-detail-title">{steps[selectedStep].label}</div>
+          <div className="ai-pipeline-detail-text">{steps[selectedStep].desc}</div>
+        </div>
       </Reveal>
     </div>
   );

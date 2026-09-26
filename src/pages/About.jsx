@@ -45,42 +45,7 @@ const skillGroups = [
   },
 ];
 
-const aiAccelerator = {
-  heading: 'AI is my accelerator, not my substitute.',
-  copy: 'I use AI to move faster, explore more possibilities, and reduce repetitive work — but I still rely on fundamentals, structured prompting, testing, and human judgement to decide what actually ships.',
-  cards: [
-    {
-      title: 'SECURITY',
-      concern: 'AI-generated code can create security risks.',
-      approach: 'I never treat generated code as trusted code. I use structured prompts, explicit constraints, environment variables for secrets, basic security practices, and manual review before anything ships.',
-      loop: 'AI generates → I inspect → I understand → I test → I ship.',
-    },
-    {
-      title: 'UNDERSTANDING',
-      concern: 'AI can generate code that works but I don\'t understand.',
-      approach: 'I use AI alongside HTML, CSS, JavaScript, React, APIs and browser fundamentals. When AI produces something I cannot explain, I break it down, test it, and learn the underlying logic before keeping it.',
-    },
-    {
-      title: 'HALLUCINATION / WRONG DECISIONS',
-      concern: 'AI can confidently make technically wrong decisions.',
-      approach: 'I use structured prompting with context, constraints, expected behaviour and project structure, then verify the result through builds, browser testing, documentation and iteration.',
-    },
-    {
-      title: 'MESSY CODE',
-      concern: 'AI-assisted projects can become messy quickly.',
-      approach: 'I review structure, reuse components, remove unnecessary code, keep the architecture understandable, and refactor generated output instead of accepting everything blindly.',
-    },
-    {
-      title: 'DEPENDENCY',
-      concern: 'AI tools can make developers dependent on them.',
-      approach: 'I deliberately keep strengthening my fundamentals while using AI as a development partner. I want to understand what I\'m building, not simply generate it.',
-    },
-  ],
-  pipeline: {
-    steps: ['IDEA', 'PROMPT', 'PROTOTYPE', 'CODE', 'TEST', 'REFINE', 'SHIP'],
-    copy: 'I use conversational AI to move from idea to interface to implementation to testing faster. The difference is in how I guide it: breaking problems down, writing better prompts, setting constraints, reviewing generated code, and iterating until the result actually works.',
-  },
-};
+// aiAccelerator was removed as its data is now integrated into the components.
 
 const independentBuilds = {
   heading: 'Independent Builds',
@@ -132,7 +97,7 @@ const experience = [
 ];
 
 const AIPrinciples = () => {
-  const [activeIdx, setActiveIdx] = useState(null);
+  const [activeIdx, setActiveIdx] = useState(0);
   const principles = [
     {
       title: 'SECURITY',
@@ -167,32 +132,37 @@ const AIPrinciples = () => {
   ];
 
   return (
-    <div className="ai-principles-grid">
-      {principles.map((p, i) => (
-        <div
-          key={p.title}
-          className={`ai-principle-card ${activeIdx === i ? 'active' : ''}`}
-          onMouseEnter={() => setActiveIdx(i)}
-          onClick={() => setActiveIdx(i)}
-          tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && setActiveIdx(i)}
-        >
-          <span className="ai-principle-num">0{i + 1}</span>
-          <h3 className="ai-principle-title">{p.title}</h3>
-          <p className="ai-principle-summary">{p.summary}</p>
-
-          <div className="ai-principle-detail">
-            <div>
-              <span className="ai-detail-label">Concern</span>
-              <p className="ai-detail-text">{p.concern}</p>
-            </div>
-            <div>
-              <span className="ai-detail-label">My Approach</span>
-              <p className="ai-detail-text">{p.approach}</p>
+    <div className="ai-concerns-module">
+      <div className="ai-focus-list">
+        {principles.map((p, i) => (
+          <div
+            key={p.title}
+            className={`ai-focus-item ${activeIdx === i ? 'active' : ''}`}
+            onClick={() => setActiveIdx(i)}
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && setActiveIdx(i)}
+          >
+            <span className="ai-focus-num">0{i + 1}</span>
+            <div className="ai-focus-content">
+              <h3 className="ai-focus-title">{p.title}</h3>
+              <p className="ai-focus-summary">{p.summary}</p>
             </div>
           </div>
+        ))}
+      </div>
+
+      <div className="ai-detail-panel">
+        <div key={activeIdx} className="ai-detail-content">
+          <div className="ai-detail-block">
+            <span className="ai-detail-label">Concern</span>
+            <p className="ai-detail-text">{principles[activeIdx].concern}</p>
+          </div>
+          <div className="ai-detail-block">
+            <span className="ai-detail-label">My Approach</span>
+            <p className="ai-detail-text">{principles[activeIdx].approach}</p>
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
@@ -210,34 +180,34 @@ const AIProcess = () => {
   ];
 
   return (
-    <div className="ai-process-container">
+    <div className="ai-pipeline-container">
       <div className="pipeline-head">
         <span className="eyebrow">The Process</span>
         <h3 className="card-title">From Idea to Ship</h3>
       </div>
 
-      <div className="ai-process-rail">
+      <div className="ai-pipeline-rail">
         {steps.map((step, i) => (
-          <div key={step.label} style={{ display: 'flex', alignItems: 'center' }}>
+          <div key={step.label} className="pipeline-segment">
             <div
-              className={`ai-process-node ${selectedStep === i ? 'active' : ''}`}
+              className={`ai-pipeline-node ${selectedStep === i ? 'active' : ''}`}
               onClick={() => setSelectedStep(i)}
               tabIndex={0}
               onKeyDown={(e) => e.key === 'Enter' && setSelectedStep(i)}
             >
-              <div className="ai-process-dot">{i + 1}</div>
-              <span className="ai-process-label">{step.label}</span>
+              <div className="ai-pipeline-dot">{i + 1}</div>
+              <span className="ai-pipeline-label">{step.label}</span>
             </div>
             {i < steps.length - 1 && (
-              <div className={`ai-process-connector ${selectedStep > i ? 'active' : ''}`} />
+              <div className={`ai-pipeline-connector ${selectedStep > i ? 'filled' : ''}`} />
             )}
           </div>
         ))}
       </div>
 
-      <Reveal className="ai-process-detail">
-        <div className="ai-process-detail-title">{steps[selectedStep].label}</div>
-        <div className="ai-process-detail-text">{steps[selectedStep].desc}</div>
+      <Reveal className="ai-pipeline-detail">
+        <div className="ai-pipeline-detail-title">{steps[selectedStep].label}</div>
+        <div className="ai-pipeline-detail-text">{steps[selectedStep].desc}</div>
       </Reveal>
     </div>
   );
@@ -253,12 +223,20 @@ const AIIntro = () => (
       </p>
     </Reveal>
 
-    <Reveal delay={200} className="ai-logic-formula">
-      <div className="ai-logic-pill">AI</div>
-      <span className="ai-logic-arrow">→</</span>
-      <div className="ai-logic-pill">Fundamentals</div>
-      <span className="ai-logic-arrow">→</</span>
-      <div className="ai-logic-pill">Judgement</div>
+    <Reveal delay={200} className="ai-logic-formula-wrap">
+      <div className="ai-logic-chain">
+        <div className="ai-logic-node">
+          <span className="ai-logic-pill">AI</span>
+        </div>
+        <span className="ai-logic-arrow">→</span>
+        <div className="ai-logic-node">
+          <span className="ai-logic-pill">Fundamentals</span>
+        </div>
+        <span className="ai-logic-arrow">→</span>
+        <div className="ai-logic-node">
+          <span className="ai-logic-pill">Judgement</span>
+        </div>
+      </div>
     </Reveal>
   </div>
 );
@@ -439,35 +417,6 @@ export default function About() {
           <AIIntro />
           <AIPrinciples />
           <AIProcess />
-        </div>
-      </section>
-                </div>
-                <div className="ai-card-approach">
-                  <strong>Approach:</strong> {card.approach}
-                </div>
-                {card.loop && (
-                  <div className="ai-card-loop mono">
-                    <span className="caption">Core Loop:</span> {card.loop}
-                  </div>
-                )}
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={300} className="ai-pipeline-section">
-            <div className="pipeline-head">
-              <span className="eyebrow">The Process</span>
-              <h3 className="card-title">From Idea to Ship</h3>
-            </div>
-            <div className="ai-pipeline">
-              {aiAccelerator.pipeline.steps.map((step, i) => (
-                <div key={step} className="pipeline-node">
-                  <span className="pipeline-step">{step}</span>
-                  {i < aiAccelerator.pipeline.steps.length - 1 && <span className="pipeline-arrow">→</span>}
-                </div>
-              ))}
-            </div>
-            <p className="body-sm center-text">{aiAccelerator.pipeline.copy}</p>
-          </Reveal>
         </div>
       </section>
 

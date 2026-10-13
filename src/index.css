@@ -4674,7 +4674,7 @@ body {
 
 .cert-carousel-stage {
   position: relative;
-  width: min(920px, 100%);
+  width: min(1040px, 100%);
   margin-inline: auto;
   isolation: isolate;
   perspective: 1500px;
@@ -4682,13 +4682,13 @@ body {
 }
 
 .cert-slide-slot {
-  width: min(440px, 100%);
+  width: min(400px, 100%);
   margin-inline: auto;
   transform-origin: center center;
   transition:
-    transform 760ms cubic-bezier(0.22, 0.72, 0.24, 1),
-    opacity 560ms ease,
-    filter 560ms ease;
+    transform 700ms cubic-bezier(0.22, 0.72, 0.24, 1),
+    opacity 500ms ease,
+    filter 500ms ease;
   will-change: transform, opacity;
 }
 
@@ -4709,11 +4709,11 @@ body {
 }
 
 .cert-slide-slot--previous {
-  transform: translate3d(-79%, 0, 0) scale(0.88) rotateY(2deg);
+  transform: translate3d(-88%, 0, 0) scale(0.9) rotateY(1deg);
 }
 
 .cert-slide-slot--next {
-  transform: translate3d(79%, 0, 0) scale(0.88) rotateY(-2deg);
+  transform: translate3d(88%, 0, 0) scale(0.9) rotateY(-1deg);
 }
 
 .cert-slide-slot--hidden {
@@ -4725,10 +4725,10 @@ body {
   visibility: hidden;
   pointer-events: none;
   transition:
-    transform 760ms cubic-bezier(0.22, 0.72, 0.24, 1),
-    opacity 560ms ease,
-    filter 560ms ease,
-    visibility 0s linear 760ms;
+    transform 700ms cubic-bezier(0.22, 0.72, 0.24, 1),
+    opacity 500ms ease,
+    filter 500ms ease,
+    visibility 0s linear 700ms;
 }
 
 .cert-slide-slot:focus-visible {
@@ -4749,23 +4749,57 @@ body {
   border-radius: var(--r-xxl);
   background: var(--surface-1);
   overflow: hidden;
-  box-shadow: 0 20px 60px -42px rgba(29, 33, 29, 0.55);
-  transition: border-color 560ms ease, box-shadow 560ms ease;
+  box-shadow: 0 18px 46px -34px rgba(29, 33, 29, 0.45);
+  transition:
+    transform 360ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    border-color 300ms ease,
+    box-shadow 360ms ease;
+  will-change: transform;
+}
+
+.cert-slide-slot--previous .cert-card,
+.cert-slide-slot--next .cert-card {
+  width: 85%;
+  margin-inline: auto;
 }
 
 .cert-slide-slot--active .cert-card {
   border-color: color-mix(in srgb, var(--primary) 34%, var(--hairline));
-  box-shadow: 0 30px 74px -46px rgba(29, 33, 29, 0.6);
+  box-shadow: 0 28px 70px -42px rgba(29, 33, 29, 0.52);
 }
 
-.cert-slide-slot--previous .cert-card:hover,
-.cert-slide-slot--next .cert-card:hover {
+.cert-slide-slot--active .cert-card:hover,
+.cert-slide-slot--previous:hover .cert-card,
+.cert-slide-slot--next:hover .cert-card,
+.cert-slide-slot--previous:focus-visible .cert-card,
+.cert-slide-slot--next:focus-visible .cert-card {
+  transform: translateY(-7px);
   border-color: var(--hairline-strong);
+  box-shadow: 0 30px 58px -34px rgba(29, 33, 29, 0.5);
 }
 
 .cert-slide-slot--previous .cert-card,
 .cert-slide-slot--next .cert-card {
   cursor: pointer;
+}
+
+.cert-slide-slot--previous:hover,
+.cert-slide-slot--next:hover,
+.cert-slide-slot--previous:focus-within,
+.cert-slide-slot--next:focus-within {
+  z-index: 4;
+}
+
+.cert-slide-slot--previous .cert-card-content,
+.cert-slide-slot--next .cert-card-content {
+  gap: 9px;
+  min-height: 286px;
+  padding: 20px;
+}
+
+.cert-slide-slot--previous .cert-title,
+.cert-slide-slot--next .cert-title {
+  font-size: 18px;
 }
 
 .cert-media-frame {
@@ -5100,7 +5134,7 @@ body {
   }
 
   .cert-slide-slot {
-    width: calc(100% - 128px);
+    width: min(400px, calc(100% - 92px));
   }
 
   .cert-slide-slot--previous {
@@ -5119,9 +5153,21 @@ body {
     border-radius: var(--r-xl);
   }
 
+  .cert-slide-slot--previous .cert-card,
+  .cert-slide-slot--next .cert-card {
+    width: 100%;
+  }
+
   .cert-card-content {
     min-height: 286px;
     gap: 10px;
+    padding: 18px;
+  }
+
+  .cert-slide-slot--previous .cert-card-content,
+  .cert-slide-slot--next .cert-card-content {
+    gap: 10px;
+    min-height: 286px;
     padding: 18px;
   }
 

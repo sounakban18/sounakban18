@@ -148,9 +148,17 @@ const AIPrinciples = () => {
           <div
             key={p.title}
             className={`ai-focus-item ${activeIdx === i ? 'active' : ''}`}
+            role="button"
+            aria-expanded={activeIdx === i && isExpanded}
+            aria-controls="ai-principles-detail"
             onClick={() => handleItemClick(i)}
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && handleItemClick(i)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleItemClick(i);
+              }
+            }}
           >
             <span className="ai-focus-num">0{i + 1}</span>
             <div className="ai-focus-content">
@@ -162,7 +170,13 @@ const AIPrinciples = () => {
         ))}
       </div>
 
-      <div className={`ai-detail-panel ${isExpanded ? 'expanded' : 'collapsed'}`}>
+      <div
+        id="ai-principles-detail"
+        className={`ai-detail-panel ${isExpanded ? 'expanded' : 'collapsed'}`}
+        role="region"
+        aria-label="AI responsibility details"
+        aria-hidden={!isExpanded}
+      >
         <div key={activeIdx} className="ai-detail-content">
           <div className="ai-detail-block">
             <span className="ai-detail-label">Concern</span>
@@ -202,9 +216,17 @@ const AIProcess = () => {
           <div key={step.label} className="pipeline-segment">
             <div
               className={`ai-pipeline-node ${selectedStep === i ? 'active' : ''}`}
+              role="button"
+              aria-pressed={selectedStep === i}
+              aria-controls="ai-pipeline-detail-panel"
               onClick={() => setSelectedStep(i)}
               tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && setSelectedStep(i)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setSelectedStep(i);
+                }
+              }}
             >
               <div className="ai-pipeline-dot">{i + 1}</div>
               <span className="ai-pipeline-label">{step.label}</span>
@@ -216,7 +238,13 @@ const AIProcess = () => {
         ))}
       </div>
 
-      <Reveal className="ai-pipeline-detail">
+      <Reveal
+        id="ai-pipeline-detail-panel"
+        className="ai-pipeline-detail"
+        role="region"
+        aria-label="Selected workflow step"
+        aria-live="polite"
+      >
         <div className="ai-pipeline-detail-content">
           <div className="ai-pipeline-detail-title">{steps[selectedStep].label}</div>
           <div className="ai-pipeline-detail-text">{steps[selectedStep].desc}</div>

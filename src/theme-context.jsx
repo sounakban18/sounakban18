@@ -6,7 +6,7 @@ export function getInitialTheme() {
   if (typeof window === 'undefined') return 'dark';
   const saved = window.localStorage.getItem('portfolio-theme');
   if (saved === 'light' || saved === 'dark') return saved;
-  return 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 export function useTheme() {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { useMagnetic } from '../hooks';
 import { useTheme } from '../theme-context';
@@ -14,9 +14,14 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
+  const burgerRef = useRef(null);
   const ctaRef = useMagnetic(14);
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+  const closeMobileNav = () => {
+    setOpen(false);
+    burgerRef.current?.focus();
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,6 +29,18 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        burgerRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [open]);
 
   return (
     <header className={`nav${scrolled ? ' scrolled' : ''}`}>
@@ -60,9 +77,12 @@ export default function Nav() {
             <span aria-hidden="true">{theme === 'light' ? '◐' : '☼'}</span>
           </button>
           <button
+            ref={burgerRef}
             className={`nav-burger${open ? ' open' : ''}`}
+            type="button"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen((v) => !v)}
           >
             <span />
@@ -71,14 +91,19 @@ export default function Nav() {
         </div>
       </div>
 
-      <div className={`nav-mobile${open ? ' open' : ''}`}>
+      <nav
+        id="mobile-navigation"
+        className={`nav-mobile${open ? ' open' : ''}`}
+        aria-label="Mobile"
+        inert={!open}
+      >
         {links.map((l) => (
           <NavLink
             key={l.to}
             to={l.to}
             end={l.to === '/'}
             className={({ isActive }) => `nav-mobile-link${isActive ? ' active' : ''}`}
-            onClick={() => setOpen(false)}
+            onClick={closeMobileNav}
           >
             {l.label}
           </NavLink>
@@ -86,7 +111,7 @@ export default function Nav() {
         <button className="nav-mobile-theme" type="button" onClick={toggleTheme}>
           {theme === 'light' ? 'Use dark theme' : 'Use light theme'} <span aria-hidden="true">{theme === 'light' ? '◐' : '☼'}</span>
         </button>
-      </div>
+      </nav>
     </header>
   );
 }

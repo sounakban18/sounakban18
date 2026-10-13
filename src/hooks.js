@@ -9,7 +9,8 @@ export function useMagnetic(strength = 18) {
     const el = ref.current;
     if (!el) return;
     const isFine = window.matchMedia('(pointer: fine)').matches;
-    if (!isFine) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!isFine || reducedMotion) return;
 
     const onMove = (e) => {
       const rect = el.getBoundingClientRect();

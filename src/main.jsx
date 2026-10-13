@@ -3,10 +3,11 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import { getInitialTheme } from './theme-context'
 
-const savedTheme = window.localStorage.getItem('portfolio-theme')
-const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme
+const initialTheme = getInitialTheme()
+document.documentElement.dataset.theme = initialTheme
+document.documentElement.style.colorScheme = initialTheme
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

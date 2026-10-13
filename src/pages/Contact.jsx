@@ -8,10 +8,10 @@ export default function Contact() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const message = form.message.value;
+    const formData = new FormData(e.currentTarget);
+    const name = String(formData.get('name') ?? '');
+    const email = String(formData.get('email') ?? '');
+    const message = String(formData.get('message') ?? '');
     const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
     window.location.href = `mailto:itssounakbanerjee@gmail.com?subject=${subject}&body=${body}`;
@@ -58,11 +58,11 @@ export default function Contact() {
           <form className="contact-form card" onSubmit={onSubmit}>
             <label className="field">
               <span className="caption">Name</span>
-              <input name="name" type="text" required placeholder="Your name" />
+              <input name="name" type="text" autoComplete="name" required placeholder="Your name" />
             </label>
             <label className="field">
               <span className="caption">Email</span>
-              <input name="email" type="email" required placeholder="you@company.com" />
+              <input name="email" type="email" autoComplete="email" required placeholder="you@company.com" />
             </label>
             <label className="field">
               <span className="caption">Message</span>

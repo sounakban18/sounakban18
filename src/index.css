@@ -4621,6 +4621,9 @@ body {
     animation: none !important;
     transform: none !important;
   }
+  .cert-carousel--reduced-motion .cert-slide-slot {
+    transition: none !important;
+  }
   .status-indicator-dot {
     animation: none !important;
   }
@@ -4660,39 +4663,117 @@ body {
   padding-top: var(--sp-xxl);
   padding-bottom: var(--sp-xxl);
   border-top: 1px solid var(--hairline);
+  overflow-x: clip;
 }
 
-.cert-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  align-items: stretch;
-  gap: var(--sp-lg);
+.cert-carousel {
   margin-top: var(--sp-xl);
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cert-carousel-stage {
+  position: relative;
+  width: min(920px, 100%);
+  margin-inline: auto;
+  isolation: isolate;
+  perspective: 1500px;
+  overflow: clip;
+}
+
+.cert-slide-slot {
+  width: min(440px, 100%);
+  margin-inline: auto;
+  transform-origin: center center;
+  transition:
+    transform 760ms cubic-bezier(0.22, 0.72, 0.24, 1),
+    opacity 560ms ease,
+    filter 560ms ease;
+  will-change: transform, opacity;
+}
+
+.cert-slide-slot--active {
+  position: relative;
+  z-index: 3;
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+.cert-slide-slot--previous,
+.cert-slide-slot--next {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.cert-slide-slot--previous {
+  transform: translate3d(-79%, 0, 0) scale(0.88) rotateY(2deg);
+}
+
+.cert-slide-slot--next {
+  transform: translate3d(79%, 0, 0) scale(0.88) rotateY(-2deg);
+}
+
+.cert-slide-slot--hidden {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: translate3d(110%, 0, 0) scale(0.78);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 760ms cubic-bezier(0.22, 0.72, 0.24, 1),
+    opacity 560ms ease,
+    filter 560ms ease,
+    visibility 0s linear 760ms;
+}
+
+.cert-slide-slot:focus-visible {
+  outline: none;
+}
+
+.cert-slide-slot--previous:focus-visible .cert-card,
+.cert-slide-slot--next:focus-visible .cert-card {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 5px;
 }
 
 .cert-card {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   border: 1px solid var(--hairline);
-  border-radius: var(--r-xl);
+  border-radius: var(--r-xxl);
   background: var(--surface-1);
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 20px 60px -42px rgba(29, 33, 29, 0.55);
+  transition: border-color 560ms ease, box-shadow 560ms ease;
 }
 
-.cert-card:hover {
+.cert-slide-slot--active .cert-card {
+  border-color: color-mix(in srgb, var(--primary) 34%, var(--hairline));
+  box-shadow: 0 30px 74px -46px rgba(29, 33, 29, 0.6);
+}
+
+.cert-slide-slot--previous .cert-card:hover,
+.cert-slide-slot--next .cert-card:hover {
   border-color: var(--hairline-strong);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px -24px rgba(29, 33, 29, 0.35);
+}
+
+.cert-slide-slot--previous .cert-card,
+.cert-slide-slot--next .cert-card {
+  cursor: pointer;
 }
 
 .cert-media-frame {
-  aspect-ratio: 1.48;
+  aspect-ratio: 1.38;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--sp-sm);
+  padding: clamp(10px, 1.8vw, 18px);
   background: var(--surface-2);
   border-bottom: 1px solid var(--hairline);
 }
@@ -4710,7 +4791,8 @@ body {
   align-items: flex-start;
   flex: 1;
   gap: var(--sp-sm);
-  padding: var(--sp-lg);
+  min-height: 286px;
+  padding: clamp(18px, 2.4vw, 28px);
 }
 
 .cert-tag-row {
@@ -4776,9 +4858,81 @@ body {
 }
 
 .cert-preview-button:focus-visible,
-.cert-modal-close:focus-visible {
+.cert-modal-close:focus-visible,
+.cert-carousel-button:focus-visible,
+.cert-carousel-toggle:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+.cert-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 26px auto 0;
+}
+
+.cert-carousel-button,
+.cert-carousel-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: var(--surface-1);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.cert-carousel-button {
+  font-size: 19px;
+}
+
+.cert-carousel-button:hover,
+.cert-carousel-toggle:hover:not(:disabled) {
+  border-color: var(--hairline-strong);
+  background: var(--surface-2);
+}
+
+.cert-carousel-button:active,
+.cert-carousel-toggle:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cert-carousel-count {
+  min-width: 58px;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.cert-carousel-control-divider {
+  width: 1px;
+  height: 24px;
+  margin-inline: 4px;
+  background: var(--hairline);
+}
+
+.cert-carousel-toggle {
+  gap: 8px;
+  padding-inline: 15px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cert-carousel-toggle > span:first-child {
+  font-size: 12px;
+}
+
+.cert-carousel-toggle:disabled {
+  color: var(--ink-subtle);
+  cursor: not-allowed;
 }
 
 .cert-modal-dialog {
@@ -4804,6 +4958,10 @@ body {
   animation: modalFadeIn 0.18s ease-out;
 }
 
+.cert-modal-dialog--closing::backdrop {
+  animation: modalFadeOut 0.16s ease-in forwards;
+}
+
 .cert-modal-surface {
   display: flex;
   flex-direction: column;
@@ -4816,14 +4974,26 @@ body {
   animation: modalZoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.cert-modal-surface--closing {
+  animation: modalZoomOut 0.16s ease-in forwards;
+}
+
 @keyframes modalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+@keyframes modalFadeOut {
+  to { opacity: 0; }
+}
+
 @keyframes modalZoomIn {
   from { transform: translateY(8px) scale(0.99); opacity: 0; }
   to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes modalZoomOut {
+  to { transform: translateY(6px) scale(0.99); opacity: 0; }
 }
 
 .cert-modal-bar {
@@ -4916,6 +5086,134 @@ body {
 
 .cert-task-list li + li {
   margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+  .certification-section {
+    overflow-x: clip;
+  }
+
+  .cert-carousel-stage {
+    perspective: none;
+    width: calc(100% + 96px);
+    margin-inline: -48px;
+  }
+
+  .cert-slide-slot {
+    width: calc(100% - 128px);
+  }
+
+  .cert-slide-slot--previous {
+    transform: translate3d(-80%, 0, 0) scale(0.91);
+  }
+
+  .cert-slide-slot--next {
+    transform: translate3d(80%, 0, 0) scale(0.91);
+  }
+
+  .cert-slide-slot--hidden {
+    transform: translate3d(110%, 0, 0) scale(0.84);
+  }
+
+  .cert-card {
+    border-radius: var(--r-xl);
+  }
+
+  .cert-card-content {
+    min-height: 286px;
+    gap: 10px;
+    padding: 18px;
+  }
+
+  .cert-tag-row {
+    gap: 6px;
+  }
+
+  .cert-issuer {
+    font-size: 10px;
+  }
+
+  .cert-title {
+    font-size: 18px;
+  }
+
+  .cert-carousel-controls {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .cert-carousel-control-divider {
+    margin-inline: 0;
+  }
+
+  .cert-carousel-toggle {
+    padding-inline: 12px;
+  }
+
+  .cert-modal-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+
+  .cert-modal-surface {
+    max-height: calc(100dvh - 20px);
+    border-radius: var(--r-lg);
+  }
+
+  .cert-modal-bar {
+    padding: 12px;
+  }
+
+  .cert-modal-image-wrap {
+    min-height: 120px;
+    padding: 10px;
+  }
+
+  .cert-modal-image {
+    max-height: 45vh;
+  }
+
+  .cert-modal-details {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cert-slide-slot--previous {
+    transform: translate3d(-82%, 0, 0) scale(0.93);
+  }
+
+  .cert-slide-slot--next {
+    transform: translate3d(82%, 0, 0) scale(0.93);
+  }
+
+  .cert-card-content {
+    padding: 15px;
+  }
+
+  .cert-carousel-controls {
+    gap: 3px;
+  }
+
+  .cert-carousel-toggle {
+    gap: 5px;
+    padding-inline: 8px;
+  }
+
+  .cert-carousel-count {
+    min-width: 48px;
+  }
+}
+
+@media (max-width: 380px) {
+  .ai-logic-formula-wrap {
+    max-width: 100%;
+  }
+
+  .ai-logic-chain {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
 }
 
 /* AI Workflow Section */

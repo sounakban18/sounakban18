@@ -1,22 +1,94 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal';
 import outskillCertImg from '../assets/outskill-certificate.png';
+import deloitteCertImg from '../assets/deloitte-data-analytics-certificate.png';
+import bcgCertImg from '../assets/bcg-x-genai-certificate.png';
+import tataCertImg from '../assets/tata-genai-analytics-certificate.png';
+
+const certificates = [
+  {
+    id: 'outskill-generative-ai-mastermind',
+    title: 'Generative AI Mastermind',
+    organisation: 'Outskill',
+    issuer: 'Outskill',
+    issuerDetail: 'Vaibhav Sisinty · Founder, Outskill',
+    image: outskillCertImg,
+    alt: 'Generative AI Mastermind certificate of completion awarded to Sounak Banerjee by Outskill',
+    summary: 'Generative AI tools · Prompt engineering · Agentic workflows',
+    details: [
+      'Advanced programme covering generative AI tools, prompt engineering, agentic workflows, and practical applications in digital design, automation, and modern web product development.',
+      'Focus: Prompt Engineering · Workflow Automation',
+    ],
+  },
+  {
+    id: 'deloitte-data-analytics-job-simulation',
+    title: 'Data Analytics Job Simulation',
+    organisation: 'Deloitte',
+    issuer: 'Forage',
+    completionDate: 'September 23, 2026',
+    dateTime: '2026-09-23',
+    image: deloitteCertImg,
+    alt: 'Deloitte Data Analytics Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
+    summary: 'Data analysis · Forensic technology',
+    tasks: ['Data analysis', 'Forensic technology'],
+  },
+  {
+    id: 'bcg-x-genai-job-simulation',
+    title: 'GenAI Job Simulation',
+    organisation: 'BCG X',
+    issuer: 'Forage',
+    completionDate: 'September 24, 2026',
+    dateTime: '2026-09-24',
+    image: bcgCertImg,
+    alt: 'BCG X GenAI Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
+    summary: 'Data analysis · AI-powered financial chatbot',
+    tasks: ['Data extraction and initial analysis', 'Developing an AI-powered financial chatbot'],
+  },
+  {
+    id: 'tata-genai-powered-data-analytics-job-simulation',
+    title: 'GenAI Powered Data Analytics Job Simulation',
+    organisation: 'Tata',
+    issuer: 'Forage',
+    completionDate: 'October 12, 2026',
+    dateTime: '2026-10-12',
+    image: tataCertImg,
+    alt: 'Tata GenAI Powered Data Analytics Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
+    summary: 'Data analytics · AI-assisted risk and collections strategy',
+    tasks: [
+      'Exploratory data analysis and risk profiling',
+      'Predicting delinquency with AI',
+      'Business reporting and data storytelling for collections strategy',
+      'Implementing an AI-driven collections strategy',
+    ],
+  },
+];
 
 export default function CertificationSection() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const triggerRef = useRef(null);
 
   useEffect(() => {
-    if (!isModalOpen) return;
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsModalOpen(false);
-    };
+    const dialog = dialogRef.current;
+    if (!selectedCertificate || !dialog) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
     document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleKeyDown);
+    closeButtonRef.current?.focus();
+
     return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      if (dialog.open) dialog.close();
+      triggerRef.current?.focus();
     };
-  }, [isModalOpen]);
+  }, [selectedCertificate]);
+
+  const closePreview = () => {
+    if (dialogRef.current?.open) dialogRef.current.close();
+    setSelectedCertificate(null);
+  };
 
   return (
     <section className="section certification-section" id="certifications">
@@ -29,132 +101,123 @@ export default function CertificationSection() {
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="cert-showcase-wrap">
-          <div
-            className="cert-card"
-            onClick={() => setIsModalOpen(true)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setIsModalOpen(true);
-              }
-            }}
-            tabIndex={0}
-            role="button"
-            aria-haspopup="dialog"
-            aria-label="Open larger preview of Generative AI Mastermind certificate from Outskill"
-            data-cursor="view"
-          >
-            <div className="cert-card-grid">
-              {/* Document Visual Frame */}
-              <div className="cert-media-frame">
-                <img
-                  src={outskillCertImg}
-                  alt="Outskill Certificate of Completion in Generative AI Mastermind awarded to Sounak Banerjee"
-                  className="cert-thumbnail"
-                  loading="lazy"
-                />
-                <div className="cert-overlay-action">
-                  <span className="cert-expand-pill mono">
-                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
-                      <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4ZM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5ZM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5Z"/>
-                    </svg>
-                    <span>View certificate</span>
-                    <span aria-hidden="true">↗</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Document Metadata Details */}
-              <div className="cert-details">
-                <div className="cert-tag-row">
-                  <span className="cert-provider-tag mono">OUTSKILL</span>
-                  <span className="cert-status-tag mono">● VERIFIED CREDENTIAL</span>
-                </div>
-
-                <h3 className="cert-title">Generative AI Mastermind</h3>
-
-                <p className="body-sm cert-desc">
-                  Advanced programme covering generative AI tools, prompt engineering, agentic workflows, and practical applications in digital design, automation, and modern web product development.
-                </p>
-
-                <div className="cert-meta-specs">
-                  <div>
-                    <span className="caption">RECIPIENT</span>
-                    <strong className="body-sm">Sounak Banerjee</strong>
-                  </div>
-                  <div>
-                    <span className="caption">ISSUED BY</span>
-                    <strong className="body-sm">Vaibhav Sisinty · Founder, Outskill</strong>
-                  </div>
-                  <div>
-                    <span className="caption">FOCUS</span>
-                    <strong className="body-sm">Prompt Engineering · Workflow Automation</strong>
-                  </div>
-                </div>
-
-                <div className="cert-action-prompt">
-                  <span className="cert-prompt-text mono">
-                    Click to view high-resolution credential <span aria-hidden="true">→</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* High-Resolution Modal Lightbox */}
-        {isModalOpen && (
-          <div
-            className="cert-modal-backdrop"
-            onClick={() => setIsModalOpen(false)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Certificate: Generative AI Mastermind"
-          >
-            <div
-              className="cert-modal-dialog"
-              onClick={(e) => e.stopPropagation()}
+        <div className="cert-gallery">
+          {certificates.map((certificate, index) => (
+            <Reveal
+              key={certificate.id}
+              delay={Math.min(index * 70, 210)}
+              className="cert-gallery-item"
             >
-              <div className="cert-modal-bar">
-                <div className="cert-modal-title mono">
-                  <span>OUTSKILL // CERTIFICATE OF COMPLETION</span>
+              <article className="cert-card">
+                <div className="cert-media-frame">
+                  <img
+                    src={certificate.image}
+                    alt={certificate.alt}
+                    className="cert-thumbnail"
+                    loading="lazy"
+                  />
                 </div>
-                <button
-                  type="button"
-                  className="cert-modal-close"
-                  onClick={() => setIsModalOpen(false)}
-                  aria-label="Close certificate preview"
-                >
-                  <span aria-hidden="true">✕</span>
-                </button>
-              </div>
 
+                <div className="cert-card-content">
+                  <div className="cert-tag-row">
+                    <span className="cert-provider-tag mono">{certificate.organisation}</span>
+                    <span className="cert-issuer mono">Issued by {certificate.issuer}</span>
+                  </div>
+
+                  <h3 className="cert-title">{certificate.title}</h3>
+                  {certificate.completionDate ? (
+                    <time className="cert-date body-sm" dateTime={certificate.dateTime}>
+                      {certificate.completionDate}
+                    </time>
+                  ) : (
+                    <p className="cert-date body-sm">Completion date not shown on certificate</p>
+                  )}
+                  <p className="cert-desc body-sm">{certificate.summary || certificate.tasks.join(' · ')}</p>
+
+                  <button
+                    type="button"
+                    className="btn btn-secondary cert-preview-button"
+                    aria-haspopup="dialog"
+                    aria-label={`Preview certificate: ${certificate.title} from ${certificate.organisation}`}
+                    onClick={(event) => {
+                      triggerRef.current = event.currentTarget;
+                      setSelectedCertificate(certificate);
+                    }}
+                  >
+                    Preview Certificate
+                    <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <dialog
+        ref={dialogRef}
+        className="cert-modal-dialog"
+        aria-labelledby="cert-modal-heading"
+        onCancel={(event) => {
+          event.preventDefault();
+          closePreview();
+        }}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closePreview();
+        }}
+      >
+        {selectedCertificate && (
+          <div className="cert-modal-surface">
+            <div className="cert-modal-bar">
+              <div>
+                <span className="eyebrow">{selectedCertificate.organisation} · {selectedCertificate.issuer}</span>
+                <h2 className="cert-modal-heading" id="cert-modal-heading">
+                  {selectedCertificate.title}
+                </h2>
+              </div>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                className="cert-modal-close"
+                onClick={closePreview}
+                aria-label="Close certificate preview"
+              >
+                <span aria-hidden="true">✕</span>
+              </button>
+            </div>
+
+            <div className="cert-modal-body">
               <div className="cert-modal-image-wrap">
                 <img
-                  src={outskillCertImg}
-                  alt="High-resolution certificate: Generative AI Mastermind awarded to Sounak Banerjee"
+                  src={selectedCertificate.image}
+                  alt={selectedCertificate.alt}
                   className="cert-modal-image"
+                  loading="eager"
                 />
               </div>
-
-              <div className="cert-modal-footer">
-                <p className="caption mono">
-                  Outskill · Generative AI Mastermind — Awarded to Sounak Banerjee
+              <div className="cert-modal-details">
+                <p className="body-sm">
+                  <strong>{selectedCertificate.organisation}</strong>
+                  {' · Issued by '}
+                  <strong>{selectedCertificate.issuerDetail || selectedCertificate.issuer}</strong>
+                  {selectedCertificate.completionDate && ` · ${selectedCertificate.completionDate}`}
                 </p>
-                <button
-                  type="button"
-                  className="btn btn-secondary cert-close-btn"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Close preview
-                </button>
+                {selectedCertificate.details?.map((detail) => (
+                  <p className="body-sm" key={detail}>{detail}</p>
+                ))}
+                {selectedCertificate.tasks && (
+                  <>
+                    <p className="caption">Practical tasks</p>
+                    <ul className="cert-task-list">
+                      {selectedCertificate.tasks.map((task) => <li className="body-sm" key={task}>{task}</li>)}
+                    </ul>
+                  </>
+                )}
               </div>
             </div>
           </div>
         )}
-      </div>
+      </dialog>
     </section>
   );
 }
-

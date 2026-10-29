@@ -9,6 +9,9 @@ import HeroVideo from '../components/HeroVideo';
 import DesignBusiness from '../components/DesignBusiness';
 import InterfaceLab from '../components/InterfaceLab';
 import GitHubPreview from '../components/GitHubPreview';
+import DynamicIsland from '../components/DynamicIsland';
+import Dock from '../components/Dock';
+import ScrollWords from '../components/ScrollWords';
 import { useMagnetic } from '../hooks';
 
 // Once you have a real clip: drop it in src/assets/hero-loop.mp4 (+ .webm
@@ -26,17 +29,102 @@ const marqueeItems = [
   'UI/UX',
 ];
 
+const glyph = (paths) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths}</svg>
+);
+
 const capabilities = [
-  ['01', 'Figma → UI/UX', 'Wireframes, hierarchy, responsive systems, and interaction patterns that make the next decision clear.'],
-  ['02', 'HTML → CSS', 'Turning a frame into structure, rhythm, and responsive detail that holds up in a real browser.'],
-  ['03', 'JavaScript → React', 'Building reusable components and interfaces while learning how design decisions behave in code.'],
-  ['04', 'Problem solving', 'Looking past the screen for the workflow, coordination, or business question that needs a practical answer.'],
+  {
+    title: 'Figma → UI/UX',
+    body: 'Wireframes, hierarchy, responsive systems, and interaction patterns that make the next decision clear.',
+    visual: (
+      <div className="bento-visual viz-canvas" aria-hidden="true">
+        <span className="viz-block b1" />
+        <span className="viz-block b2" />
+        <span className="viz-block b3" />
+        <span className="viz-select">
+          <i /><i /><i /><i />
+          <span className="viz-cursor">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 2.5 19 11l-6.4 1.7L9.4 19z" /></svg>
+            <em>Sounak</em>
+          </span>
+        </span>
+      </div>
+    ),
+  },
+  {
+    title: 'HTML → CSS',
+    body: 'Turning a frame into structure, rhythm, and responsive detail that holds up in a real browser.',
+    visual: (
+      <div className="bento-visual viz-code" aria-hidden="true">
+        <code>
+          <span><b className="t">&lt;section</b> <b className="a">class</b>=<b className="s">&quot;hero&quot;</b><b className="t">&gt;</b></span>
+          <span>{'  '}<b className="t">&lt;h1&gt;</b>Hello<b className="t">&lt;/h1&gt;</b></span>
+          <span><b className="t">&lt;/section&gt;</b></span>
+          <span> </span>
+          <span><b className="p">.hero</b> {'{'}</span>
+          <span>{'  '}<b className="a">display</b>: grid;<i className="caret" /></span>
+          <span>{'}'}</span>
+        </code>
+      </div>
+    ),
+  },
+  {
+    title: 'JavaScript → React',
+    body: 'Building reusable components and interfaces while learning how design decisions behave in code.',
+    visual: (
+      <div className="bento-visual viz-atom" aria-hidden="true">
+        <span className="viz-chip">&lt;Card /&gt;</span>
+        <span className="viz-chip">useState()</span>
+        <span className="viz-chip">&lt;Button /&gt;</span>
+        <svg viewBox="-60 -60 120 120">
+          <g className="orbits">
+            <ellipse rx="52" ry="20" />
+            <ellipse rx="52" ry="20" transform="rotate(60)" />
+            <ellipse rx="52" ry="20" transform="rotate(120)" />
+          </g>
+          <circle r="9" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    title: 'Problem solving',
+    body: 'Looking past the screen for the workflow, coordination, or business question that needs a practical answer.',
+    visual: (
+      <div className="bento-visual viz-flow" aria-hidden="true">
+        <span className="viz-node">Question</span>
+        <span className="viz-line"><i /></span>
+        <span className="viz-node">Workflow</span>
+        <span className="viz-line l2"><i /></span>
+        <span className="viz-node is-done">Answer</span>
+      </div>
+    ),
+  },
 ];
 
 const problems = [
-  ['01', 'A static catalogue', 'Distributors were working from a PDF that was slow to browse in sales conversations.', 'Built an interactive 3D catalogue that runs as a self-contained web app.'],
-  ['02', 'Manual dispatch documents', 'A repeated invoice and challan task depended on hand-filled documents and consistent formatting.', 'Designed a live-preview workflow with one-click PDF export for the operations team.'],
-  ['03', 'A storefront in transition', 'ÒMG needed to move its D2C storefront to Shopify without losing the structure around it.', 'Worked across wireframes, landing pages, responsive QA, redirects, SEO, and funnel follow-up.'],
+  {
+    title: 'A static catalogue',
+    problem: 'Distributors were working from a PDF that was slow to browse in sales conversations.',
+    solution: 'Built an interactive 3D catalogue that runs as a self-contained web app.',
+    color: '#ff9f0a',
+    icon: glyph(<><path d="M12 3 4 7.5v9L12 21l8-4.5v-9z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></>),
+  },
+  {
+    title: 'Manual dispatch documents',
+    problem: 'A repeated invoice and challan task depended on hand-filled documents and consistent formatting.',
+    solution: 'Designed a live-preview workflow with one-click PDF export for the operations team.',
+    color: '#0a84ff',
+    icon: glyph(<><path d="M7 3h7l4 4v14H7z" /><path d="M14 3v4h4M10 12h5M10 16h5" /></>),
+  },
+  {
+    title: 'A storefront in transition',
+    problem: 'ÒMG needed to move its D2C storefront to Shopify without losing the structure around it.',
+    solution: 'Worked across wireframes, landing pages, responsive QA, redirects, SEO, and funnel follow-up.',
+    color: '#30d158',
+    icon: glyph(<><path d="M4 9.5h16l-1.2-5H5.2z" /><path d="M5 9.5V20h14V9.5M10 20v-5h4v5" /></>),
+  },
 ];
 
 const chapters = [
@@ -44,35 +132,47 @@ const chapters = [
   { period: 'Across ÒMG', title: 'A wider creative role', body: 'For Ò Morsel Goûter, my work has included packaging and labels, product photography, social content, Shopify, creator coordination, B2B communication, and campaign support.' },
 ];
 
+const nameWords = ['Sounak', 'Banerjee'];
+
 export default function Home() {
   const ctaRef = useMagnetic(12);
 
   return (
     <>
-      <section className="hero section">
+      <section className="hero">
         <HeroVideo />
         <div className="container hero-grid">
           <div className="hero-copy">
             <Reveal>
-              <span className="eyebrow">Frontend · UI/UX · Building</span>
+              <DynamicIsland />
             </Reveal>
-            <Reveal delay={80}>
-              <h1 className="hero-name">Sounak<br />Banerjee</h1>
+            <h1 className="hero-name" aria-label="Sounak Banerjee">
+              {nameWords.map((word, w) => (
+                <span key={word}>
+                  {w > 0 && <br />}
+                  <span className="word" aria-hidden="true">
+                    {[...word].map((ch, c) => (
+                      <span className="char" key={c} style={{ '--i': w * nameWords[0].length + c }}>{ch}</span>
+                    ))}
+                  </span>
+                </span>
+              ))}
+            </h1>
+            <Reveal delay={260}>
               <p className="hero-role">Frontend Designer / Developer</p>
             </Reveal>
-            <Reveal delay={160}>
+            <Reveal delay={340}>
               <p className="subhead hero-subhead">
                 I design and build digital experiences while growing from
                 thoughtful interfaces into working frontend systems.
               </p>
-              <p className="hero-capabilities mono">Figma <span>→</span> UI/UX <span>→</span> HTML <span>→</span> CSS <span>→</span> JavaScript <span>→</span> React</p>
             </Reveal>
-            <Reveal delay={240}>
+            <Reveal delay={420}>
               <div className="hero-actions">
-                <Link ref={ctaRef} to="/projects" className="btn btn-primary" data-cursor="view">
+                <Link ref={ctaRef} to="/projects" className="btn btn-primary" viewTransition>
                   View my work <span aria-hidden="true">↗</span>
                 </Link>
-                <Link to="/about" className="btn btn-secondary">
+                <Link to="/about" className="btn btn-secondary" viewTransition>
                   Explore my journey
                 </Link>
               </div>
@@ -83,6 +183,10 @@ export default function Home() {
             <SystemsStack />
           </Reveal>
         </div>
+
+        <Reveal delay={650}>
+          <Dock />
+        </Reveal>
       </section>
 
       <Marquee items={marqueeItems} />
@@ -102,7 +206,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={200} className="home-projects-cta-wrap">
-            <Link to="/projects" className="btn btn-secondary home-projects-cta" data-cursor="view">
+            <Link to="/projects" className="btn btn-secondary home-projects-cta" viewTransition>
               <span>View all projects</span>
               <span aria-hidden="true">→</span>
             </Link>
@@ -118,12 +222,16 @@ export default function Home() {
             <span className="eyebrow">What I do</span>
             <h2 className="display-md">The useful overlap between disciplines.</h2>
           </Reveal>
-          <div className="capability-grid">
-            {capabilities.map(([index, title, body], i) => (
-              <Reveal as="article" key={title} delay={i * 60} className="capability-item">
-                <span className="caption">{index}</span>
-                <h3 className="card-title">{title}</h3>
-                <p className="body-sm">{body}</p>
+          <div className="bento">
+            {capabilities.map((item, i) => (
+              <Reveal key={item.title} delay={i * 70} className="bento-cell">
+                <article className="bento-tile" data-tilt>
+                  <div className="bento-copy">
+                    <h3 className="card-title">{item.title}</h3>
+                    <p className="body-sm">{item.body}</p>
+                  </div>
+                  {item.visual}
+                </article>
               </Reveal>
             ))}
           </div>
@@ -138,11 +246,22 @@ export default function Home() {
             <p className="body-lg">Working inside growing businesses taught me to look for the system behind the problem, then find a practical way to improve it.</p>
           </Reveal>
           <div className="problem-list">
-            {problems.map(([index, title, problem, solution], i) => (
-              <Reveal as="article" key={title} delay={i * 70} className="problem-item hairline-top">
-                <span className="caption problem-index">{index}</span>
-                <div className="problem-copy"><h3 className="card-title">{title}</h3><p className="body-sm"><strong>Problem:</strong> {problem}</p></div>
-                <p className="body-sm"><strong>What I built:</strong> {solution}</p>
+            {problems.map((item, i) => (
+              <Reveal as="article" key={item.title} delay={i * 70} className="problem-item" style={{ '--i': i }}>
+                <div className="problem-head">
+                  <span className="problem-icon" style={{ '--c': item.color }}>{item.icon}</span>
+                  <h3 className="card-title">{item.title}</h3>
+                </div>
+                <div className="problem-cols">
+                  <div className="problem-col">
+                    <p className="problem-label">The problem</p>
+                    <p className="body-sm">{item.problem}</p>
+                  </div>
+                  <div className="problem-col is-solution">
+                    <p className="problem-label">What I built</p>
+                    <p className="body-sm">{item.solution}</p>
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -151,22 +270,19 @@ export default function Home() {
 
       <InterfaceLab />
 
-      <section className="section approach-section">
-        <div className="container approach-grid">
+      <section className="statement">
+        <div className="container">
           <Reveal>
-            <span className="eyebrow">How I work</span>
-            <h2 className="display-md">Understand the problem. Build the next useful version.</h2>
+            <h2 className="eyebrow">How I work</h2>
           </Reveal>
-          <Reveal delay={100}>
-            <p className="body-lg">Understand the problem. Structure the experience. Design the interface. Build the solution. Refine what doesn&rsquo;t work. Keep learning.</p>
-          </Reveal>
+          <ScrollWords text="Understand the problem. Structure the experience. Design the interface. Build the solution. Refine what doesn’t work. Keep learning." />
         </div>
       </section>
 
       <section className="section learning-section">
         <div className="container learning-grid">
           <Reveal><span className="eyebrow">What I&rsquo;m learning</span><h2 className="display-md">From a frame in Figma to something that works in a browser.</h2></Reveal>
-          <Reveal delay={100}><p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p><div className="learning-list">{['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'].map((item) => <span className="skill-pill mono" key={item}>{item}</span>)}</div></Reveal>
+          <Reveal delay={100}><p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p><div className="learning-list">{['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'].map((item) => <span className="skill-pill" key={item}>{item}</span>)}</div></Reveal>
         </div>
       </section>
 
@@ -183,10 +299,10 @@ export default function Home() {
             <p className="body-lg">
               I'm an early-career frontend developer and AI enthusiast who enjoys turning ideas into working digital experiences. My work spans UI/UX, frontend development, brand systems, and business operations — with hands-on contributions to SGF and O Morsel Goûter, alongside freelance AI-assisted web projects.
             </p>
-            <p className="body-sm mono" style={{ marginBottom: 'var(--sp-lg)', opacity: 0.8 }}>
-              Currently exploring: AI-assisted development * Vibe Coding * React * UI/UX * Digital products
-            </p>
-            <Link to="/about" className="btn btn-secondary">
+            <div className="learning-list about-teaser-focus">
+              {['AI-assisted development', 'Vibe coding', 'React', 'UI/UX', 'Digital products'].map((item) => <span className="skill-pill" key={item}>{item}</span>)}
+            </div>
+            <Link to="/about" className="btn btn-secondary" viewTransition>
               More about me
             </Link>
           </Reveal>
@@ -226,18 +342,20 @@ export default function Home() {
       </section>
 
       <section className="section cta-band">
-        <div className="container cta-band-inner">
-          <div className="cta-band-orbit" aria-hidden="true"><span /><span /><span /></div>
-          <Reveal className="cta-band-content">
-            <span className="eyebrow">Next / open to build</span>
-            <h2 className="display-lg">Let&rsquo;s build something useful.</h2>
-            <p className="body-lg">Frontend development, design thinking and AI-assisted building for practical problems that deserve a clearer digital experience.</p>
-            <div className="cta-band-actions">
-              <Link to="/contact" className="btn btn-primary" data-cursor="view">Start a conversation <span aria-hidden="true">↗</span></Link>
-              <a href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" data-cursor="open">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
-            </div>
-            <div className="cta-band-status mono"><span className="status-dot" /> available for thoughtful builds <span>/</span> Kolkata, IN</div>
-          </Reveal>
+        <div className="container">
+          <div className="cta-band-inner">
+            <div className="cta-band-orbit" aria-hidden="true"><span /><span /><span /></div>
+            <Reveal className="cta-band-content">
+              <span className="eyebrow">Open to build</span>
+              <h2 className="display-lg">Let&rsquo;s build something useful.</h2>
+              <p className="body-lg">Frontend development, design thinking and AI-assisted building for practical problems that deserve a clearer digital experience.</p>
+              <div className="cta-band-actions">
+                <Link to="/contact" className="btn btn-primary" viewTransition>Start a conversation <span aria-hidden="true">↗</span></Link>
+                <a href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+              </div>
+              <p className="cta-band-status"><span className="status-dot" /> Available for thoughtful builds in Kolkata, IN</p>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

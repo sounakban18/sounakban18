@@ -55,7 +55,6 @@ export default function HeroVideo({ mp4, webm, poster }) {
           <span className="hero-video-orb orb-c" />
         </div>
       )}
-      <div className="hero-video-grain" />
       <div className="hero-video-overlay" />
     </div>
   );

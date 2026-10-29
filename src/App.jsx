@@ -2,14 +2,13 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Cursor from './components/Cursor';
-import ScrollProgress from './components/ScrollProgress';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './theme';
+import { usePointerTilt } from './hooks';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -20,11 +19,11 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  usePointerTilt();
+
   return (
     <ThemeProvider>
-      <Cursor />
       <ScrollToTop />
-      <ScrollProgress />
       <Nav />
       <main className="page">
         <Routes>

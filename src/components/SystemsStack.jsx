@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
 
 const layers = [
-  { key: 'design', label: 'Design', rows: ['Interface systems', 'Figma · UI/UX'], depth: 18 },
-  { key: 'frontend', label: 'Frontend', rows: ['HTML · CSS · React', 'Components · Responsive'], depth: 34 },
-  { key: 'problems', label: 'Business problems', rows: ['Workflows · coordination', 'Practical execution'], depth: 52 },
+  { key: 'design', label: 'Design', title: 'Design.fig', color: '#bf5af2', rows: ['Interface systems', 'Figma · UI/UX'], depth: 18 },
+  { key: 'frontend', label: 'Frontend', title: 'index.jsx', color: '#0a84ff', rows: ['HTML · CSS · React', 'Components · Responsive'], depth: 34 },
+  { key: 'problems', label: 'Business problems', title: 'Notes', color: '#30d158', rows: ['Workflows · coordination', 'Practical execution'], depth: 52 },
 ];
 
+// Three floating macOS windows. Pointer parallax writes `translate`, which
+// composes with the idle float animation running on `transform`.
 export default function SystemsStack() {
   const wrapRef = useRef(null);
 
@@ -15,18 +17,19 @@ export default function SystemsStack() {
     const isFine = window.matchMedia('(pointer: fine)').matches;
     if (!isFine) return;
 
+    const panels = el.querySelectorAll('[data-depth]');
     const onMove = (e) => {
       const rect = el.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width - 0.5;
       const py = (e.clientY - rect.top) / rect.height - 0.5;
-      el.querySelectorAll('[data-depth]').forEach((node) => {
+      panels.forEach((node) => {
         const depth = Number(node.dataset.depth);
-        node.style.transform = `translate3d(${px * depth}px, ${py * depth}px, 0)`;
+        node.style.translate = `${px * depth}px ${py * depth}px`;
       });
     };
     const onLeave = () => {
-      el.querySelectorAll('[data-depth]').forEach((node) => {
-        node.style.transform = 'translate3d(0, 0, 0)';
+      panels.forEach((node) => {
+        node.style.translate = '0 0';
       });
     };
 
@@ -45,18 +48,24 @@ export default function SystemsStack() {
           key={layer.key}
           className="systems-panel"
           data-depth={layer.depth}
-          style={{ zIndex: i + 1, '--i': i }}
+          style={{ zIndex: i + 1, '--i': i, '--c': layer.color }}
         >
-          <div className="systems-panel-head">
-            <span className="status-badge">
-              <span className="status-dot" /> {layer.label}
-            </span>
+          <div className="window-bar">
+            <span className="traffic" aria-hidden="true"><i /><i /><i /></span>
+            <span className="window-title">{layer.title}</span>
           </div>
-          {layer.rows.map((row) => (
-            <div className="systems-row mono" key={row}>
-              {row}
+          <div className="window-body">
+            <div className="systems-panel-head">
+              <span className="status-badge">
+                <span className="status-dot" /> {layer.label}
+              </span>
             </div>
-          ))}
+            {layer.rows.map((row) => (
+              <div className="systems-row" key={row}>
+                {row}
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>

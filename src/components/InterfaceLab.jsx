@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal';
 
 const states = {
@@ -27,10 +27,36 @@ const states = {
     accent: 'launch',
   },
 };
+const keys = Object.keys(states);
+
+// Counts the ring readout from its last value to the new one.
+function useCountTo(target) {
+  const [value, setValue] = useState(target);
+  const from = useRef(target);
+
+  useEffect(() => {
+    const start = performance.now();
+    const origin = from.current;
+    let raf;
+    const tick = (now) => {
+      const t = Math.min((now - start) / 700, 1);
+      const v = Math.round(origin + (target - origin) * (1 - Math.pow(1 - t, 3)));
+      from.current = v;
+      setValue(v);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target]);
+
+  return value;
+}
 
 export default function InterfaceLab() {
   const [active, setActive] = useState('design');
   const current = states[active];
+  const index = keys.indexOf(active);
+  const count = useCountTo(current.progress);
 
   return (
     <section className="section interface-lab">
@@ -46,8 +72,14 @@ export default function InterfaceLab() {
         </div>
 
         <Reveal delay={140} className="lab-shell">
-          <div className="lab-nav" role="tablist" aria-label="Design process stages">
-            {Object.entries(states).map(([key, state], index) => (
+          <div className="window-bar">
+            <span className="traffic" aria-hidden="true"><i /><i /><i /></span>
+            <span className="window-title">Process — {current.label}</span>
+          </div>
+
+          <div className="lab-nav" role="tablist" aria-label="Design process stages" style={{ '--idx': index }}>
+            <span className="lab-nav-thumb" aria-hidden="true" />
+            {keys.map((key, i) => (
               <button
                 type="button"
                 role="tab"
@@ -56,35 +88,44 @@ export default function InterfaceLab() {
                 key={key}
                 onClick={() => setActive(key)}
               >
-                <span className="lab-nav-index">0{index + 1}</span>
-                <span className="lab-nav-label">{state.label}</span>
+                <span className="lab-nav-index">{i + 1}</span>
+                <span className="lab-nav-label">{states[key].label}</span>
               </button>
             ))}
           </div>
 
-          <div className={`lab-content lab-${current.accent}`}>
+          <div className={`lab-content lab-${current.accent}`} role="tabpanel">
             <div className="lab-content-inner">
               <div className="lab-content-top">
                 <span className="status-badge"><span className="status-dot" /> Live state</span>
-                <span className="caption">{current.progress}% considered</span>
+                <span className="caption">Stage {index + 1} of {keys.length}</span>
               </div>
               <div className="lab-content-grid">
-                <div className="lab-content-copy">
-                  <span className="caption">Stage / {current.label}</span>
+                <div className="lab-content-copy" key={active}>
+                  <span className="caption">{current.label}</span>
                   <h3 className="headline">{current.title}</h3>
                   <p className="body-lg">{current.body}</p>
                   <div className="lab-chips">
-                    {current.chips.map((chip) => <span className="skill-pill mono" key={chip}>{chip}</span>)}
+                    {current.chips.map((chip) => <span className="skill-pill" key={chip}>{chip}</span>)}
                   </div>
                 </div>
-                <div className="lab-content-signal" aria-hidden="true">
-                  <div className="lab-orbit orbit-one" />
-                  <div className="lab-orbit orbit-two" />
-                  <div className="lab-orbit orbit-three" />
-                  <span className="lab-signal-core">{String(current.progress).padStart(2, '0')}</span>
+                <div className="lab-ring" aria-hidden="true">
+                  <svg viewBox="0 0 120 120">
+                    <defs>
+                      <linearGradient id="labRingGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" />
+                        <stop offset="100%" />
+                      </linearGradient>
+                    </defs>
+                    <circle className="lab-ring-track" cx="60" cy="60" r="50" pathLength="100" />
+                    <circle className="lab-ring-value" cx="60" cy="60" r="50" pathLength="100" style={{ strokeDashoffset: 100 - current.progress }} />
+                  </svg>
+                  <div className="lab-ring-label">
+                    <strong>{count}%</strong>
+                    <span>considered</span>
+                  </div>
                 </div>
               </div>
-              <div className="lab-content-progress" aria-hidden="true"><span style={{ width: `${current.progress}%` }} /></div>
             </div>
           </div>
         </Reveal>

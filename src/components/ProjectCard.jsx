@@ -8,7 +8,7 @@ export default function ProjectCard({ project, delay = 0, priority = false }) {
 
   return (
     <Reveal className="project-card" delay={delay}>
-      <Link to={`/projects/${project.slug}`} className="project-card-link" data-cursor="view">
+      <Link to={`/projects/${project.slug}`} className="project-card-link" data-tilt viewTransition>
         {project.customPreview === 'dashboard' ? (
           <div className="card-dashboard-preview" style={{ aspectRatio: '16 / 11', '--accent': project.accent }}>
             <div className="mini-dash-top">
@@ -90,16 +90,22 @@ export default function ProjectCard({ project, delay = 0, priority = false }) {
             </div>
           </div>
         ) : (
-          <PlaceholderArt
-            label={project.brand}
-            accent={project.accent}
-            ratio="16 / 11"
-            photo={project.image}
-            alt={project.title}
-            photoPosition={project.image ? 'top' : undefined}
-            fit={project.imageFit}
-            loading={priority ? 'eager' : 'lazy'}
-          />
+          <div className="project-card-media">
+            <div className="window-bar" aria-hidden="true">
+              <span className="traffic"><i /><i /><i /></span>
+              <span className="window-url">{project.brand}</span>
+            </div>
+            <PlaceholderArt
+              label={project.brand}
+              accent={project.accent}
+              ratio="16 / 10"
+              photo={project.image}
+              alt={project.title}
+              photoPosition={project.image ? 'top' : undefined}
+              fit={project.imageFit}
+              loading={priority ? 'eager' : 'lazy'}
+            />
+          </div>
         )}
         <div className="project-card-body">
           <div className="project-card-tag mono">{project.tag}</div>

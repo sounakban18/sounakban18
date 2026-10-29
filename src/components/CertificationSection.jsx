@@ -243,7 +243,7 @@ export default function CertificationSection() {
     <section className="section certification-section" id="certifications" ref={sectionRef}>
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">CERTIFICATIONS</span>
+          <span className="eyebrow">Certifications</span>
           <h2 className="display-md">Learning that moves into practice.</h2>
           <p className="body-lg">
             Selected certifications that support my work across AI-assisted development, digital systems and practical product building.

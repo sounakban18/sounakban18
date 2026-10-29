@@ -21,7 +21,7 @@ export default function Projects() {
     <section className="section page-head-section">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow">PROJECTS</span>
+          <span className="eyebrow">Projects</span>
           <h1 className="display-lg">Selected work, experiments and business solutions.</h1>
           <p className="body-lg page-head-copy">
             Real digital products, internal tools, and brand systems built and shipped inside an operating business.

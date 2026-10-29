@@ -23,7 +23,7 @@ export default function DesignBusiness() {
               <div className="chain-node">
                 <span className="mono">{node}</span>
               </div>
-              {i < chain.length - 1 && <div className="chain-link" />}
+              {i < chain.length - 1 && <div className="chain-link" style={{ '--i': i }} />}
             </div>
           ))}
         </Reveal>

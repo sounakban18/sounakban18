@@ -1,67 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Reveal from './Reveal';
-import outskillCertImg from '../assets/outskill-certificate.png';
-import deloitteCertImg from '../assets/deloitte-data-analytics-certificate.png';
-import bcgCertImg from '../assets/bcg-x-genai-certificate.png';
-import tataCertImg from '../assets/tata-genai-analytics-certificate.png';
-
-const certificates = [
-  {
-    id: 'outskill-generative-ai-mastermind',
-    title: 'Generative AI Mastermind',
-    organisation: 'Outskill',
-    issuer: 'Outskill',
-    issuerDetail: 'Vaibhav Sisinty · Founder, Outskill',
-    image: outskillCertImg,
-    alt: 'Generative AI Mastermind certificate of completion awarded to Sounak Banerjee by Outskill',
-    summary: 'Generative AI tools · Prompt engineering · Agentic workflows',
-    details: [
-      'Advanced programme covering generative AI tools, prompt engineering, agentic workflows, and practical applications in digital design, automation, and modern web product development.',
-      'Focus: Prompt Engineering · Workflow Automation',
-    ],
-  },
-  {
-    id: 'deloitte-data-analytics-job-simulation',
-    title: 'Data Analytics Job Simulation',
-    organisation: 'Deloitte',
-    issuer: 'Forage',
-    completionDate: 'September 23, 2026',
-    dateTime: '2026-09-23',
-    image: deloitteCertImg,
-    alt: 'Deloitte Data Analytics Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
-    summary: 'Data analysis · Forensic technology',
-    tasks: ['Data analysis', 'Forensic technology'],
-  },
-  {
-    id: 'bcg-x-genai-job-simulation',
-    title: 'GenAI Job Simulation',
-    organisation: 'BCG X',
-    issuer: 'Forage',
-    completionDate: 'September 24, 2026',
-    dateTime: '2026-09-24',
-    image: bcgCertImg,
-    alt: 'BCG X GenAI Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
-    summary: 'Data analysis · AI-powered financial chatbot',
-    tasks: ['Data extraction and initial analysis', 'Developing an AI-powered financial chatbot'],
-  },
-  {
-    id: 'tata-genai-powered-data-analytics-job-simulation',
-    title: 'GenAI Powered Data Analytics Job Simulation',
-    organisation: 'Tata',
-    issuer: 'Forage',
-    completionDate: 'October 12, 2026',
-    dateTime: '2026-10-12',
-    image: tataCertImg,
-    alt: 'Tata GenAI Powered Data Analytics Job Simulation certificate of completion awarded to Sounak Banerjee through Forage',
-    summary: 'Data analytics · AI-assisted risk and collections strategy',
-    tasks: [
-      'Exploratory data analysis and risk profiling',
-      'Predicting delinquency with AI',
-      'Business reporting and data storytelling for collections strategy',
-      'Implementing an AI-driven collections strategy',
-    ],
-  },
-];
+import Icon from './Icon';
+import { certificates } from '../data/certificates';
 
 function CertificateCard({
   certificate,
@@ -124,8 +64,8 @@ function CertificateCard({
           }}
           tabIndex={isVisible ? 0 : -1}
         >
-          Preview Certificate
-          <span aria-hidden="true">↗</span>
+          Preview certificate
+          <Icon name="arrow.up.right" />
         </button>
       </div>
     </article>
@@ -189,6 +129,20 @@ export default function CertificationSection() {
     }, 4600);
     return () => window.clearInterval(timer);
   }, [isAutoplayPaused]);
+
+  // Credentials elsewhere on the page call showCertificate(id) to open one here.
+  useEffect(() => {
+    const onShow = (event) => {
+      const index = certificates.findIndex((c) => c.id === event.detail);
+      if (index < 0) return;
+      setIsPaused(true);
+      setActiveIndex(index);
+      triggerRef.current = document.activeElement;
+      setSelectedCertificate(certificates[index]);
+    };
+    window.addEventListener('show-certificate', onShow);
+    return () => window.removeEventListener('show-certificate', onShow);
+  }, []);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -341,7 +295,7 @@ export default function CertificationSection() {
               aria-label={`Previous certificate: ${previousCertificate.title}`}
               onClick={() => navigate(-1)}
             >
-              <span aria-hidden="true">←</span>
+              <Icon name="chevron.left" />
             </button>
             <span
               className="cert-carousel-count"
@@ -358,7 +312,7 @@ export default function CertificationSection() {
               aria-label={`Next certificate: ${nextCertificate.title}`}
               onClick={() => navigate(1)}
             >
-              <span aria-hidden="true">→</span>
+              <Icon name="chevron.right" />
             </button>
             <span className="cert-carousel-control-divider" aria-hidden="true" />
             <button
@@ -378,7 +332,7 @@ export default function CertificationSection() {
               }}
               disabled={prefersReducedMotion}
             >
-              <span aria-hidden="true">{isPaused ? '▶' : 'Ⅱ'}</span>
+              <Icon name={isPaused ? 'play.fill' : 'pause.fill'} />
               <span>{prefersReducedMotion ? 'Auto off' : isPaused ? 'Resume' : 'Pause'}</span>
             </button>
           </div>
@@ -419,7 +373,7 @@ export default function CertificationSection() {
                 onClick={closePreview}
                 aria-label="Close certificate preview"
               >
-                <span aria-hidden="true">✕</span>
+                <Icon name="xmark" />
               </button>
             </div>
 

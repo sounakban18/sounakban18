@@ -46,7 +46,7 @@ export default function SystemsStack() {
       {layers.map((layer, i) => (
         <div
           key={layer.key}
-          className="systems-panel"
+          className="systems-panel glass"
           data-depth={layer.depth}
           style={{ zIndex: i + 1, '--i': i, '--c': layer.color }}
         >

@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import Reveal from './Reveal';
 import { useGitHubRepos } from '../hooks/useGitHubRepos';
 import { useMagnetic } from '../hooks';
-import githubProfileImg from '../assets/github-profile.png';
+import githubProfileImg from '../assets/github-profile.jpg';
+import Icon from './Icon';
 
 export default function GitHubShowcase() {
   const { repos } = useGitHubRepos();
@@ -64,7 +65,7 @@ export default function GitHubShowcase() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="github-repo-card"
-                    data-cursor="view"
+                   
                   >
                     <div className="github-repo-top">
                       <div className="github-repo-title-row">
@@ -73,7 +74,7 @@ export default function GitHubShowcase() {
                         </svg>
                         <strong className="github-repo-name mono">{repo.name}</strong>
                       </div>
-                      <span className="github-repo-arrow" aria-hidden="true">↗</span>
+                      <Icon name="arrow.up.right" className="github-repo-arrow" />
                     </div>
 
                     <p className="github-repo-desc body-sm">{repo.description}</p>
@@ -102,10 +103,10 @@ export default function GitHubShowcase() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary github-main-cta"
-                data-cursor="open"
+               
               >
                 <span>View GitHub</span>
-                <span aria-hidden="true">↗</span>
+                <Icon name="arrow.up.right" />
               </a>
             </Reveal>
           </div>
@@ -139,7 +140,7 @@ export default function GitHubShowcase() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="github-screenshot-link"
-                  data-cursor="open"
+                 
                   aria-label="Open Sounak Banerjee's GitHub profile in a new tab"
                 >
                   <img

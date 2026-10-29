@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 
 const canHover = () =>
   window.matchMedia('(pointer: fine)').matches &&
-  !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+  !document.documentElement.classList.contains('lite');
 
 // Pulls the element slightly toward the cursor within its bounds — used on
 // buttons and nav links to give the interface a tactile, responsive feel.
@@ -35,32 +36,49 @@ export function useMagnetic(strength = 18) {
   return ref;
 }
 
-// Apple TV-style parallax for any `[data-tilt]` element: one delegated
-// listener writes the tilt angles and specular-highlight position as CSS vars.
-export function usePointerTilt() {
+// One delegated pointer listener for two effects:
+// - `[data-tilt]` cards lean toward the pointer (Apple TV parallax) and get a
+//   specular highlight; `data-tilting` makes them track quickly while hovered.
+// - `.glass` surfaces get a soft light that follows the pointer.
+export function usePointerEffects() {
   useEffect(() => {
     if (!canHover()) return;
-    let current = null;
-    const reset = (el) => ['--rx', '--ry', '--gx', '--gy'].forEach((v) => el.style.removeProperty(v));
+    let tilted = null;
+    let lit = null;
+
+    const leave = (el, attr) => {
+      if (!el) return;
+      el.removeAttribute(attr);
+      if (attr === 'data-tilting') ['--rx', '--ry'].forEach((v) => el.style.removeProperty(v));
+    };
 
     const onMove = (e) => {
-      const el = e.target.closest?.('[data-tilt]') ?? null;
-      if (el !== current) {
-        if (current) reset(current);
-        current = el;
+      const tilt = e.target.closest?.('[data-tilt]') ?? null;
+      const glass = e.target.closest?.('.glass') ?? null;
+      if (tilt !== tilted) { leave(tilted, 'data-tilting'); tilted = tilt; }
+      if (glass !== lit) { leave(lit, 'data-glow'); lit = glass; }
+
+      if (tilt) {
+        const r = tilt.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        tilt.setAttribute('data-tilting', '');
+        tilt.style.setProperty('--rx', `${(0.5 - py) * 5}deg`);
+        tilt.style.setProperty('--ry', `${(px - 0.5) * 5}deg`);
+        tilt.style.setProperty('--gx', `${px * 100}%`);
+        tilt.style.setProperty('--gy', `${py * 100}%`);
       }
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      el.style.setProperty('--rx', `${(0.5 - py) * 5}deg`);
-      el.style.setProperty('--ry', `${(px - 0.5) * 5}deg`);
-      el.style.setProperty('--gx', `${px * 100}%`);
-      el.style.setProperty('--gy', `${py * 100}%`);
+      if (glass) {
+        const r = glass.getBoundingClientRect();
+        glass.setAttribute('data-glow', '');
+        glass.style.setProperty('--gx', `${e.clientX - r.left}px`);
+        glass.style.setProperty('--gy', `${e.clientY - r.top}px`);
+      }
     };
     const onLeaveWindow = () => {
-      if (current) reset(current);
-      current = null;
+      leave(tilted, 'data-tilting');
+      leave(lit, 'data-glow');
+      tilted = lit = null;
     };
 
     document.addEventListener('pointermove', onMove, { passive: true });
@@ -74,14 +92,13 @@ export function usePointerTilt() {
 
 // IntersectionObserver-driven reveal — adds `.is-visible` once an element
 // enters the viewport, used for scroll-triggered fade/slide-ins.
-export function useReveal(options = {}) {
+export function useReveal() {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       el.classList.add('is-visible');
       return;
     }
@@ -89,14 +106,14 @@ export function useReveal(options = {}) {
       ([entry]) => {
         if (entry.isIntersecting) {
           el.classList.add('is-visible');
-          observer.unobserve(el);
+          observer.disconnect();
         }
       },
-      { threshold: 0.15, ...options }
+      { threshold: 0.12 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [options]);
+  }, []);
 
   return ref;
 }

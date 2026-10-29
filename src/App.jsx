@@ -8,18 +8,27 @@ import ProjectDetail from './pages/ProjectDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import { ThemeProvider } from './theme';
-import { usePointerTilt } from './hooks';
+import { usePointerEffects } from './hooks';
 
+// New page → top; a link with a hash (e.g. /about#credentials) → that section.
+// The second scroll corrects for off-screen sections that render on arrival.
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    const target = hash && document.getElementById(hash.slice(1));
+    if (!target) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+    target.scrollIntoView();
+    const raf = requestAnimationFrame(() => requestAnimationFrame(() => target.scrollIntoView()));
+    return () => cancelAnimationFrame(raf);
+  }, [pathname, hash]);
   return null;
 }
 
 export default function App() {
-  usePointerTilt();
+  usePointerEffects();
 
   return (
     <ThemeProvider>

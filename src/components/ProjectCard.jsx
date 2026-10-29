@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import PlaceholderArt from './PlaceholderArt';
 import Reveal from './Reveal';
 import { useMagnetic } from '../hooks';
+import Icon from './Icon';
 
 export default function ProjectCard({ project, delay = 0, priority = false }) {
   const linkRef = useMagnetic(24);
@@ -112,7 +113,7 @@ export default function ProjectCard({ project, delay = 0, priority = false }) {
           <h3 className="card-title">{project.title}</h3>
           <p className="body-sm">{project.summary}</p>
           <span ref={linkRef} className="project-card-cta">
-            View case study <span aria-hidden="true">→</span>
+            View case study <Icon name="arrow.right" />
           </span>
         </div>
       </Link>

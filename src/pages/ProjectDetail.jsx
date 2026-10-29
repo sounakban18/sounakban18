@@ -6,6 +6,7 @@ import SgfCaseStudy from './SgfCaseStudy';
 import OmgCaseStudy from './OmgCaseStudy';
 import MorfiizoPortalCaseStudy from './MorfiizoPortalCaseStudy';
 import InvoiceAppCaseStudy from './InvoiceAppCaseStudy';
+import Icon from '../components/Icon';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -78,8 +79,8 @@ export default function ProjectDetail() {
 
         <Reveal className="next-project hairline-top">
           <p className="caption">Next</p>
-          <Link to={`/projects/${next.slug}`} className="next-project-link" data-cursor="view">
-            {next.title} <span aria-hidden="true">→</span>
+          <Link to={`/projects/${next.slug}`} className="next-project-link">
+            {next.title} <Icon name="arrow.right" />
           </Link>
         </Reveal>
       </div>

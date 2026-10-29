@@ -1,4 +1,4 @@
-import omgHeroImg from '../assets/omg-hero-cards.png';
+import omgHeroImg from '../assets/omg-hero-cards.jpg';
 import sgfProductsImg from '../assets/sgf-products.jpg';
 import invoiceToolImg from '../assets/invoice-tool.jpg';
 

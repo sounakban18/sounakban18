@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
-import omgHeroImg from '../assets/omg-hero-cards.png';
-import omgChiaImg from '../assets/omg-chia-benefits.png';
-import omgSocialImg from '../assets/omg-social-footer.png';
+import omgHeroImg from '../assets/omg-hero-cards.jpg';
+import omgChiaImg from '../assets/omg-chia-benefits.jpg';
+import omgSocialImg from '../assets/omg-social-footer.jpg';
+import Icon from '../components/Icon';
 
 const galleryItems = [
   {
@@ -388,9 +389,9 @@ export default function OmgCaseStudy({ project, next }) {
           <Link
             to={`/projects/${next.slug}`}
             className="next-project-link"
-            data-cursor="view"
+           
           >
-            {next.title} <span aria-hidden="true">→</span>
+            {next.title} <Icon name="arrow.right" />
           </Link>
         </Reveal>
       </div>

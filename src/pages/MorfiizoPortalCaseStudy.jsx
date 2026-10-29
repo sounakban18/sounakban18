@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
+import Icon from '../components/Icon';
 
 export default function MorfiizoPortalCaseStudy({ project, next }) {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -767,9 +768,9 @@ export default function MorfiizoPortalCaseStudy({ project, next }) {
           <Link
             to={`/projects/${next.slug}`}
             className="next-project-link"
-            data-cursor="view"
+           
           >
-            {next.title} <span aria-hidden="true">→</span>
+            {next.title} <Icon name="arrow.right" />
           </Link>
         </Reveal>
       </div>

@@ -6,6 +6,7 @@ import dashboardImg from '../assets/Screenshot 2026-08-31 151501.png';
 import settingsImg from '../assets/Screenshot 2026-08-31 151532.png';
 import listingImg from '../assets/Screenshot 2026-08-31 151548.png';
 import outputImg from '../assets/Screenshot 2026-08-31 151617.png';
+import Icon from '../components/Icon';
 
 const galleryItems = [
   {
@@ -276,9 +277,9 @@ export default function InvoiceAppCaseStudy({ next }) {
           <Link
             to={`/projects/${next.slug}`}
             className="next-project-link"
-            data-cursor="view"
+           
           >
-            {next.title} <span aria-hidden="true">→</span>
+            {next.title} <Icon name="arrow.right" />
           </Link>
         </Reveal>
       </div>

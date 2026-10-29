@@ -47,7 +47,7 @@ export default function Dock() {
 
   return (
     <div className="dock-wrap">
-      <ul className="dock" ref={ref} aria-label="Tools I work with" onPointerEnter={onEnter} onPointerMove={onMove} onPointerLeave={onLeave}>
+      <ul className="dock glass" ref={ref} aria-label="Tools I work with" onPointerEnter={onEnter} onPointerMove={onMove} onPointerLeave={onLeave}>
         {apps.map((app) => (
           <Fragment key={app.name}>
             {app.separated && <li className="dock-sep" aria-hidden="true" />}

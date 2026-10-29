@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Reveal from './Reveal';
 import { useGitHubRepos } from '../hooks/useGitHubRepos';
 import { useMagnetic } from '../hooks';
+import Icon from './Icon';
 
 export default function GitHubPreview() {
   const { repos } = useGitHubRepos();
@@ -32,13 +33,13 @@ export default function GitHubPreview() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
-                data-cursor="open"
+               
               >
                 <span>View GitHub</span>
-                <span aria-hidden="true">↗</span>
+                <Icon name="arrow.up.right" />
               </a>
               <Link to="/about#github" className="btn btn-secondary">
-                Profile breakdown →
+                Profile breakdown <Icon name="arrow.right" />
               </Link>
             </Reveal>
           </div>
@@ -53,7 +54,7 @@ export default function GitHubPreview() {
                 rel="noopener noreferrer"
                 delay={i * 80 + 80}
                 className="github-preview-card"
-                data-cursor="view"
+               
               >
                 <div className="github-preview-card-top">
                   <div className="github-repo-title-row">
@@ -62,7 +63,7 @@ export default function GitHubPreview() {
                     </svg>
                     <strong className="github-repo-name mono">{repo.name}</strong>
                   </div>
-                  <span className="github-repo-arrow" aria-hidden="true">↗</span>
+                  <Icon name="arrow.up.right" className="github-repo-arrow" />
                 </div>
                 <p className="github-repo-desc body-sm">{repo.description}</p>
                 <div className="github-preview-card-meta">

@@ -12,6 +12,8 @@ import GitHubPreview from '../components/GitHubPreview';
 import DynamicIsland from '../components/DynamicIsland';
 import Dock from '../components/Dock';
 import ScrollWords from '../components/ScrollWords';
+import Icon from '../components/Icon';
+import { certificates, otherCertifications } from '../data/certificates';
 import { useMagnetic } from '../hooks';
 
 // Once you have a real clip: drop it in src/assets/hero-loop.mp4 (+ .webm
@@ -29,21 +31,15 @@ const marqueeItems = [
   'UI/UX',
 ];
 
-const glyph = (paths) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths}</svg>
-);
-
 const capabilities = [
   {
     title: 'Figma → UI/UX',
     body: 'Wireframes, hierarchy, responsive systems, and interaction patterns that make the next decision clear.',
     visual: (
       <div className="bento-visual viz-canvas" aria-hidden="true">
-        <span className="viz-block b1" />
-        <span className="viz-block b2" />
-        <span className="viz-block b3" />
-        <span className="viz-select">
-          <i /><i /><i /><i />
+        {['b1', 'b2', 'b3'].map((b) => <span className={`viz-block ${b}`} key={b} />)}
+        {['b1', 'b2', 'b3'].map((b) => <span className={`viz-select ${b}`} key={b}><i /><i /><i /><i /></span>)}
+        <span className="viz-cursor-track">
           <span className="viz-cursor">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 2.5 19 11l-6.4 1.7L9.4 19z" /></svg>
             <em>Sounak</em>
@@ -109,21 +105,21 @@ const problems = [
     problem: 'Distributors were working from a PDF that was slow to browse in sales conversations.',
     solution: 'Built an interactive 3D catalogue that runs as a self-contained web app.',
     color: '#ff9f0a',
-    icon: glyph(<><path d="M12 3 4 7.5v9L12 21l8-4.5v-9z" /><path d="M4 7.5 12 12l8-4.5M12 12v9" /></>),
+    icon: 'cube',
   },
   {
     title: 'Manual dispatch documents',
     problem: 'A repeated invoice and challan task depended on hand-filled documents and consistent formatting.',
     solution: 'Designed a live-preview workflow with one-click PDF export for the operations team.',
     color: '#0a84ff',
-    icon: glyph(<><path d="M7 3h7l4 4v14H7z" /><path d="M14 3v4h4M10 12h5M10 16h5" /></>),
+    icon: 'doc.text',
   },
   {
     title: 'A storefront in transition',
     problem: 'ÒMG needed to move its D2C storefront to Shopify without losing the structure around it.',
     solution: 'Worked across wireframes, landing pages, responsive QA, redirects, SEO, and funnel follow-up.',
     color: '#30d158',
-    icon: glyph(<><path d="M4 9.5h16l-1.2-5H5.2z" /><path d="M5 9.5V20h14V9.5M10 20v-5h4v5" /></>),
+    icon: 'storefront',
   },
 ];
 
@@ -131,6 +127,9 @@ const chapters = [
   { period: '2023 — present', title: 'Morfiizo Enterprise', body: 'I joined at the beginning and grew with the work, moving across UI/UX, frontend, brand development, and the operational details that keep a growing business moving.' },
   { period: 'Across ÒMG', title: 'A wider creative role', body: 'For Ò Morsel Goûter, my work has included packaging and labels, product photography, social content, Shopify, creator coordination, B2B communication, and campaign support.' },
 ];
+
+const learning = ['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'];
+const earned = [...certificates, ...otherCertifications];
 
 const nameWords = ['Sounak', 'Banerjee'];
 
@@ -170,7 +169,7 @@ export default function Home() {
             <Reveal delay={420}>
               <div className="hero-actions">
                 <Link ref={ctaRef} to="/projects" className="btn btn-primary" viewTransition>
-                  View my work <span aria-hidden="true">↗</span>
+                  View my work <Icon name="arrow.up.right" />
                 </Link>
                 <Link to="/about" className="btn btn-secondary" viewTransition>
                   Explore my journey
@@ -208,7 +207,7 @@ export default function Home() {
           <Reveal delay={200} className="home-projects-cta-wrap">
             <Link to="/projects" className="btn btn-secondary home-projects-cta" viewTransition>
               <span>View all projects</span>
-              <span aria-hidden="true">→</span>
+              <Icon name="arrow.right" />
             </Link>
           </Reveal>
         </div>
@@ -249,7 +248,7 @@ export default function Home() {
             {problems.map((item, i) => (
               <Reveal as="article" key={item.title} delay={i * 70} className="problem-item" style={{ '--i': i }}>
                 <div className="problem-head">
-                  <span className="problem-icon" style={{ '--c': item.color }}>{item.icon}</span>
+                  <span className="problem-icon" style={{ '--c': item.color }}><Icon name={item.icon} /></span>
                   <h3 className="card-title">{item.title}</h3>
                 </div>
                 <div className="problem-cols">
@@ -279,13 +278,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section learning-section">
-        <div className="container learning-grid">
-          <Reveal><span className="eyebrow">What I&rsquo;m learning</span><h2 className="display-md">From a frame in Figma to something that works in a browser.</h2></Reveal>
-          <Reveal delay={100}><p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p><div className="learning-list">{['Figma', 'HTML', 'CSS', 'JavaScript', 'React', 'Responsive systems', 'Interaction design', 'Component thinking'].map((item) => <span className="skill-pill" key={item}>{item}</span>)}</div></Reveal>
-        </div>
-      </section>
-
       <GitHubPreview />
 
       <section className="section about-teaser">
@@ -309,35 +301,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section chapter-section">
+      <section className="section growth">
         <div className="container">
           <Reveal className="section-head">
-            <span className="eyebrow">Professional chapters</span>
-            <h2 className="display-md">Learning the work by being close to it.</h2>
+            <span className="eyebrow">Always learning</span>
+            <h2 className="display-md">From a frame in Figma to something that works in a browser.</h2>
+            <p className="body-lg">Frontend is a continuous learning process for me. I&rsquo;m building the connection between design decisions and structure, interaction, responsiveness, and real interfaces.</p>
           </Reveal>
-          <div className="chapter-list">
-            {chapters.map((chapter, i) => (
-              <Reveal as="article" key={chapter.title} delay={i * 80} className="chapter-item hairline-top">
-                <p className="caption">{chapter.period}</p>
-                <div>
-                  <h3 className="card-title">{chapter.title}</h3>
-                  <p className="body-sm">{chapter.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="section current-focus">
-        <div className="container current-focus-inner">
-          <Reveal>
-            <span className="eyebrow">Current focus</span>
-            <h2 className="display-md">Building digital experiences with a longer view.</h2>
-          </Reveal>
-          <Reveal delay={100}>
-            <p className="body-lg">I am interested in frontend-led design work where the interface is only one part of the outcome: brand systems, useful tools, and products that can keep getting better after launch.</p>
-          </Reveal>
+          <div className="growth-grid">
+            <Reveal className="growth-cell growth-cell--wide">
+              <article className="growth-tile">
+                <h3 className="growth-label"><Icon name="sparkles" /> Currently learning</h3>
+                <div className="learning-list">
+                  {learning.map((item) => <span className="skill-pill" key={item}>{item}</span>)}
+                </div>
+              </article>
+            </Reveal>
+
+            <Reveal delay={70} className="growth-cell">
+              <Link to="/about#credentials" className="growth-tile growth-certs" viewTransition>
+                <h3 className="growth-label"><Icon name="rosette" /> Certifications</h3>
+                <ul className="growth-cert-stack" aria-hidden="true">
+                  {earned.map((c, i) => (
+                    <li key={c.id} style={{ '--c': c.color, '--i': i }}><Icon name={c.icon} /></li>
+                  ))}
+                </ul>
+                <p className="body-sm">{earned.length} certifications across generative AI, data analytics and digital marketing, from {earned.map((c) => c.organisation).join(', ')}.</p>
+                <span className="growth-link">See credentials <Icon name="chevron.right" /></span>
+              </Link>
+            </Reveal>
+
+            <Reveal delay={140} className="growth-cell">
+              <article className="growth-tile">
+                <h3 className="growth-label"><Icon name="doc.text" /> Professional chapters</h3>
+                <ol className="growth-timeline">
+                  {chapters.map((chapter) => (
+                    <li key={chapter.title}>
+                      <span className="caption">{chapter.period}</span>
+                      <strong>{chapter.title}</strong>
+                      <p className="body-sm">{chapter.body}</p>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            </Reveal>
+
+            <Reveal delay={210} className="growth-cell growth-cell--wide">
+              <article className="growth-tile growth-focus">
+                <h3 className="growth-label"><Icon name="scope" /> Current focus</h3>
+                <p className="growth-focus-title">Building digital experiences with a longer view.</p>
+                <p className="body-lg">I am interested in frontend-led design work where the interface is only one part of the outcome: brand systems, useful tools, and products that can keep getting better after launch.</p>
+              </article>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -350,8 +367,8 @@ export default function Home() {
               <h2 className="display-lg">Let&rsquo;s build something useful.</h2>
               <p className="body-lg">Frontend development, design thinking and AI-assisted building for practical problems that deserve a clearer digital experience.</p>
               <div className="cta-band-actions">
-                <Link to="/contact" className="btn btn-primary" viewTransition>Start a conversation <span aria-hidden="true">↗</span></Link>
-                <a href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+                <Link to="/contact" className="btn btn-primary" viewTransition>Start a conversation <Icon name="arrow.up.right" /></Link>
+                <a href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Connect on LinkedIn <Icon name="arrow.up.right" /></a>
               </div>
               <p className="cta-band-status"><span className="status-dot" /> Available for thoughtful builds in Kolkata, IN</p>
             </Reveal>

@@ -3,18 +3,13 @@ import { flushSync } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useMagnetic } from '../hooks';
 import { useTheme } from '../theme-context';
-
-const icon = (paths) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    {paths}
-  </svg>
-);
+import Icon from './Icon';
 
 const links = [
-  { to: '/', label: 'Work', icon: icon(<path d="M3.5 10.5 12 3.5l8.5 7V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19z" />) },
-  { to: '/projects', label: 'Projects', icon: icon(<><rect x="3.5" y="3.5" width="7" height="7" rx="2" /><rect x="13.5" y="3.5" width="7" height="7" rx="2" /><rect x="3.5" y="13.5" width="7" height="7" rx="2" /><rect x="13.5" y="13.5" width="7" height="7" rx="2" /></>) },
-  { to: '/about', label: 'About', icon: icon(<><circle cx="12" cy="8" r="4" /><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5" /></>) },
-  { to: '/contact', label: 'Contact', icon: icon(<><rect x="3" y="5" width="18" height="14" rx="3" /><path d="m4 7.5 8 5.5 8-5.5" /></>) },
+  { to: '/', label: 'Work', icon: 'house' },
+  { to: '/projects', label: 'Projects', icon: 'square.grid.2x2' },
+  { to: '/about', label: 'About', icon: 'person' },
+  { to: '/contact', label: 'Contact', icon: 'envelope' },
 ];
 
 // Slides a pill under whichever child link is `.active` — SwiftUI's
@@ -66,9 +61,7 @@ function ThemeSwitch() {
   return (
     <button type="button" role="switch" aria-checked={dark} aria-label="Dark mode" className="theme-switch" onClick={toggle}>
       <span className="theme-switch-knob" aria-hidden="true">
-        {dark
-          ? <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z" /></svg>
-          : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none" /><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4" /></svg>}
+        <Icon name={dark ? 'moon.fill' : 'sun.max'} />
       </span>
     </button>
   );
@@ -93,7 +86,7 @@ export default function Nav() {
   return (
     <>
       <header className={`nav${scrolled ? ' scrolled' : ''}`}>
-        <div className="nav-bar">
+        <div className="nav-bar glass">
           <NavLink to="/" className="nav-logo" viewTransition>
             <span className="nav-logo-mark" aria-hidden="true">SB</span>
             <span className="nav-logo-text">Sounak Banerjee</span>
@@ -123,7 +116,7 @@ export default function Nav() {
         </div>
       </header>
 
-      <nav className="tabbar" aria-label="Primary" ref={tabsRef}>
+      <nav className="tabbar glass" aria-label="Primary" ref={tabsRef}>
         <span className="tabbar-pill" aria-hidden="true" />
         {links.map((l) => (
           <NavLink
@@ -133,7 +126,7 @@ export default function Nav() {
             viewTransition
             className={({ isActive }) => `tab${isActive ? ' active' : ''}`}
           >
-            {l.icon}
+            <Icon name={l.icon} />
             <span>{l.label}</span>
           </NavLink>
         ))}

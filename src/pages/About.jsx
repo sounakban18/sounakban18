@@ -1,11 +1,13 @@
 import { useRef, useEffect, useState } from 'react';
 import Photo from '../components/Photo';
+import Icon from '../components/Icon';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import StatCounter from '../components/StatCounter';
 import GitHubShowcase from '../components/GitHubShowcase';
 import CertificationSection from '../components/CertificationSection';
 import { projects } from '../data/projects';
+import { certificates, otherCertifications, education, showCertificate } from '../data/certificates';
 
 const focus = [
   {
@@ -60,12 +62,36 @@ const finalSummary = {
   methods: ['Structured Prompting', 'Rapid Prototyping', 'Problem Decomposition', 'Component Thinking', 'Iterative Testing', 'Visual QA', 'Refactoring', 'Design-to-Code Iteration'],
 };
 
-const credentials = [
-  { label: 'Advanced Diploma, Software & Web Application Development', detail: 'IISDT · Nov 2025 – Apr 2026' },
-  { label: 'Bachelor of Commerce (B.Com)', detail: 'City College of Commerce & Business Administration, Kolkata · 2022 – 2025' },
-  { label: 'Generative AI Mastermind', detail: 'Outskill' },
-  { label: 'Digital Marketing Fundamentals', detail: 'IIDE' },
-];
+const monthYear = (dateTime) =>
+  new Date(dateTime).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+const certificateMeta = (c) =>
+  [c.issuer && c.issuer !== c.organisation ? `${c.organisation}, via ${c.issuer}` : c.organisation, c.dateTime && monthYear(c.dateTime)]
+    .filter(Boolean)
+    .join(' · ');
+
+// One row of an iOS-style inset grouped list. Rows with a certificate image open its preview.
+function CredentialRow({ item, meta, onOpen }) {
+  const body = (
+    <>
+      <span className="icon-tile" style={{ '--c': item.color }}><Icon name={item.icon} /></span>
+      <span className="credential-text">
+        <span className="credential-title">{item.title}</span>
+        <span className="credential-meta">{meta}</span>
+      </span>
+      {onOpen && <Icon name="chevron.right" className="credential-chevron" />}
+    </>
+  );
+  return (
+    <li>
+      {onOpen
+        ? <button type="button" className="credential-row" aria-haspopup="dialog" onClick={onOpen}>{body}</button>
+        : <div className="credential-row">{body}</div>}
+    </li>
+  );
+}
+
+const certificationCount = certificates.length + otherCertifications.length;
 
 
 const experience = [
@@ -101,31 +127,31 @@ const AIPrinciples = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const principles = [
     {
-      title: 'SECURITY',
+      title: 'Security',
       summary: 'AI output is not automatically trusted.',
       concern: 'AI can generate insecure patterns or expose sensitive information when code is accepted blindly.',
       approach: 'I treat generated code as untrusted until reviewed. I use structured prompts, explicit constraints, environment variables for secrets, basic security practices, and manual verification.',
     },
     {
-      title: 'UNDERSTANDING',
+      title: 'Understanding',
       summary: 'Avoiding the "black box" of generated code.',
       concern: 'AI can produce working code that the developer does not actually understand.',
       approach: 'I use AI alongside my HTML, CSS, JavaScript, React, API, and browser fundamentals. If I cannot explain the generated solution, I break it down and learn the underlying logic before keeping it.',
     },
     {
-      title: 'VERIFICATION',
+      title: 'Verification',
       summary: 'Confidently validating technical decisions.',
       concern: 'AI can confidently suggest incorrect APIs, architecture, dependencies, or technical decisions.',
       approach: 'I provide context, constraints, expected behaviour, and project structure through structured prompting, then verify the output through builds, browser testing, documentation, and iteration.',
     },
     {
-      title: 'MAINTAINABILITY',
+      title: 'Maintainability',
       summary: 'Prioritising structure over speed.',
       concern: 'Fast AI-generated implementations can become messy, duplicated, or difficult to maintain.',
       approach: 'I review the structure, reuse components, remove unnecessary code, simplify where possible, and refactor generated output instead of accepting everything blindly.',
     },
     {
-      title: 'FUNDAMENTALS',
+      title: 'Fundamentals',
       summary: 'Strengthening the core developer skill set.',
       concern: 'Heavy AI usage can create dependency and weaken technical understanding.',
       approach: 'I deliberately continue strengthening fundamentals while using AI as a development partner. The goal is to understand what I build, not simply generate it.',
@@ -195,13 +221,13 @@ const AIPrinciples = () => {
 const AIProcess = () => {
   const [selectedStep, setSelectedStep] = useState(0);
   const steps = [
-    { label: 'IDEA', desc: 'Define the problem and the core user need.' },
-    { label: 'PROMPT', desc: 'Provide the model with deep context, constraints, and expected behaviour.' },
-    { label: 'PROTOTYPE', desc: 'Quickly iterate on a working direction and visual layout.' },
-    { label: 'CODE', desc: 'Build the actual implementation, integrating with existing systems.' },
-    { label: 'TEST', desc: 'Verify behavior, responsiveness, and edge cases across browsers.' },
-    { label: 'REFINE', desc: 'Review the code, remove redundancy, and optimize for performance.' },
-    { label: 'SHIP', desc: 'Deploy only when the result is verified, stable, and polished.' },
+    { label: 'Idea', desc: 'Define the problem and the core user need.' },
+    { label: 'Prompt', desc: 'Provide the model with deep context, constraints, and expected behaviour.' },
+    { label: 'Prototype', desc: 'Quickly iterate on a working direction and visual layout.' },
+    { label: 'Code', desc: 'Build the actual implementation, integrating with existing systems.' },
+    { label: 'Test', desc: 'Verify behavior, responsiveness, and edge cases across browsers.' },
+    { label: 'Refine', desc: 'Review the code, remove redundancy, and optimize for performance.' },
+    { label: 'Ship', desc: 'Deploy only when the result is verified, stable, and polished.' },
   ];
 
   return (
@@ -284,39 +310,8 @@ const AIIntro = () => (
 
 export default function About() {
 
-  const frameRef = useRef(null);
   const timelineRef = useRef(null);
   const progressRef = useRef(null);
-
-  useEffect(() => {
-    const frame = frameRef.current;
-    if (!frame) return;
-
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) return;
-
-    const handlePointerMove = (event) => {
-      const { left, top, width, height } = frame.getBoundingClientRect();
-      const x = (event.clientX - (left + width / 2)) / (width / 2);
-      const y = (event.clientY - (top + height / 2)) / (height / 2);
-      const rotateY = Math.max(-3, Math.min(3, x * 3));
-      const rotateX = Math.max(-3, Math.min(3, -y * 3));
-
-      frame.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    };
-
-    const handlePointerLeave = () => {
-      frame.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-    };
-
-    frame.addEventListener('pointermove', handlePointerMove);
-    frame.addEventListener('pointerleave', handlePointerLeave);
-
-    return () => {
-      frame.removeEventListener('pointermove', handlePointerMove);
-      frame.removeEventListener('pointerleave', handlePointerLeave);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -339,7 +334,7 @@ export default function About() {
       <section className="section page-head-section about-hero">
         <div className="container about-hero-grid">
           <Reveal className="about-hero-interactive">
-            <div className="portrait-frame" ref={frameRef} data-cursor="view">
+            <div className="portrait-frame" data-tilt>
               <div className="about-hero-image-wrap">
                 <Photo ratio="3 / 4" />
               </div>
@@ -358,9 +353,9 @@ export default function About() {
               I'm still early in my journey, but I'm comfortable learning fast, experimenting, breaking things, understanding why they break, and building them better.
             </p>
             <p className="body-lg mono location">Based in Kolkata</p>
-            <a className="about-linkedin" href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer" data-cursor="open">
+            <a className="about-linkedin" href="https://linkedin.com/in/sounak-banerjee-a5292b183/" target="_blank" rel="noopener noreferrer">
               <span className="caption">Professional profile</span>
-              <span className="body-sm">Connect on LinkedIn <span aria-hidden="true">↗</span></span>
+              <span className="body-sm">Connect on LinkedIn <Icon name="arrow.up.right" /></span>
             </a>
           </Reveal>
         </div>
@@ -476,7 +471,7 @@ export default function About() {
                   <h3 className="card-title">{p.title}</h3>
                   <p className="body-sm">{p.role}</p>
                 </div>
-                <Link to={`/projects/${p.slug}`} className="btn btn-secondary btn-sm" data-cursor="view">View project ↗</Link>
+                <Link to={`/projects/${p.slug}`} className="btn btn-secondary btn-sm" viewTransition>View project <Icon name="arrow.up.right" /></Link>
               </Reveal>
             ))}
           </div>
@@ -491,7 +486,7 @@ export default function About() {
           </Reveal>
           <div className="about-focus-grid">
             {focus.map((f, i) => (
-              <Reveal as="div" key={f.title} delay={i * 60} className="about-focus-module" data-cursor="view">
+              <Reveal as="div" key={f.title} delay={i * 60} className="about-focus-module">
                 <p className="mono module-index">0{i + 1}</p>
                 <h3 className="card-title">{f.title}</h3>
                 <p className="body-sm">{f.body}</p>
@@ -509,7 +504,7 @@ export default function About() {
           </Reveal>
           <div className="about-skill-clusters">
             {skillGroups.map((group, gi) => (
-              <Reveal as="div" key={group.title} delay={gi * 60} className="about-skill-cluster" data-cursor="view">
+              <Reveal as="div" key={group.title} delay={gi * 60} className="about-skill-cluster">
                 <span className="cluster-title">{group.title}</span>
                 <div className="about-skill-tags">
                   {group.items.map((s) => (
@@ -544,34 +539,50 @@ export default function About() {
 
       <CertificationSection />
 
-      <section className="section">
-        <div className="container about-split">
-          <Reveal className="about-split-col">
+      <section className="section credentials" id="credentials">
+        <div className="container">
+          <Reveal className="section-head">
             <span className="eyebrow">Credentials</span>
-            <ul className="credential-list">
-              {credentials.map((c) => (
-                <li key={c.label} className="credential-item hairline-top">
-                  <p className="body-sm">{c.label}</p>
-                  {c.detail && <p className="caption">{c.detail}</p>}
-                </li>
-              ))}
-            </ul>
+            <h2 className="display-md">Education and certifications.</h2>
+            <p className="body-lg">A commerce degree, a diploma in software and web development, and certifications across generative AI, data analytics and digital marketing.</p>
           </Reveal>
-          <Reveal delay={100} className="about-split-col">
-            <span className="eyebrow">By the numbers</span>
+
+          <div className="credentials-grid">
+            <Reveal className="credential-col">
+              <h3 className="credential-heading">Education <span>{education.length}</span></h3>
+              <ul className="credential-group">
+                {education.map((item) => (
+                  <CredentialRow key={item.id} item={item} meta={`${item.organisation} · ${item.period}`} />
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={80} className="credential-col">
+              <h3 className="credential-heading">Certifications <span>{certificationCount}</span></h3>
+              <ul className="credential-group">
+                {certificates.map((c) => (
+                  <CredentialRow key={c.id} item={c} meta={certificateMeta(c)} onOpen={() => showCertificate(c.id)} />
+                ))}
+                {otherCertifications.map((c) => (
+                  <CredentialRow key={c.id} item={c} meta={certificateMeta(c)} />
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+
+          <Reveal delay={120} className="about-numbers">
+            <h3 className="credential-heading">By the numbers</h3>
             <div className="about-metrics-grid">
-              <div className="about-metric-item">
-                <StatCounter value={2} valueClassName="about-metric-value" />
-                <span className="about-metric-label">FMCG brands</span>
-              </div>
-              <div className="about-metric-item">
-                <StatCounter value={5} valueClassName="about-metric-value" />
-                <span className="about-metric-label">Projects shipped</span>
-              </div>
-              <div className="about-metric-item">
-                <StatCounter value={3} valueClassName="about-metric-value" />
-                <span className="about-metric-label">Person team</span>
-              </div>
+              {[
+                [2, 'FMCG brands'],
+                [5, 'Projects shipped'],
+                [certificationCount, 'Certifications'],
+                [3, 'Person team'],
+              ].map(([value, label]) => (
+                <div className="about-metric-item" key={label}>
+                  <StatCounter value={value} valueClassName="about-metric-value" />
+                  <span className="about-metric-label">{label}</span>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>

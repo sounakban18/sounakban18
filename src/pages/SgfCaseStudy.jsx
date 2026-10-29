@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import sgfProductsImg from '../assets/sgf-products.jpg';
 import sgfTshirtImg from '../assets/sgf-tshirt-sheet.jpg';
+import Icon from '../components/Icon';
 
 const galleryItems = [
   {
@@ -535,9 +536,9 @@ export default function SgfCaseStudy({ project, next }) {
           <Link
             to={`/projects/${next.slug}`}
             className="next-project-link"
-            data-cursor="view"
+           
           >
-            {next.title} <span aria-hidden="true">→</span>
+            {next.title} <Icon name="arrow.right" />
           </Link>
         </Reveal>
       </div>
